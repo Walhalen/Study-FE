@@ -1,0 +1,13 @@
+.sideBar{
+    width: 30%;
+    height: 100%;
+    color: blueviolet;
+    background: fixed;
+    background-color: blueviolet;
+}
+
+
+.searchPageContainer{
+    display: flex;
+}
+

@@ -1,11 +1,13 @@
 export const routes = {
     //signIn: '/',
     home: '/home',
-    searchPage: '/'
+    searchPage: '/',
+    favorite: '/favorites',
+    history: '/history'
 }
 
 export const page={
-    home:"home",
+    home:"HomePage",
     // history:"history",
     // newRating:"newRating",
     // admin:"admin"

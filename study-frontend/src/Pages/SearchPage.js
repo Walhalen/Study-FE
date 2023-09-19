@@ -25,7 +25,7 @@ const SearchPage = () => {
   
   return (
     
-    <div className='searchPageContainer'>
+    <div className='FlexableContainer'>
       <Menu/>
       {error && <div>Error: {error}</div>}
       {users && (

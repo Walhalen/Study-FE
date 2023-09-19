@@ -1,13 +1,68 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    text-decoration: none;
+}
+
 .sideBar{
-    width: 30%;
-    height: 100%;
-    color: blueviolet;
-    background: fixed;
-    background-color: blueviolet;
+    
+    background: #000;
+    color: #fff;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.5s;
 }
 
 
-.searchPageContainer{
+.topSideBar{
+    background: rgb(73, 73, 175);
+    color: white;
+    height: 10%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     display: flex;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.downSideBar{
+    height: 100%;
+    width: 100%;
+    color: rgb(215, 198, 198);
+    background: rgb(139, 112, 160);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.menuButton{
+    background: rgb(148, 148, 194);
+    color: white;
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 15px;
+    padding-left: 15px;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.menuButton:hover{
+    background: white;
+    color: rgb(148, 148, 194);    
+}
+
+
+
+.FlexableContainer{
+    display: flex;
+    
 }
 

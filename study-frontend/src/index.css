@@ -6,7 +6,8 @@
 
 .sideBar{
     
-    background: #000;
+    background: transparent;
+    
     color: #fff;
     height: 100vh;
     width: 250px;
@@ -15,7 +16,7 @@
 
 
 .topSideBar{
-    background: rgb(73, 73, 175);
+    background:  linear-gradient(to right, rgb(131, 121, 197), rgb(48, 60, 229));  ;
     color: white;
     height: 10%;
     width: 100%;
@@ -25,13 +26,17 @@
     display: flex;
     font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
+    border-radius: 0 10px 10px 0 ;
 }
 
 .downSideBar{
+    margin-top: 10px;
     height: 100%;
     width: 100%;
     color: rgb(215, 198, 198);
-    background: rgb(139, 112, 160);
+    /* background: rgb(139, 112, 160); */
+    background: linear-gradient(to right, white, rgb(226, 217, 229));
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 
@@ -39,6 +44,7 @@
 
 .menuButton{
     background: rgb(148, 148, 194);
+    /* background: linear-gradient(to right, white, rgb(226, 217, 229)); */
     color: white;
     height: 50px;
     width: 90%;
@@ -55,14 +61,50 @@
 }
 
 .menuButton:hover{
-    background: white;
-    color: rgb(148, 148, 194);    
+    background: linear-gradient(to right, white, rgb(226, 217, 229));
+    color: rgb(148, 148, 194);  
+    border: 2px solid rgb(146, 134, 170);
 }
 
 
 
-.FlexableContainer{
-    display: flex;
+.closedSideBar{
+    /* background:  linear-gradient(to right, rgb(131, 121, 197), rgb(89, 97, 211));   */
     
+    background:linear-gradient(to right, rgb(131, 121, 197), rgb(48, 60, 229));
+    color: #fff;
+    height: 60px;
+    width: 100%;
+    transition: all 0.5s;
+}
+
+.MenuIcon{
+
+    font-size: 30px;
+    margin: 10px;
+    margin-left: 12px ;
+    height: 60px;
+}
+
+.closedSideBarText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 45px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 100%;
+}
+
+.FlexableContainerVertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.FlexableContainerHorizontal{
+    display: flex;
+    flex-direction: row;
 }
 

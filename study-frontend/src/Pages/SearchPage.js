@@ -1,4 +1,5 @@
 
+import ClosedMenu from '../Components/ClosedMenu';
 import { Menu } from '../Components/Menu';
 import FetchAllUsers from '../FetchFunctions/User/FetchAllUsers';
 import React, { useState, useEffect } from "react";
@@ -7,7 +8,7 @@ const SearchPage = () => {
 
   const [users, setUsers] = useState(null);
   const [error, setError] = useState(null);
-
+  const [clickedFa, setClickedFa] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,19 +24,26 @@ const SearchPage = () => {
     fetchData();
   }, []);
   
+
+
+  const handleFaBar = () => setClickedFa(!clickedFa) 
+
+
   return (
-    
-    <div className='FlexableContainer'>
-      <Menu/>
-      {error && <div>Error: {error}</div>}
-      {users && (
-        <div>
-          {users.map((user) => (
-            <h1 key={user.id}>{user.first_name}</h1>
-          ))}
-        </div>
-      )}
-    </div>
+      <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
+          {clickedFa ? <Menu handleFaBar={handleFaBar}/> : <ClosedMenu handleFaBar={handleFaBar}/>}
+          <div>
+            {error && <div>Error: {error}</div>}
+            {users && (
+                <div>
+                  {users.map((user) => (
+                    <h1 key={user.id}>{user.first_name}</h1>
+                  ))}
+                </div>
+            )}
+         </div>
+      </div>
+     
   )
 }
 

@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu } from '../Components/Menu'
+import ClosedMenu from '../Components/ClosedMenu';
 
 const FavoriteTeachersPage = () => {
-    <div className='FlexableContainer'>
-        <Menu/>
-        <div>
-            Your Favorite teachers
+    const [clickedFa, setClickedFa] = useState(false);
+
+    const handleFaBar = () => setClickedFa(!clickedFa) 
+  
+
+    return (
+        <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
+            {clickedFa ? <Menu handleFaBar={handleFaBar}/> : <ClosedMenu handleFaBar={handleFaBar}/>}
+            <div>
+                Home Page
+            </div>
         </div>
-    </div>
+    )
 }
 
 export default FavoriteTeachersPage

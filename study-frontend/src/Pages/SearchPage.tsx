@@ -4,10 +4,20 @@ import { Menu } from '../Components/Menu';
 import FetchAllUsers from '../FetchFunctions/User/FetchAllUsers';
 import React, { useState, useEffect } from "react";
 
+
+interface User {
+  id : number,
+  first_name : string,
+  last_name : string,
+  password: string,
+  email : string
+  
+}
+
 const SearchPage = () => {
 
-  const [users, setUsers] = useState(null);
-  const [error, setError] = useState(null);
+  const [users, setUsers] = useState<User[]>([]);
+  const [error, setError] = useState<string | null>(null);
   const [clickedFa, setClickedFa] = useState(false);
   useEffect(() => {
     const fetchData = async () => {

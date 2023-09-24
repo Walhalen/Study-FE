@@ -1,7 +1,11 @@
 import React from 'react'
 import { FaBars } from 'react-icons/fa'
 
-const ClosedMenu = ({handleFaBar}) => {
+type Props = {
+  handleFaBar: ()=>void
+}
+
+const ClosedMenu = ({handleFaBar}: Props) => {
   return (
     <div className='closedSideBar'>
         <div className= 'FlexableContainerHorizontal'>

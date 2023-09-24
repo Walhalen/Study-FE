@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import HomePage from '../Pages/HomePage';
 
-const MenuButton = ({text, page, handleFaBar}) => {
+const MenuButton = ({text, page, handleFaBar, style}) => {
 
     const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const MenuButton = ({text, page, handleFaBar}) => {
     }
 
     return (
-        <button className='menuButton' onClick={()=>{
+        <button className={style} onClick={()=>{
             handleClick(page);
             
         }}>

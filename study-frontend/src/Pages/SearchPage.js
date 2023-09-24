@@ -30,19 +30,25 @@ const SearchPage = () => {
 
 
   return (
+
+
+    <div>
+      <ClosedMenu handleFaBar={handleFaBar}/>
       <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
-          {clickedFa ? <Menu handleFaBar={handleFaBar}/> : <ClosedMenu handleFaBar={handleFaBar}/>}
+          {clickedFa && <Menu handleFaBar={handleFaBar}/> }
           <div>
             {error && <div>Error: {error}</div>}
-            {users && (
-                <div>
-                  {users.map((user) => (
-                    <h1 key={user.id}>{user.first_name}</h1>
-                  ))}
-                </div>
-            )}
-         </div>
+              {users && (
+                  <div>
+                    {users.map((user) => (
+                      <h1 key={user.id}>{user.first_name}</h1>
+                    ))}
+                  </div>
+              )}
+          </div>
       </div>
+   </div>
+
      
   )
 }

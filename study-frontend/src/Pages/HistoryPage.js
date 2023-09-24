@@ -9,12 +9,16 @@ const HistoryPage = () => {
   
 
     return (
-        <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
-            {clickedFa ? <Menu handleFaBar={handleFaBar}/> : <ClosedMenu handleFaBar={handleFaBar}/>}
-            <div>
-                Home Page
+        <div>
+            <ClosedMenu handleFaBar={handleFaBar}/>
+            <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
+                {clickedFa && <Menu handleFaBar={handleFaBar}/> }
+                <div>
+                    Home Page
+                </div>
             </div>
         </div>
+        
     )
 }
 

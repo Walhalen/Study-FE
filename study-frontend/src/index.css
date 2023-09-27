@@ -124,6 +124,14 @@
 .SpacerHeight{
     height: 150px;
 }
+
+.LogAndSignBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 .FlexableContainerVertical{
     display: flex;
     flex-direction: column;

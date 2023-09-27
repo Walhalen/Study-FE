@@ -1,7 +1,7 @@
 export const routes = {
-    //signIn: '/',
+    login: '/',
     home: '/home' ,
-    searchPage: '/',
+    searchPage: '/search',
     favorite: '/favorites',
     history: '/history'
 }

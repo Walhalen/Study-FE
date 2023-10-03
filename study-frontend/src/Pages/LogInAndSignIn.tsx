@@ -11,7 +11,7 @@ const LogInAndSignIn = () => {
     return (
         <div className='LogAndSignBox'>
             
-            {signORlog ? <LogIn handleClick = {handleClick}/> : <SignIn handleClick = {handleClick}/>}
+            {signORlog ? <LogIn handleClick = {handleClick}/> : <SignIn handleClikc = {handleClick}/>}
 
         </div>
     );

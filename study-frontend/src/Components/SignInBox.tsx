@@ -1,26 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import Registration from '../FetchFunctions/Authentication/Registration';
 
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
 
+
+
 type FieldType = {
-  username?: string;
-  password?: string;
-  remember?: string;
+    firstName ?: string;
+    lastName ?: string;
+    username?: string;
+    password?: string;
+    remember?: string;
 };
 
+
+
 type Props = {
-    handleClick : ()=> void
-}
-const SignIn = ({handleClick} : Props) => {
-    
-    
+    handleClikc : () => void; 
+};
+
+
+const SignIn = ({handleClikc} : Props) => {
+    const [response, setResponse] = useState();
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const onFinish = (values: any) => {
+        setFirstName(values.firstName);
+        setLastName(values.lastName);
+        setEmail(values.email);
+        setPassword(values.password);
+        
+      };
+      
+        
+    const handleSubmit = async() => {
+        try{
+            console.log("Hello")
+            const response : Object = await Registration({firstName,lastName,email,password}); 
+            console.log(response);
+        }catch(error)
+        {
+            throw error; 
+        }
+    }
+    // sessionStorage.setItem("jwt", "alsjdbalsjfbljb");
     return(
 
         <Form
@@ -28,13 +58,30 @@ const SignIn = ({handleClick} : Props) => {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true, username : "signin"}}
+        initialValues={{ remember: true}}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
         >
+
         <Form.Item<FieldType>
-            label="Username"
+            label="First name"
+            name="firstName"
+            rules={[{ required: true, message: 'Please input your first name!' }]}
+        >
+            <Input />
+        </Form.Item>
+
+        <Form.Item<FieldType>
+            label="Last name"
+            name="lastName"
+            rules={[{ required: true, message: 'Please input your last name!' }]}
+        >
+            <Input />
+        </Form.Item>
+
+        <Form.Item<FieldType>
+            label="Email"
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
         >
@@ -59,10 +106,10 @@ const SignIn = ({handleClick} : Props) => {
         </Form.Item>
     
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit" >
+            <Button onClick={handleSubmit} type="primary" htmlType="submit" >
                 Submit
             </Button>
-            <Button onClick={handleClick} type = "primary" style={{marginLeft: '10px'}}>
+            <Button onClick={handleClikc} type = "primary" style={{marginLeft: '10px'}}>
                 Log in
             </Button>
         </Form.Item>

@@ -6,11 +6,13 @@ import HomePage from './Pages/HomePage';
 import FavoriteTeachersPage from './Pages/FavoriteTeachersPage';
 import HistoryPage from './Pages/HistoryPage';
 import LogInAndSignIn from './Pages/LogInAndSignIn';
+import { MyScreenBuilder } from './Pages/MyScreenBuilder';
 
 
 export const AppRoutes = () => {
   return (
     <Routes>
+        <Route path={routes.screenBuilder} element={<MyScreenBuilder/>} />
         <Route path={routes.login} element={<LogInAndSignIn/>} />
         <Route path={routes.searchPage} element={<SearchPage/>} />
         <Route path={routes.home} element={<HomePage/>} />

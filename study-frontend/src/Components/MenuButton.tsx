@@ -41,6 +41,13 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
             navigate(routes.history);
             break;
         }
+        case "signOut":
+        {
+            handleFaBar()
+            sessionStorage.clear();
+            navigate(routes.login);
+            break;
+        }
           default: break;
         }
     }

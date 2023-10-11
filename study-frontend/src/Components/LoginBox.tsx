@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { Authentication } from '../FetchFunctions/Authentication/Authentication';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../constants';
 
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-};
+// const onFinish = (values: any) => {
+//   console.log('Success:', values);
+// };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
 
 type FieldType = {
-  username?: string;
+  email?: string;
   password?: string;
   remember?: string;
 };
@@ -18,9 +21,48 @@ type FieldType = {
 type Props = {
   handleClick : ()=> void
 
-}
+};
+
 const Login = ({handleClick} : Props ) => 
 {    
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); 
+  const navigate = useNavigate(); 
+  // const onFinish = (values: any) => {
+
+  //   console.log(values.email, values.password, "HELLOOO");
+  //   setEmail(values.email);
+  //   setPassword(values.password);
+  // };
+
+  const handleSubmit = async (values : any) => {
+      setEmail(values.email);
+      setPassword(values.password);
+  };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if(email !== "" && password !== "")
+      {
+        try {
+          const response = await Authentication({ email, password });
+          
+          
+          sessionStorage.setItem("jwt", response.token);
+          navigate(routes.home);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+    };
+  
+    fetchData(); // Immediately invoke the async function
+  }, [email, password]);
+  
+
   return(
     <Form
       name="basic"
@@ -28,14 +70,15 @@ const Login = ({handleClick} : Props ) =>
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{ remember: true}}
-      onFinish={onFinish}
+      onFinish={handleSubmit}
+      // onChange={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item<FieldType>
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        label="Email"
+        name = "email"
+        rules={[{ required: true, message: 'Please input your email!' }]}
       >
         <Input />
       </Form.Item>
@@ -43,7 +86,7 @@ const Login = ({handleClick} : Props ) =>
   
       <Form.Item<FieldType>
         label="Password"
-        name="password"
+        name = "password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password />

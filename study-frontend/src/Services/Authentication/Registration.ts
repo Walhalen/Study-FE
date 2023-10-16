@@ -4,26 +4,28 @@ import React from 'react'
 import { json } from 'stream/consumers';
 
 type Props = {
-    firstName : string,
-    lastName : string,
+    username: string,
     email : string, 
     password : string
 
 };
 
-const Registration = async ({firstName, lastName, email, password} : Props )  => {
+const Registration = async ({username, email, password} : Props )  => {
+    
+    console.log("username, password, email")
     try{
         
             
         
         const metadata  = {
-            first_name : firstName,
-            last_name : lastName,
+            username: username,
             email : email,
             password : password
         };
-
-
+        if(username === null || username=== undefined || username === ""){
+            console.log("tashk")
+        }   
+        console.log(username)
         const response = await fetch('http://localhost:8080/api/v1/auth/register', {
             method : 'POST',
             headers:{

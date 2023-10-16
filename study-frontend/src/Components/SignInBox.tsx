@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import Registration from '../FetchFunctions/Authentication/Registration';
+import Registration from '../Services/Authentication/Registration';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
-
+import '../cssFiles/loginSignInPage.css'
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -11,13 +11,7 @@ const onFinishFailed = (errorInfo: any) => {
 
 
 
-type FieldType = {
-    firstName ?: string;
-    lastName ?: string;
-    email?: string;
-    password?: string;
-    remember?: string;
-};
+
 
 
 
@@ -28,108 +22,115 @@ type Props = {
 
 const SignIn = ({handleClikc} : Props) => {
     const [response, setResponse] = useState();
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isError, setIsError] = useState(false);
     const navigate = useNavigate(); 
-    const onFinish = (values: any) => {
-        setFirstName(values.firstName);
-        setLastName(values.lastName);
-        
-        setEmail(values.email);
-        setPassword(values.password);
-        
-    };
-      
-    useEffect(() => {
-        
-        const handleSubmit = async() => {
-            if(firstName !== "" && lastName !== "" && email !== "" && password !== ""){
-                try{
 
-                    const response = await Registration({firstName,lastName,email,password}); 
-                    console.log(response);
-                    sessionStorage.setItem("jwt", response.token); 
-                    
-                    navigate(routes.home);
-                }catch(error)
-                {
-                    console.log("Error: ", error); 
-                    
-                }
-            }
-        }
-
-        handleSubmit()
-    }, [firstName, lastName, email, password])
     
     const [message, setMessage] = useState("")
-    // sessionStorage.setItem("jwt", "alsjdbalsjfbljb");
+    
+    const handleSubmit = async() => {
+        if(username  !== "" && email !== "" && password !== ""){
+            try{
+                console.log(username)
+                const response = await Registration({username,email,password}); 
+                console.log(response);
+                sessionStorage.setItem("jwt", response.token); 
+                
+                navigate(routes.home);
+            }catch(error)
+            {
+                console.log("Error: ", error); 
+                
+            }
+        }
+        else{
+          setIsError(true)
+        }
+    }
+
     return(
-
-        <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
-        initialValues={{ remember: true}}
-        
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-        >
-
-        <Form.Item<FieldType>
-            label="First name"
-            name="firstName"
-            rules={[{ required: true, message: 'Please input your first name!' }]}
-        >
-            <Input />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-            label="Last name"
-            name="lastName"
-            rules={[{ required: true, message: 'Please input your last name!' }]}
-        >
-            <Input />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-            label="Email"
-            name="email"
-            rules={[{ required: true, message: 'Please input your email!' }]}
-        >
-            <Input />
-        </Form.Item>
-        
-    
-        <Form.Item<FieldType>
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
-        >
-            <Input.Password />
-        </Form.Item>
-    
-        <Form.Item<FieldType>
-            name="remember"
-            valuePropName="checked"
-            wrapperCol={{ offset: 8, span: 16 }}
-        >
-            <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-    
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button  type="primary" htmlType="submit" >
+        <div className='centerBox'>
+          <header className='headerLogIn'>
+              Sign in
+          </header>
+          <main>
+          <label htmlFor="username">
+              Username:
+            </label>
+            <input 
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your Username"
+              required
+              className={`${isError && username === '' && "inputError" }`}
+              // className={`w-full border-2 border-gray-300 focus:border-blue-300 focus:outline-none rounded-md px-3 py-2 ${isError ? 'border-red-500' : ''}`}
+              value={username}
+              onChange={(e) => {
+                  setUsername(e.target.value);
+                  setIsError(false); 
+              }}
+            
+            />
+            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Username !!!</h4> }   */}
+            <label htmlFor="email">
+              Email:
+            </label>
+            <input 
+              type="text"
+              id="email"
+              name="email"
+              placeholder="Enter your Email"
+              required
+              className={`${isError && email === '' && "inputError" }`}
+              // className={`w-full border-2 border-gray-300 focus:border-blue-300 focus:outline-none rounded-md px-3 py-2 ${isError ? 'border-red-500' : ''}`}
+              value={email}
+              onChange={(e) => {
+                  setEmail(e.target.value);
+                  setIsError(false); 
+              }}
+            
+            />
+            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Email !!!</h4> }   */}
+            <label htmlFor="password">
+              Password:
+            </label>
+            <input 
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your Password"
+              required
+              className={`${isError && password === '' && "inputError" }`}
+             
+              value={password}
+              onChange={(e) => {
+                  setPassword(e.target.value);
+                  setIsError(false); 
+              }}
+              
+            />
+            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Password !!!</h4> }   */}
+            <button type= "submit" className='submitButton' onClick={handleSubmit}>
                 Submit
-            </Button>
-            <Button onClick={handleClikc} type = "primary" style={{marginLeft: '10px'}}>
+            </button>
+
+            <div className='textDiv'>
+              <h3>{"Already have an account?"}</h3>
+              <button className='SignInLogInButton'
+                onClick={handleClikc}
+              >
                 Log in
-            </Button>
-        </Form.Item>
-        </Form>)
+              </button>
+            </div>
+            {isError && <h4 className='errorMessage'>Fill all of your blanked !!!</h4> }  
+          </main>
+      </div>
+    )
 };
   
   export default SignIn;

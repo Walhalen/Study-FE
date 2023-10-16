@@ -1,16 +1,17 @@
 
-import ClosedMenu from '../Components/ClosedMenu';
+import ClosedMenu from '../Components/Header';
 import { Menu } from '../Components/Menu';
-import FetchAllUsers from '../FetchFunctions/User/FetchAllUsers';
+import TeacherCard from '../Components/TeacherCard';
+import FetchAllUsers from '../Services/User/FetchAllUsers';
 import React, { useState, useEffect } from "react";
-
+import '../cssFiles/searchPage.css'
 
 interface User {
   id : number,
-  first_name : string,
-  last_name : string,
-  password: string,
+  username: string,
   email : string
+  password: string
+  
   
 }
 
@@ -43,19 +44,26 @@ const SearchPage = () => {
 
 
     <div>
-      <ClosedMenu handleFaBar={handleFaBar}/>
+      <header className='header'>
+        <ClosedMenu handleFaBar={handleFaBar}/>
+      </header>
+      
       <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
+          
           {clickedFa && <Menu handleFaBar={handleFaBar}/> }
-          <div>
+          <main className='cardField'>
             {error && <div>Error: {error}</div>}
               {users && (
-                  <div>
+                  <div className='cardField'>
                     {users.map((user) => (
-                      <h1 key={user.id}>{user.first_name}</h1>
+                      <TeacherCard key={user.id} username={user.username} />
+                      // <div>
+                      //   hello
+                      // </div>
                     ))}
                   </div>
               )}
-          </div>
+          </main>
       </div>
    </div>
 

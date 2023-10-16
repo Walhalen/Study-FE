@@ -1,0 +1,125 @@
+
+header{
+    margin: 0;
+   
+}
+
+
+.closedSideBar{
+    /* background:  linear-gradient(to right, rgb(131, 121, 197), rgb(89, 97, 211));   */
+    
+    background:white;
+    color: black;
+    height: 65px;
+    width: 100%;
+    transition: all 0.5s;
+    border: 2px solid ;
+    border-color: rgb(135, 154, 175);
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
+    
+}
+
+
+.closedSideBarText{
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    align-items: center;
+    text-align: center;
+    font-size: 45px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+    height: 100%;
+    color: black;
+    
+}
+
+.MenuIcon{
+
+    font-size: 30px;
+    margin: 10px;
+    margin-left: 12px ;
+    height: 60px;
+}
+
+.sideBar{
+    
+    background: transparent;
+    
+    color: #fff;
+    height: 100vh;
+    width: 250px;
+    transition: all 0.5s;
+}
+
+.downSideBar{
+    height: 100vh;
+    width: 100%;
+    color: black;
+    /* background: rgb(139, 112, 160); */
+    background: white;
+    border-radius: 10px;
+    border: 2px solid;
+    border-color: rgb(135, 154, 175);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0.4em 0.7em rgba(0.3, 0.3, 0.3, 0.3);
+}
+
+
+.menuButton{
+    background: white;
+    /* background: linear-gradient(to right, white, rgb(226, 217, 229)); */
+    color: black;
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 15px;
+    padding-left: 15px;
+    justify-content: center;
+    border: 2px solid;
+    border-color: rgb(135, 154, 175);
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 0.4em 0.7em rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+
+.menuButton:hover{
+    background: rgb(135, 154, 175);
+    color: white;  
+    border: 2px solid black;
+}
+
+
+
+
+.SignOutButton{
+    background: rgb(192, 215, 241);
+    color: black;  
+    
+    height: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 15px;
+    padding-left: 15px;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 0.4em 0.7em rgba(0.3, 0.3, 0.3, 0.3);
+}
+
+.SignOutButton:hover{
+    background:  white;;  
+    color: black;
+    border: 2px solid rgb(135, 154, 175);
+}
+

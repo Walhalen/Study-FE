@@ -1,11 +1,12 @@
 import React from 'react'
 import { FaBars } from 'react-icons/fa'
+import '../cssFiles/mainMenu.css'
 
 type Props = {
   handleFaBar: ()=>void
 }
 
-const ClosedMenu = ({handleFaBar}: Props) => {
+const Header = ({handleFaBar}: Props) => {
   return (
     <div className='closedSideBar'>
         <div className= 'FlexableContainerHorizontal'>
@@ -16,6 +17,7 @@ const ClosedMenu = ({handleFaBar}: Props) => {
             <div className='closedSideBarText'>
                 Study
             </div>
+            {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
         </div>
         
 
@@ -23,4 +25,4 @@ const ClosedMenu = ({handleFaBar}: Props) => {
   )
 }
 
-export default ClosedMenu
+export default Header

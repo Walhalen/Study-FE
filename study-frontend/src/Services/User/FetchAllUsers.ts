@@ -4,7 +4,7 @@ const FetchAllUsers = async() => {
     try {
 
         const jwtToken : string = sessionStorage.getItem("jwt") as string;
-        console.log(jwtToken)
+        
         const data = await fetch("http://localhost:8080/user/findAll", {
             method : 'GET',
             headers: {  

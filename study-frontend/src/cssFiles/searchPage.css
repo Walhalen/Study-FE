@@ -1,0 +1,58 @@
+.cardField {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
+    /* align-items: center;  */
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+    /* justify-content: center; */
+  }
+  
+  .Card {
+    margin: 30px; 
+    width: 100%; 
+    max-width: 350px; 
+    
+    height: 400px;
+    box-sizing: border-box;
+    box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
+    border: 2px solid black;
+    border-radius: 20px;
+  }
+  
+  .cardHeader{
+    /* border: 2px solid, rgb(135, 154, 175); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    font-weight: bold;
+    font-size: 30px;
+    border: 3px solid rgb(192, 215, 241); 
+    border-bottom: 2px solid  rgb(135, 154, 175);
+    border-radius: 20px 20px 0px 0px;
+    background-color: rgb(192, 215, 241);
+    
+  }
+
+  .card
+  
+  /* @media (max-width: 1200px) {
+    .cardField .Card {
+      width: calc(50% );
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .cardField .Card {
+      width: calc(33.33% - 20px); 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .cardField .Card {
+      width: calc(50% - 20px); 
+    }
+  } */
+  

@@ -1,0 +1,129 @@
+h3 {
+    margin-right: 2%;
+}
+
+label {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 0.8em;
+    margin-left: 6%;
+}
+
+input {
+    width: calc(100% - 4em); /* Adjust input width, considering margin */
+    max-width: 400px;
+    height: 100%;
+    max-height: 50px;
+    margin-bottom: 5%;
+    margin-left: 6%;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 0.5em;
+    margin-top: 1%;
+}
+
+header {
+    margin: 1%;
+    margin-bottom: 2.5%;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.errorMessage{
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 0.8em;
+    margin-left: 6%;
+    color: rgb(231, 13, 13);
+    text-align: center;
+}
+.inputError{
+    width: calc(100% - 4em); /* Adjust input width, considering margin */
+    max-width: 400px;
+    height: 100%;
+    max-height: 50px;
+    margin-bottom: 5%;
+    margin-left: 6%;
+    border: 2px solid rgb(231, 13, 13);
+    border-radius: 10px;
+    padding: 0.5em;
+    margin-top: 1%;
+}
+.centerBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    max-height: 600px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.4);
+    margin: auto; /* Center the box horizontally */
+    padding: 2%;
+    background-color: white;
+}
+
+.headerLogIn {
+    margin: 1%;
+    margin-bottom: 2.5%;
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.submitButton {
+    border:  2px solid black;
+    border-radius: 10px;
+    margin-left: 6%;
+    margin-top: 4%;
+    width: calc(100% - 4em);
+    max-width: 400px;
+    height: 100%;
+    max-height: 40px;
+    background-color: rgb(192, 215, 241);
+    font-weight: bold;
+}
+
+.submitButton:hover {
+    border:  2px solid rgb(135, 154, 175);
+    border-radius: 10px;
+    margin-left: 6%;
+    margin-top: 4%;
+    width: calc(100% - 4em);
+    max-width: 400px;
+    height: 100%;
+    max-height: 40px;
+    background-color: white;
+    font-weight: bold;
+    color: rgb(135, 154, 175);
+}
+
+.textDiv {
+    display: flex;
+    margin-top: 4%;
+    justify-content: center;
+}
+
+.SignInLogInButton {
+    color: gray;
+    font-weight: bold;
+}
+
+.SignInLogInButton:hover {
+    color: rgb(135, 154, 175);
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    label, input {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    header, .headerLogIn {
+        font-size: 2em;
+    }
+}

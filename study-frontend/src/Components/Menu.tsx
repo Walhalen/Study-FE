@@ -10,7 +10,7 @@ type Props = {
 
 export const Menu = ({handleFaBar} : Props) => {
   return (
-    <div className = 'FlexableContainer'>
+    <nav >
       <div className='sideBar'>
         {/* <div className='topSideBar'>
             <h2 >Study</h2>
@@ -25,7 +25,7 @@ export const Menu = ({handleFaBar} : Props) => {
           <MenuButton text={"Sign out"} page="signOut" handleFaBar={handleFaBar} style="SignOutButton" />
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

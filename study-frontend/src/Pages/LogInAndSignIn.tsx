@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import LogIn from '../Components/LoginBox'
 import SignIn from '../Components/SignInBox'
-
+import '../cssFiles/loginSignInPage.css'
 
 const LogInAndSignIn = () => {
 
@@ -10,7 +10,7 @@ const LogInAndSignIn = () => {
     const handleClick : () => void = () => setSignORlog(!signORlog)
     return (
         <div className='LogAndSignBox'>
-            
+            <header>Study</header>
             {signORlog ? <LogIn handleClick = {handleClick}/> : <SignIn handleClikc = {handleClick}/>}
 
         </div>

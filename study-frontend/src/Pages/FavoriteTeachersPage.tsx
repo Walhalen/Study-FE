@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Menu } from '../Components/Menu'
-import ClosedMenu from '../Components/ClosedMenu';
+import ClosedMenu from '../Components/Header';
 
 const FavoriteTeachersPage = () => {
     const [clickedFa, setClickedFa] = useState(false);
@@ -10,7 +10,9 @@ const FavoriteTeachersPage = () => {
 
     return (
         <div>
-            <ClosedMenu handleFaBar={handleFaBar}/>
+            <header className='header'>
+                <ClosedMenu handleFaBar={handleFaBar}/>
+            </header>
             <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
                 {clickedFa && <Menu handleFaBar={handleFaBar}/> }
                 <div>

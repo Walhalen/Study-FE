@@ -23,12 +23,11 @@ type Props = {
 const SignIn = ({handleClikc} : Props) => {
     const [response, setResponse] = useState();
     const [username, setUsername] = useState("");
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate(); 
-
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     
     const [message, setMessage] = useState("")
     
@@ -99,21 +98,23 @@ const SignIn = ({handleClikc} : Props) => {
             <label htmlFor="password">
               Password:
             </label>
-            <input 
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter your Password"
-              required
-              className={`${isError && password === '' && "inputError" }`}
-             
-              value={password}
-              onChange={(e) => {
-                  setPassword(e.target.value);
-                  setIsError(false); 
-              }}
-              
-            />
+            <div className="password-input-container">
+              <input
+                type={isPasswordVisible ? 'text' : 'password'}
+                id="password"
+                name="password"
+                placeholder="Enter your Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <i
+                className={`password-toggle-icon ${isPasswordVisible ? 'visible' : ''}`}
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+              {isPasswordVisible ? '👁️' : '👁️‍🗨️'}
+             </i>
+            </div>
             {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Password !!!</h4> }   */}
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
                 Submit

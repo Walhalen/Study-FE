@@ -23,7 +23,7 @@ const Login = ({handleClick} : Props ) =>
   const [password, setPassword] = useState(""); 
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate(); 
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   
   const handleSubmit = async () => {
@@ -72,20 +72,23 @@ const Login = ({handleClick} : Props ) =>
             <label htmlFor="password">
               Password:
             </label>
-            <input 
-              type="text"
-              id="password"
-              name="password"
-              placeholder="Enter your Password"
-              required
-              className={`${isError && email === '' && "inputError" }`}           
-              value={password}
-              onChange={(e) => {
-                  setPassword(e.target.value);
-                  setIsError(false); 
-              }}
-              
-            />
+            <div className="password-input-container">
+              <input
+                type={isPasswordVisible ? 'text' : 'password'}
+                id="password"
+                name="password"
+                placeholder="Enter your Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <i
+                className={`password-toggle-icon ${isPasswordVisible ? 'visible' : ''}`}
+                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+              >
+              {isPasswordVisible ? '👁️' : '👁️‍🗨️'}
+             </i>
+            </div>
 
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
                 Submit

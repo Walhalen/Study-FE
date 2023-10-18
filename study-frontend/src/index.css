@@ -6,9 +6,23 @@
     padding: 0%;
     margin: 0%;
     text-decoration: none;
+    /* overflow-x: hidden; */
+}
+
+.overflow-x{
+    overflow-x: hidden;
 }
 
 
+.dropdown{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+.dropdown.active {
+    display: block;
+  }
 .topSideBar{
     background:  linear-gradient(to right, rgb(36, 66, 219), rgb(103, 111, 216));  ;
     color: white;
@@ -39,7 +53,9 @@
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
-    height: 100vh;
+    /* height: 100%; */
+    /* max-height: 2000px; */
+    min-height: 100vh;
     background-color: rgb(167, 178, 194)
 }
 .FlexableContainerVertical{
@@ -52,3 +68,6 @@
     flex-direction: row;
 }
 
+.Stack{
+    display: -moz-inline-stack;
+}

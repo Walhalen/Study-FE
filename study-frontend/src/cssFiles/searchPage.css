@@ -1,7 +1,7 @@
 .cardField {
     display: flex;
     flex-wrap: wrap; 
-    justify-content: flex-start; 
+    justify-content: center; 
     /* align-items: center;  */
     height: 100%;
     width: 100%;
@@ -12,9 +12,9 @@
   .Card {
     margin: 30px; 
     width: 100%; 
-    max-width: 350px; 
+    max-width: 250px; 
     
-    height: 400px;
+    height: 300px;
     box-sizing: border-box;
     box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
     border: 2px solid black;
@@ -36,7 +36,7 @@
     
   }
 
-  .card
+  
   
   /* @media (max-width: 1200px) {
     .cardField .Card {

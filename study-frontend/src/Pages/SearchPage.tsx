@@ -43,27 +43,28 @@ const SearchPage = () => {
   return (
 
 
-    <div>
-      <header className='header'>
-        <ClosedMenu handleFaBar={handleFaBar}/>
-      </header>
+    <div className='overflow-x'>
       
-      <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
+      <ClosedMenu handleFaBar={handleFaBar}/>
+
+      <div  >
           
-          {clickedFa && <Menu handleFaBar={handleFaBar}/> }
-          <main className='cardField'>
-            {error && <div>Error: {error}</div>}
-              {users && (
-                  <div className='cardField'>
-                    {users.map((user) => (
-                      <TeacherCard key={user.id} username={user.username} />
-                      // <div>
-                      //   hello
-                      // </div>
-                    ))}
-                  </div>
-              )}
-          </main>
+        {clickedFa && <Menu handleFaBar={handleFaBar}/> }
+          
+          
+        <main className='cardField'>
+          {error && <div>Error: {error}</div>}
+            {users && (
+                <div className='cardField'>
+                  {users.map((user) => (
+                    <TeacherCard key={user.id} username={user.username} />
+                    // <div>
+                    //   hello
+                    // </div>
+                  ))}
+                </div>
+            )}
+        </main>
       </div>
    </div>
 

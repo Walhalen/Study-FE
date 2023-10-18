@@ -12,7 +12,30 @@ const LogInAndSignIn = () => {
         <div className='LogAndSignBox'>
             <header>Study</header>
             {signORlog ? <LogIn handleClick = {handleClick}/> : <SignIn handleClikc = {handleClick}/>}
-
+            {/* <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div>
+            <div>
+                hay
+            </div> */}
         </div>
     );
 };

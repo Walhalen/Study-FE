@@ -22,6 +22,7 @@ header{
     border-color: rgb(135, 154, 175);
     border-radius: 0px 0px 10px 10px;
     box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
+    display: flex;
     
 }
 
@@ -130,4 +131,18 @@ header{
     background:  white;;  
     color: black;
     border: 2px solid rgb(135, 154, 175);
+}
+
+
+
+@media screen and (max-width : 780px) {
+
+    .closedSideBar{
+        height: 50px;
+    
+    }
+
+    .closedSideBarText{
+        font-size: 30px;
+    }
 }

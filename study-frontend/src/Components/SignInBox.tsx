@@ -22,9 +22,12 @@ type Props = {
 
 const SignIn = ({handleClikc} : Props) => {
     const [response, setResponse] = useState();
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [formData, setFormData] = useState({
+        username : "",
+        email : "",
+        password : "" 
+    })
+    
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate(); 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -32,10 +35,10 @@ const SignIn = ({handleClikc} : Props) => {
     const [message, setMessage] = useState("")
     
     const handleSubmit = async() => {
-        if(username  !== "" && email !== "" && password !== ""){
+        if(formData.username  !== "" && formData.email !== "" && formData.password !== ""){
             try{
-                console.log(username)
-                const response = await Registration({username,email,password}); 
+                
+                const response = await Registration(formData); 
                 console.log(response);
                 sessionStorage.setItem("jwt", response.token); 
                 
@@ -66,16 +69,19 @@ const SignIn = ({handleClikc} : Props) => {
               name="username"
               placeholder="Enter your Username"
               required
-              className={`${isError && username === '' && "inputError" }`}
-              // className={`w-full border-2 border-gray-300 focus:border-blue-300 focus:outline-none rounded-md px-3 py-2 ${isError ? 'border-red-500' : ''}`}
-              value={username}
+              className={`${isError && formData.username === '' && "inputError" }`}
+            
+              value={formData.username}
               onChange={(e) => {
-                  setUsername(e.target.value);
+                  setFormData({username:e.target.value,
+                    email : formData.email,
+                    password : formData.password
+                  });
                   setIsError(false); 
               }}
             
             />
-            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Username !!!</h4> }   */}
+           
             <label htmlFor="email">
               Email:
             </label>
@@ -85,37 +91,38 @@ const SignIn = ({handleClikc} : Props) => {
               name="email"
               placeholder="Enter your Email"
               required
-              className={`${isError && email === '' && "inputError" }`}
-              // className={`w-full border-2 border-gray-300 focus:border-blue-300 focus:outline-none rounded-md px-3 py-2 ${isError ? 'border-red-500' : ''}`}
-              value={email}
+              className={`${isError && formData.email === '' && "inputError" }`}
+              
+              value={formData.email}
               onChange={(e) => {
-                  setEmail(e.target.value);
+                setFormData({username:formData.username,
+                  email : e.target.value,
+                  password : formData.password
+                });
                   setIsError(false); 
               }}
             
             />
-            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Email !!!</h4> }   */}
+           
             <label htmlFor="password">
               Password:
             </label>
-            <div className="password-input-container">
-              <input
-                type={isPasswordVisible ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Enter your Password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <i
-                className={`password-toggle-icon ${isPasswordVisible ? 'visible' : ''}`}
-                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              >
-              {isPasswordVisible ? '👁️' : '👁️‍🗨️'}
-             </i>
-            </div>
-            {/* {isError && password === '' && <h4 className='errorMessage'>Enter your Password !!!</h4> }   */}
+            
+            <input
+              type={isPasswordVisible ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter your Password"
+              required
+              value={formData.password}
+              onChange={(e) => setFormData({username: formData.username,
+                email : formData.email,
+                password :e.target.value
+              })}
+            />
+              
+            
+           
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
                 Submit
             </button>

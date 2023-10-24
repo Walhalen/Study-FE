@@ -19,18 +19,22 @@ type Props = {
 const Login = ({handleClick} : Props ) => 
 {    
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+
+  const[formData, setFormData] = useState({
+    "email" : "",
+    "password" : ""
+  })
+
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate(); 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   
   const handleSubmit = async () => {
-    if(email !== "" && password !== "")
+    if(formData.email !== "" && formData.password !== "")
     {
       try {
-        const response = await Authentication({ email, password });
+        const response = await Authentication(formData);
         
         
         sessionStorage.setItem("jwt", response.token);
@@ -60,11 +64,12 @@ const Login = ({handleClick} : Props ) =>
               name="email"
               placeholder="Enter your Email"
               required
-              // className={`w-full border-2 border-gray-300 focus:border-blue-300 focus:outline-none rounded-md px-3 py-2 ${isError ? 'border-red-500' : ''}`}
-              className={`${isError && email === '' && "inputError" }`}
-              value={email}
+              
+              className={`${isError && formData.email === '' && "inputError" }`}
+              value={formData.email}
               onChange={(e) => {
-                  setEmail(e.target.value);
+                
+                  setFormData({email: e.target.value, password: formData.password});
                   setIsError(false); 
               }}
             
@@ -72,23 +77,16 @@ const Login = ({handleClick} : Props ) =>
             <label htmlFor="password">
               Password:
             </label>
-            <div className="password-input-container">
-              <input
-                type={isPasswordVisible ? 'text' : 'password'}
-                id="password"
-                name="password"
-                placeholder="Enter your Password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <i
-                className={`password-toggle-icon ${isPasswordVisible ? 'visible' : ''}`}
-                onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-              >
-              {isPasswordVisible ? '👁️' : '👁️‍🗨️'}
-             </i>
-            </div>
+            <input
+              type={isPasswordVisible ? 'text' : 'password'}
+              id="password"
+              name="password"
+              placeholder="Enter your Password"
+              required
+              value={formData.password}
+              onChange={(e) => setFormData({email: formData.email, password: e.target.value})}
+            />
+
 
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
                 Submit

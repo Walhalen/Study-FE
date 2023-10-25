@@ -41,7 +41,7 @@ const SearchPage = () => {
 
 
   return (
-
+    
 
     <div className='overflow-x'>
       
@@ -57,6 +57,7 @@ const SearchPage = () => {
             {users && (
                 <div className='cardField'>
                   {users.map((user) => (
+                    
                     <TeacherCard key={user.id} username={user.username} />
                     // <div>
                     //   hello

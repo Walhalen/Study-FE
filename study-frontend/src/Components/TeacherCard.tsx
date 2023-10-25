@@ -5,7 +5,7 @@ type Props = {
 };
 
 const TeacherCard = ({username}: Props) => {
-  
+  console.log(username)
   return (
     <div className='Card'>
       <div className='cardHeader'>

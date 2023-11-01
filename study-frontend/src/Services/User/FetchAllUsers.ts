@@ -24,3 +24,4 @@ const FetchAllUsers = async() => {
 }
 
 export default FetchAllUsers
+        

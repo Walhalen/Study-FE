@@ -4,13 +4,16 @@ import axios from 'axios'
 import SearchPage from "./Pages/SearchPage";
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
+import { AppWrapper } from "./Wrapper/AppWrapper";
 
 
 function App() {
   return (
-    <Router>
-        <AppRoutes/>
-    </Router>
+    <AppWrapper>
+      <Router>
+          <AppRoutes/>
+      </Router>
+   </AppWrapper>
   );
 }
 

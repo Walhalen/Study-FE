@@ -11,13 +11,13 @@ import PrivateRoute  from './PrivateRoute';
 import useJWTStore from './JWTStorage'
 
 export const AppRoutes = () => {
-  const isAuthenticated = useJWTStore((state : any) => state.isAthenticated)
+  const { isAuthenticated } = useJWTStore();
+  // const isAuthenticated = useJWTStore((state : any) => state.isAthenticated)
   
   return (
-
       <Routes>
 
-            <Route path={routes.screenBuilder} element={<MyScreenBuilder/>} />
+      
             <Route path={routes.login} element={<LogInAndSignIn/>} />   
 
             <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>

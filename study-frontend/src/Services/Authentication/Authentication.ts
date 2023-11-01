@@ -16,7 +16,7 @@ export const Authentication = async ({email, password} : Props) => {
             password : password
 
         }; 
-        const response = await fetch('http://localhost:8080/api/v1/auth/authentication',{
+        const response = await fetch('http://localhost:8080/auth/authentication',{
                 method : 'POST',
                 headers : {
                     'Content-Type' : "application/json"

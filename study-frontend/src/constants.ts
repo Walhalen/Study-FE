@@ -1,6 +1,6 @@
 export const routes = {
-    screenBuilder: '/',
-    login: '/login',
+
+    login: '/',
     registration: '/registration',
     home: '/home' ,
     searchPage: '/search',

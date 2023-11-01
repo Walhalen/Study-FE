@@ -3,12 +3,11 @@ import { Route, Navigate, Outlet } from 'react-router-dom';
 import { routes } from './constants';
 
 type Props = {
-//   path: string;
-//   element: any;
   isAuthenticated: boolean;
 };
 
 function PrivateRoute ({isAuthenticated }: Props){
+  console.log("Person is: " + isAuthenticated)
   return isAuthenticated ? (
     <Outlet/>
   ) : (

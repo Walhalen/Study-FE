@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { routes } from './constants'
 import SearchPage from './Pages/SearchPage'
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom'
@@ -12,9 +12,11 @@ import useJWTStore from './JWTStorage'
 import DefaultRout from './Helper/DefaultRout';
 
 export const AppRoutes = () => {
-  const { isAuthenticated } = useJWTStore();
-  // const isAuthenticated = useJWTStore((state : any) => state.isAthenticated)
-  
+  // const { isAuthenticated } = useJWTStore();
+  const isAuthenticated = useJWTStore((state) => state.isAuthenticated)
+  useEffect(() => {
+    console.log(isAuthenticated)
+  }, [isAuthenticated]) 
   return (
       <Routes>
           <Route path={routes.login} element={<LogInAndSignIn/>} />   

@@ -12,7 +12,7 @@ const useJWTStore = create<Store>((set) => ({
   isAuthenticated: false,
   setAuthenticated: (authenticated : boolean) => set((state) => { 
     // console.log(state.isAuthenticated)
-    return { isAuthenticated: authenticated }}),
+    return { ...state,isAuthenticated: authenticated }}),
 }));
 
 export default useJWTStore;

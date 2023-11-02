@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Menu } from '../Components/Menu'
-import ClosedMenu from '../Components/ClosedMenu';
+import ClosedMenu from '../Components/Header';
 
-const HomePage = () => {
-
+const HistoryPage = () => {
     const [clickedFa, setClickedFa] = useState(false);
 
     const handleFaBar = () => setClickedFa(!clickedFa) 
@@ -11,7 +10,9 @@ const HomePage = () => {
 
     return (
         <div>
-            <ClosedMenu handleFaBar={handleFaBar}/>
+            <header className='header'>
+                <ClosedMenu handleFaBar={handleFaBar}/>
+            </header>
             <div className={ clickedFa ? 'FlexableContainerHorizontal' : 'FlexableContainerVertical'}>
                 {clickedFa && <Menu handleFaBar={handleFaBar}/> }
                 <div>
@@ -19,7 +20,9 @@ const HomePage = () => {
                 </div>
             </div>
         </div>
+        
     )
 }
 
-export default HomePage
+
+export default HistoryPage

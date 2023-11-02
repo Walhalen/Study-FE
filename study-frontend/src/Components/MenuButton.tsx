@@ -1,13 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../constants';
+import { page, routes } from '../constants';
 import HomePage from '../Pages/HomePage';
 
-const MenuButton = ({text, page, handleFaBar, style}) => {
+type Props = {
+  text : string, 
+  page : string,
+  handleFaBar : ()=>void,
+  style : string
+}
+
+const MenuButton = ({text, page, handleFaBar, style} : Props) => {
 
     const navigate = useNavigate();
 
-    function handleClick(page) {
+    function handleClick(page : string) {
         
         switch (page) {
           case "home":
@@ -34,6 +41,13 @@ const MenuButton = ({text, page, handleFaBar, style}) => {
             navigate(routes.history);
             break;
         }
+        case "signOut":
+        {
+            handleFaBar()
+            sessionStorage.clear();
+            navigate(routes.login);
+            break;
+        }
           default: break;
         }
     }
@@ -41,7 +55,6 @@ const MenuButton = ({text, page, handleFaBar, style}) => {
     return (
         <button className={style} onClick={()=>{
             handleClick(page);
-            
         }}>
             {text}
         </button>

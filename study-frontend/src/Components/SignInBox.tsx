@@ -40,7 +40,7 @@ const SignIn = ({handleClikc} : Props) => {
                 
                 const response = await Registration(formData); 
                 console.log(response);
-                sessionStorage.setItem("jwt", response.token); 
+                sessionStorage.setItem("jwtAccess", response.token); 
                 
                 navigate(routes.home);
             }catch(error)

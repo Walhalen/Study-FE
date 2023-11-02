@@ -37,7 +37,7 @@ const Login = ({handleClick} : Props ) =>
         const response = await Authentication(formData);
         
         
-        sessionStorage.setItem("jwt", response.token);
+         sessionStorage.setItem("jwtAccess", response.token);
         navigate(routes.home);
       } catch (error) {
         console.error('Error:', error);

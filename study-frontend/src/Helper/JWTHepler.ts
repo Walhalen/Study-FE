@@ -7,16 +7,17 @@ interface DecodedToken {
 }
 
 const useCheckJWT = () => {
-  const { setAuthenticated, setJWT } = useJWTStore();
-  console.log("In Helper")
+ 
+  const { setAuthenticated} = useJWTStore();
+ 
   const checkJWT = () => {
-    const jwt = sessionStorage.getItem('jwt');
-    console.log(jwt);
+    const jwt = sessionStorage.getItem('jwtAccess');
+    
     if (jwt === null || jwt === undefined) {
       setAuthenticated(false);
-      setJWT('');
+      console.log("hello")
       sessionStorage.removeItem('jwtAccess');
-      console.log("In if one")
+     
       return false;
     }
 
@@ -27,9 +28,9 @@ const useCheckJWT = () => {
     } catch (error) {
       console.error('Error decoding token:', error);
       setAuthenticated(false);
-      setJWT('');
+      console.log("hello2")
       sessionStorage.removeItem('jwtAccess');
-      console.log("In if two")
+      
       return false;
     }
 
@@ -37,9 +38,9 @@ const useCheckJWT = () => {
 
     if (decodedToken.exp < currentTime) {
       setAuthenticated(false);
-      setJWT('');
+      console.log("hello3")
       sessionStorage.removeItem('jwtAccess');
-      console.log("In if three")
+     
       return false;
     }
 

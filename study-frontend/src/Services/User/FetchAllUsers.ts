@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 
 const FetchAllUsers = async() => {
@@ -5,15 +6,10 @@ const FetchAllUsers = async() => {
 
         const jwtToken : string = sessionStorage.getItem("jwt") as string;
         
-        const data = await fetch("http://localhost:8080/user/findAll", {
-            method : 'GET',
-            headers: {  
-                Authorization : `Bearer ${jwtToken}`
-            }
-        })
-        if(data.ok)
+        const data = await axios.get("http://localhost:8080/user/findAll")
+        if(data.status === 200)
         {
-            const jsonData = await data.json();
+            const jsonData = await data.data();
             return jsonData;
         }
 

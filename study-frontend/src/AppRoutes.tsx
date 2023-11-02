@@ -9,6 +9,7 @@ import LogInAndSignIn from './Pages/LogInAndSignIn';
 import { MyScreenBuilder } from './Pages/MyScreenBuilder';
 import PrivateRoute  from './PrivateRoute';
 import useJWTStore from './JWTStorage'
+import DefaultRout from './Helper/DefaultRout';
 
 export const AppRoutes = () => {
   const { isAuthenticated } = useJWTStore();
@@ -16,16 +17,14 @@ export const AppRoutes = () => {
   
   return (
       <Routes>
-
-      
-            <Route path={routes.login} element={<LogInAndSignIn/>} />   
-
-            <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>
-              <Route path={routes.searchPage} element={<SearchPage/>} />
-              <Route path={routes.home} element={<HomePage/>} />
-              <Route path={routes.history} element={<HistoryPage/>} />
-              <Route path={routes.favorite} element={<FavoriteTeachersPage/>} />
-            </Route>
+          <Route path={routes.login} element={<LogInAndSignIn/>} />   
+          
+          <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>
+            <Route path={routes.searchPage} element={<SearchPage/>} />
+            <Route path={routes.home} element={<HomePage/>} />
+            <Route path={routes.history} element={<HistoryPage/>} />
+            <Route path={routes.favorite} element={<FavoriteTeachersPage/>} />
+          </Route>
       </Routes>
 
   )

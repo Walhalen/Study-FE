@@ -6,7 +6,7 @@ import useJWTStore from '../JWTStorage';
 export const AppWrapper: FC<PropsWithChildren> = ({ children }) => {
     const { checkJWT } = useCheckJWT();
     const navigate = useNavigate();
-  const isAuthenticated = useJWTStore((state) => state.isAuthenticated)
+    const isAuthenticated = useJWTStore((state) => state.isAuthenticated)
 
 
 

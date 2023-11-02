@@ -1,4 +1,8 @@
+import axios from 'axios';
 import React from 'react'
+import { axiosInstance } from '../../Helper/FetchHelper';
+
+
 
 type Props = {
     email : string,
@@ -10,21 +14,11 @@ export const Authentication = async ({email, password} : Props) => {
 
 
     try {
-      
-        const metadata = {
-            email : email,
-            password : password
-
-        }; 
-        const response = await fetch('http://localhost:8080/auth/authentication',{
-                method : 'POST',
-                headers : {
-                    'Content-Type' : "application/json"
-                },
-                body : JSON.stringify(metadata)
-            }
-        ); 
-        const data = await response.json();
+        const response = await axiosInstance.post('http://localhost:8080/auth/authentication',{
+            email: email,
+            password: password
+        })
+        const data = await response.data;
         console.log(data)
         return data;
     }catch(error)

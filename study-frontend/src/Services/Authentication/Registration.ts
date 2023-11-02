@@ -2,6 +2,7 @@
 import { responseEncoding } from 'axios';
 import React from 'react'
 import { json } from 'stream/consumers';
+import { axiosInstance } from '../../Helper/FetchHelper';
 
 type Props = {
     username: string,
@@ -14,26 +15,12 @@ const Registration = async ({username, email, password} : Props )  => {
     
     console.log("username, password, email")
     try{
-        
-            
-        
-        const metadata  = {
+        const response = await axiosInstance.post('http://localhost:8080/auth/register', {
             username: username,
             email : email,
             password : password
-        };
-        if(username === null || username=== undefined || username === ""){
-            console.log("tashk")
-        }   
-        console.log(username)
-        const response = await fetch('http://localhost:8080/auth/register', {
-            method : 'POST',
-            headers:{
-                'Content-Type' : "application/json"
-            },
-            body : JSON.stringify(metadata)
         })
-        const data = await response.json()
+        const data = await response.data
         return data
     }catch(error)
     {

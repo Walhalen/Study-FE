@@ -1,23 +1,59 @@
-import axios from 'axios'
-import useCheckJWT from '../Helper/JWTHepler';
+import axios, { HttpStatusCode } from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../constants';
+import useJWTStore from '../JWTStorage';
+import React, { FC, PropsWithChildren, useEffect } from 'react'
 
-const { checkJWT } = useCheckJWT();
+export const axiosInstance = axios.create();
 
 
-axios.interceptors.request.use(
+
+
+
+axiosInstance.interceptors.request.use(
     config => {
-        if(checkJWT())
+        console.log("hello there")
+        const token = sessionStorage.getItem("jwtAccess")
+        if(token)
         {
-            const token = sessionStorage.getItem("jwtAccess")
-            if (token) {
-                config.headers['Authorization'] = 'Bearer ' + token
-            }
-            // config.headers['Content-Type'] = 'application/json';
+            config.headers['Authorization'] = 'Bearer ' + token
         }
-        return config
+        
+        
 
+        return config;
     },
     error => {
-      Promise.reject(error)
+        return Promise.reject(error);
     }
-)
+);
+         
+axiosInstance.interceptors.response.use(
+    response => {
+        return response
+    },
+    function(error) {
+        
+        const originalRequest = error.config;
+
+        if(
+            error.response.status === HttpStatusCode.Unauthorized
+        )
+        {
+            window.location.reload();
+        }
+
+
+    }
+
+
+);
+
+
+
+  
+
+
+
+
+

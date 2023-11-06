@@ -48,6 +48,18 @@ header {
     margin-top: 1%;
     border: 2px solid rgb(231, 13, 13);
 }
+
+.LogAndSignBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    /* height: 100%; */
+    /* max-height: 2000px; */
+    min-height: 100vh;
+    background-color: rgb(167, 178, 194)
+}
+
 .centerBox {
     /* display: flex;
     flex-direction: column; */
@@ -135,6 +147,42 @@ header {
     transform: translateY(-50%); */
     cursor: pointer;
 }
+
+.tagField{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    /* align-items: center;  */
+    height: 100%;
+    width: 100%;
+    margin: 10px;
+}
+
+.tagCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    
+    width: fit-content;
+    border : 2px solid black; 
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 4px;
+}
+
+
+.tagColorDot{
+    margin-right : 2px;
+    height: 10px;
+    width: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: black;
+}
+
 /* Media Queries for Responsive Design */
 @media (max-width: 780px) {
     label, input, .inputError{

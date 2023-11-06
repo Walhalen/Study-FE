@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Registration from '../Services/Authentication/Registration';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
 
@@ -36,18 +36,12 @@ const SignIn = ({handleClikc} : Props) => {
     
     const handleSubmit = async() => {
         if(formData.username  !== "" && formData.email !== "" && formData.password !== ""){
-            try{
-                
-                const response = await Registration(formData); 
-                console.log(response);
-                sessionStorage.setItem("jwtAccess", response.token); 
-                
-                navigate(routes.home);
-            }catch(error)
-            {
-                console.log("Error: ", error); 
-                
-            }
+          console.log("ALo da")
+          navigate(routes.tagSelect,{ state: {
+            username : formData.username,
+            email : formData.email,
+            password : formData.password
+          }});
         }
         else{
           setIsError(true)
@@ -124,7 +118,7 @@ const SignIn = ({handleClikc} : Props) => {
             
            
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
-                Submit
+                Next step
             </button>
 
             <div className='textDiv'>

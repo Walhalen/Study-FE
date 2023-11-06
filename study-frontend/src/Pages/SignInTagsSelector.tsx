@@ -25,8 +25,9 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
         username : username,
         email : email,
         password : password,
-        tags: []
     })
+    console.log(username, email, password);
+    const [myTags, setMyTags] = useState<Tag[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [tags, setTags] = useState<Tag[]>([]);
  
@@ -35,6 +36,7 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
           try {
             const data = await FetchAllTags();
             setTags(data);
+
           } catch (error) {
             console.error("Error fetching data tags:", error);
             setError("Failed to fetch data tags");
@@ -47,7 +49,7 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
 
     const handleSubmit = async() => {
         try{  
-            const response = await Registration(formData); 
+            const response = await Registration({formData, myTags}); 
             console.log(response);
             sessionStorage.setItem("jwtAccess", response.token); 
             
@@ -68,16 +70,15 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
             <header className='headerLogIn'>
               Select Your teaching skills
             </header>
-            <main className='tagField'>
+            <div className='tagField'>
                 {tags.map((tag) => (
                     
-                    <TagCard key={tag.id} name = {tag.name} color = {tag.color} tags={formData.tags} />
-                   
-                    // <div>
-                    //   hello
-                    // </div>
+                    <TagCard key={tag.id} name = {tag.name} color = {tag.color} setTags={setMyTags} tags ={myTags} />
                 ))}       
-            </main>
+            </div>
+            <button type= "submit" className='submitButton' onClick={handleSubmit}>
+                Submit
+            </button>
 
         </div>
         

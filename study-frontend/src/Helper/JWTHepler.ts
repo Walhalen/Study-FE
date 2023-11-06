@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import jwtDecode from 'jwt-decode';
 import useJWTStore from '../JWTStorage';
 import { useLocation, useNavigate } from 'react-router-dom';

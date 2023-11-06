@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../cssFiles/loginSignInPage.css';
 
 interface Tag {
@@ -11,29 +11,41 @@ type Props = {
   name: string;
   color: string;
   tags: Array<Tag>;
- 
+  setTags: (tags: Array<Tag>) => void;
 };
 
-export const TagCard = ({ name, color, tags }: Props) => {
+export const TagCard = ({ name, color, setTags, tags }: Props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
     if (!isClicked) {
-      // Add the tag to the tags array
-      tags.push({
-        id : 0, 
-        name : name,
-        color: color
-        })
+      // Create a new tag object
+      const newTag = {
+        id: tags.length, // Assign a unique ID
+        name: name,
+        color: color,
+      };
+  
+      // Update the tags state by creating a new array with the new tag
+      setTags([...tags, newTag]);
       setIsClicked(true);
     } else {
-        tags.filter((tag) => tag.name !== name && tag.color !== color)
-        setIsClicked(false);
+      
+      // Remove the tag with the same name from the tags state
+      const updatedTags = tags.filter(tag => tag.name !== name);
+      setTags(updatedTags);
+      setIsClicked(false);
     }
+    
   };
+  
+  // useEffect(() => {
+  //   console.log(tags)
+  // }, [tags])
+
 
   return (
-    <button className='tagCard' style={{ backgroundColor: isClicked ? 'grey' : 'white' }} onClick={handleClick}>
+    <button  className={`tagCard ${isClicked ? 'clicked' : ''}`} onClick={handleClick}>
       <div className='tagColorDot' style={{ backgroundColor: color }}></div>
       {name}
     </button>

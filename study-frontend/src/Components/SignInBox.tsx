@@ -4,6 +4,8 @@ import Registration from '../Services/Authentication/Registration';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
+import { SignInTagsSelector } from '../Pages/SignInTagsSelector';
+import { PassThrough } from 'stream';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -31,17 +33,13 @@ const SignIn = ({handleClikc} : Props) => {
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate(); 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    
+    const [nextStep, setNextStep] = useState(false);
     const [message, setMessage] = useState("")
     
     const handleSubmit = async() => {
         if(formData.username  !== "" && formData.email !== "" && formData.password !== ""){
           console.log("ALo da")
-          navigate(routes.tagSelect,{ state: {
-            username : formData.username,
-            email : formData.email,
-            password : formData.password
-          }});
+          setNextStep(true);
         }
         else{
           setIsError(true)
@@ -49,6 +47,11 @@ const SignIn = ({handleClikc} : Props) => {
     }
 
     return(
+      nextStep ? <SignInTagsSelector 
+        username={formData.username}
+        email = {formData.email}
+        password = {formData.password}
+      /> :
         <div className='centerBox'>
           <header className='headerLogIn'>
               Sign in

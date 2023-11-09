@@ -49,6 +49,7 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
 
     const handleSubmit = async() => {
         try{  
+            console.log(myTags)
             const response = await Registration({formData, myTags}); 
             console.log(response);
             sessionStorage.setItem("jwtAccess", response.token); 
@@ -65,7 +66,6 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
 
   return (
     <main className='LogAndSignBox'>
-        <header>Study</header>
         <div className='centerBox'>
             <header className='headerLogIn'>
               Select Your teaching skills

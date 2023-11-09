@@ -10,7 +10,7 @@ import { MyScreenBuilder } from './Pages/MyScreenBuilder';
 import PrivateRoute  from './PrivateRoute';
 import useJWTStore from './JWTStorage'
 import DefaultRout from './Helper/DefaultRout';
-import { SignInTagsSelector } from './Pages/SignInTagsSelector';
+import { SignInTagsSelector } from './Components/SignInTagsSelector';
 
 
 

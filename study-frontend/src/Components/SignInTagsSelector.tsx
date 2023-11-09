@@ -3,7 +3,7 @@ import Registration from '../Services/Authentication/Registration';
 import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import { FetchAllTags } from '../Services/Tags/FetchAllTags';
-import { TagCard } from '../Components/TagCard';
+import {TagCardSignIn } from './TagCardSignIn';
 
 type Props = {
     username: string, 
@@ -73,7 +73,7 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
             <div className='tagField'>
                 {tags.map((tag) => (
                     
-                    <TagCard key={tag.id} name = {tag.name} color = {tag.color} setTags={setMyTags} tags ={myTags} />
+                    <TagCardSignIn key={tag.id} name = {tag.name} color = {tag.color} setTags={setMyTags} tags ={myTags} />
                 ))}       
             </div>
             <button type= "submit" className='submitButton' onClick={handleSubmit}>

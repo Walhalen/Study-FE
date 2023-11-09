@@ -162,13 +162,14 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 20px;
+    height: 25px;
     width: fit-content;
     /* width: fit-content; */
     border : 2px solid black; 
     border-radius: 10px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
+    font-size: 18px ;
     font-weight: bold;
     padding: 4px;
     margin : 3px 

@@ -4,7 +4,7 @@ import Registration from '../Services/Authentication/Registration';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
-import { SignInTagsSelector } from '../Pages/SignInTagsSelector';
+import { SignInTagsSelector } from './SignInTagsSelector';
 import { PassThrough } from 'stream';
 
 const onFinishFailed = (errorInfo: any) => {

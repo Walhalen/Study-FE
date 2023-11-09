@@ -6,12 +6,18 @@ import FetchAllUsers from '../Services/User/FetchAllUsers';
 import React, { useState, useEffect } from "react";
 import '../cssFiles/searchPage.css'
 
+
+interface Tag{
+  id : number,
+  name : string,
+  color : string 
+}
+
 interface User {
   id : number,
   username: string,
   email : string
-  password: string
-  
+  tags : Array<Tag>
   
 }
 
@@ -58,7 +64,7 @@ const SearchPage = () => {
                 <div className='cardField'>
                   {users.map((user) => (
                     
-                    <TeacherCard key={user.id} username={user.username} />
+                    <TeacherCard key={user.id} username={user.username} email = {user.email} tags = {user.tags} />
                     // <div>
                     //   hello
                     // </div>

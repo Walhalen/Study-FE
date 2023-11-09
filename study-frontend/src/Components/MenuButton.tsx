@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { page, routes } from '../constants';
 import HomePage from '../Pages/HomePage';
+import useJWTStore from '../JWTStorage';
 
 type Props = {
   text : string, 
@@ -13,7 +14,7 @@ type Props = {
 const MenuButton = ({text, page, handleFaBar, style} : Props) => {
 
     const navigate = useNavigate();
-
+    const { setAuthenticated} = useJWTStore();
     function handleClick(page : string) {
         
         switch (page) {
@@ -43,6 +44,7 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
         }
         case "signOut":
         {
+            setAuthenticated(false)
             handleFaBar()
             sessionStorage.clear();
             navigate(routes.login);

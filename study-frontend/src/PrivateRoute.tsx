@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Navigate, Outlet } from 'react-router-dom';
 import { routes } from './constants';
 
 type Props = {
-//   path: string;
-//   element: any;
   isAuthenticated: boolean;
 };
 
 function PrivateRoute ({isAuthenticated }: Props){
+  console.log("Person is: " + isAuthenticated)
+  useEffect(() => {
+
+  }, [isAuthenticated])
   return isAuthenticated ? (
-    <Outlet/>
+    <>
+    
+      {
+        <Outlet/>
+      }
+    </>
+    
   ) : (
-    <Navigate to={routes.login} />
+    // <Loading></Loading>
+    <span className="loading loading-dots loading-lg"></span>
   );
 };
 

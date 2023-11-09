@@ -1,11 +1,21 @@
-import {create} from 'zustand'
+import { create } from 'zustand';
+import jwtDecode from 'jwt-decode';
 
-const useJWTStore = create((set) => ({
-    jwt: "",
-    isAuthenticated: false,
-    setAuthenticated: () => set((state: any) => ({isAthenticated: !state.isAthenticated})),
-    setJWT: (newJwt : string) => set((state: any) => ({jwt : newJwt}))
-}))
+type Store = {
 
+  isAuthenticated: boolean;
+  setAuthenticated: (authenticated: boolean) => void;
+  
+};
+
+const useJWTStore = create<Store>((set) => ({
+  isAuthenticated: false,
+  setAuthenticated: (authenticated : boolean) => set((state) => { 
+    // console.log(state.isAuthenticated)
+    return { ...state,isAuthenticated: authenticated }}),
+}));
 
 export default useJWTStore;
+
+
+

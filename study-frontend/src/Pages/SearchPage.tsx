@@ -18,7 +18,8 @@ interface User {
   username: string,
   email : string
   tags : Array<Tag>
-  
+  description : string, 
+  rating : number
 }
 
 const SearchPage = () => {
@@ -64,7 +65,9 @@ const SearchPage = () => {
                 <div className='cardField'>
                   {users.map((user) => (
                     
-                    <TeacherCard key={user.id} username={user.username} email = {user.email} tags = {user.tags} />
+                    <TeacherCard key={user.id} username={user.username}
+                     email = {user.email} tags = {user.tags} 
+                     description = {user.description} rating = {user.rating}  />
                     // <div>
                     //   hello
                     // </div>

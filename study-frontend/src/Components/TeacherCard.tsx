@@ -15,10 +15,12 @@ type Props = {
   username : string
   email : string
   tags : Array<Tag>
+  description: string,
+  rating: number
 };
 
-const TeacherCard = ({username, email, tags}: Props) => {
-  console.log(username)
+const TeacherCard = ({username, email, tags, description, rating}: Props) => {
+
   return (
     <div className='Card'>
       <div className='cardHeader'>
@@ -39,13 +41,14 @@ const TeacherCard = ({username, email, tags}: Props) => {
       </div>
       <div className='CardDescription'>
         <h1 style = {{fontFamily:'Times New Roman', fontWeight: 'bold', fontSize: '18'}}>Desc:</h1>
-        Hello I am Ivan and want to be your math teacher
+        {`${description.length >= 30 ? tags.length > 4 ? description.substring(0, 30)+ "..." :
+        description.length <= 90 ?  description : description.substring(0, 90) + "..."   : description}`}
       </div>
       <div className='CardBottom'>
           <div className='CardRating'>
             <AiFillStar style={{color: '#fad02c', fontSize: '25px'}} />
             <div className='CardRatingGrade'>
-              3.75
+              {rating}
             </div>
           </div>
           <button className='CardViewButton'>

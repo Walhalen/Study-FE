@@ -12,10 +12,12 @@ export const axiosInstance = axios.create();
 
 axiosInstance.interceptors.request.use(
     config => {
-        console.log("hello there")
+        
         const token = sessionStorage.getItem("jwtAccess")
-        if(token)
+        
+        if(token !== null && token !== undefined)
         {
+            
             config.headers['Authorization'] = 'Bearer ' + token
         }
         

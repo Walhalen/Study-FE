@@ -25,7 +25,7 @@ export const TagCardSignIn = ({ name, color, setTags, tags }: Props) => {
         name: name,
         color: color,
       };
-      console.log(tags)
+      
       // Update the tags state by creating a new array with the new tag
       setTags([...tags, newTag]);
       setIsClicked(true);

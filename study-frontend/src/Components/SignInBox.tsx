@@ -4,7 +4,7 @@ import Registration from '../Services/Authentication/Registration';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
-import { SignInTagsSelector } from './SignInTagsSelector';
+import { SignInTagsSelector } from './SignInTagsDescriptionSelector';
 import { PassThrough } from 'stream';
 
 const onFinishFailed = (errorInfo: any) => {
@@ -38,7 +38,6 @@ const SignIn = ({handleClikc} : Props) => {
     
     const handleSubmit = async() => {
         if(formData.username  !== "" && formData.email !== "" && formData.password !== ""){
-          console.log("ALo da")
           setNextStep(true);
         }
         else{

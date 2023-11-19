@@ -3,25 +3,69 @@ import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
 
+interface MenuPage{
+  name: string,
+  rout: string, 
+  style: string,
+}
+
 type Props = {
   handleFaBar: () => void
+  pages: Array<MenuPage>
+  style: string
 }
 
 
-export const Menu = ({handleFaBar} : Props) => {
+export const Menu = ({handleFaBar, pages, style} : Props) => {
+
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  
+  React.useEffect(() => {
+
+    window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
+
+
+  }, []);
+
+
   return (
-    <nav >
-      <div className='sideBar'>
-        
-        <ul className='downSideBar'>
-          <MenuButton text={"Home Page"} page="home" handleFaBar={handleFaBar} style="menuButton" />
-          <MenuButton text={"Find your teacher"} page="searchPage" handleFaBar={handleFaBar} style="menuButton" />
-          <MenuButton text={"Favorites"} page="favorites" handleFaBar={handleFaBar} style="menuButton" />
-          <MenuButton text={"History"} page="history" handleFaBar={handleFaBar} style="menuButton" />
-          <div className='SpacerHeight'></div>
-          <MenuButton text={"Sign out"} page="signOut" handleFaBar={handleFaBar} style="SignOutButton" />
+    <nav className={style}>
+      
+        <ul >
+          {pages.map((page) => {
+                if(page.name === "Sign out" && viewportWidth < 780){
+                  return (
+                      <div key={page.name}  className='SpacerHeight'></div>                    
+                  )
+                }
+                return <MenuButton key={page.name} text={page.name} page={page.rout} handleFaBar={handleFaBar} style={page.style} />
+              }
+            )
+          }
+          {viewportWidth < 780 && <MenuButton text={"Sign out"} page="signOut" handleFaBar={handleFaBar} style="SignOutButton" />}
+          
         </ul>
-      </div>
+
+
+
+
+
     </nav>
+
+
+
+    // <nav >
+    //   <div className='sideBar'>
+        
+    //     <ul className='downSideBar'>
+    //       <MenuButton text={"Home Page"} page="home" handleFaBar={handleFaBar} style="menuButton" />
+    //       <MenuButton text={"Messeges"} page="searchPage" handleFaBar={handleFaBar} style="menuButton" />
+    //       <MenuButton text={"Favorites"} page="favorites" handleFaBar={handleFaBar} style="menuButton" />
+    //       <MenuButton text={"History"} page="history" handleFaBar={handleFaBar} style="menuButton" />
+    //       <div className='SpacerHeight'></div>
+    //       <MenuButton text={"Sign out"} page="signOut" handleFaBar={handleFaBar} style="SignOutButton" />
+    //     </ul>
+    //   </div>
+    // </nav>
   );
 };

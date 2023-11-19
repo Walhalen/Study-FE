@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { page, routes } from '../constants';
+import {  routes } from '../constants';
 import HomePage from '../Pages/HomePage';
 import useJWTStore from '../JWTStorage';
 

@@ -84,7 +84,7 @@ const SearchPage = () => {
 
         },
         {
-          name: "Messeges",
+          name: "Messages",
           rout: "searchPage",
           style: "SideBarButton",
 
@@ -129,7 +129,7 @@ const SearchPage = () => {
 
       },
       {
-        name: "Messeges",
+        name: "Messages",
         rout: "searchPage",
         style: "SideBarButton",
 

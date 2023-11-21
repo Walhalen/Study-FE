@@ -43,7 +43,7 @@ const FavoriteTeachersPage = () => {
 
         },
         {
-          name: "Messeges",
+          name: "Messages",
           rout: "searchPage",
           style: "SideBarButton",
 
@@ -88,7 +88,7 @@ const FavoriteTeachersPage = () => {
 
       },
       {
-        name: "Messeges",
+        name: "Messages",
         rout: "searchPage",
         style: "SideBarButton",
 

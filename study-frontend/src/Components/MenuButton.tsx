@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {  routes } from '../constants';
 import HomePage from '../Pages/HomePage';
 import useJWTStore from '../JWTStorage';
-
+import { GoHome } from "react-icons/go";
 type Props = {
   text : string, 
   page : string,
@@ -55,10 +55,11 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
     }
 
     return (
-        <button className={style} onClick={()=>{
-            handleClick(page);
+        <button className={style} onClick={()=>{  
+          handleClick(page);
         }}>
-            {text}
+          {/* <GoHome /> */}
+          {text}
         </button>
     )
 }

@@ -7,6 +7,10 @@ import { CiSearch } from "react-icons/ci";
 import { LuSearchX } from "react-icons/lu";
 import { Menu } from './Menu';
 import { CgProfile } from "react-icons/cg";
+import { BsFilterLeft } from "react-icons/bs";
+import Dropdown from 'react-dropdown-select';
+
+
 
 interface MenuPage{
   name: string,
@@ -110,6 +114,18 @@ const Header = ({handleFaBar, handleIsSearching, searching, handleProfileBar}: P
 
               <Menu handleFaBar={() => {}} pages={pages} style='NavBarField'/>
               
+              <div style={{display:'flex', alignItems: 'center', position: 'relative'}}>
+                <button className='filterButton'>
+                  <BsFilterLeft />
+                  {/* <h1>filter</h1> */}
+
+                </button>
+                <div className='filterDropDown'>as</div>
+              </div>
+              
+
+
+
               <div className='SearchBarField'>
                 <input type="text" placeholder="Search" className="SearchBar" />
                 <span className='iconInsideSearch'><CiSearch id='SearchIcon' /></span>

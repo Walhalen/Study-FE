@@ -3,13 +3,16 @@ import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
 
 
+type Props = {
+    searchValue : string
+}
 
-
-const FetchAllUsers = async() => {
+const FetchFilteredUsers = async({searchValue} : Props) => {
     try {
-
         
-        const data = await axiosInstance.get("http://localhost:8080/user/findAll")
+       
+        const path = "http://localhost:8080/user/findFilteredUsers/" + searchValue;
+        const data = await axiosInstance.get(path);
         console.log("fething...")
         if(data.status === 200)
         {       
@@ -23,5 +26,5 @@ const FetchAllUsers = async() => {
     }
 }
 
-export default FetchAllUsers
+export default FetchFilteredUsers
     

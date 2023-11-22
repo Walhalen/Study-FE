@@ -60,7 +60,7 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
         }}>
           {/* <GoHome /> */}
           {text}
-        </button>
+        </button> 
     )
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Menu } from '../Components/Menu'
 import ClosedMenu from '../Components/Header';
 import { CiSearch } from "react-icons/ci";
+import FilterDropDown from '../Components/FilterDropDown';
 
 
 interface MenuPage{
@@ -13,12 +14,14 @@ interface MenuPage{
 
 const FavoriteTeachersPage = () => {
     const [clickedFa, setClickedFa] = useState(false);
-    const [isSearching, setIsSearching] = useState(false);
+    
     const handleFaBar = () => setClickedFa(!clickedFa) 
-    const handleIsSearching = () => setIsSearching(!isSearching);
+   
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
     const [clickedProfile, setClickedProfile] = useState(false);
     const handleProfileBar = () => setClickedProfile(!clickedProfile);
+    const [filterDropDown, setFilterDropDown] = useState(false);
+    const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
 
     React.useEffect(() => {
   
@@ -80,7 +83,7 @@ const FavoriteTeachersPage = () => {
     
   } else {
     
-    pages = [
+    pages2 = [
       {
         name: "Home Page",
         rout: "home",
@@ -118,10 +121,12 @@ const FavoriteTeachersPage = () => {
     return (
         <div>
             <header className='header'>
-              <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleIsSearching = {handleIsSearching} searching ={isSearching}/>
+              <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown}  filterDropDown = {filterDropDown}/>
             </header>
             <div >
-                
+                  {filterDropDown &&           
+                  <FilterDropDown/>    
+                }
                 {viewportWidth < 1250 && 
                   <div>
                     {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
@@ -131,16 +136,6 @@ const FavoriteTeachersPage = () => {
                   {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
                 </div>
                 <main>
-                {viewportWidth < 780 &&         
-                <div style= {{display:'flex', justifyContent:'center', width:'100%'}}>
-                    {isSearching &&          
-                    <div className='SearchBarField'>
-                        <input type="text" placeholder="Search" className="SearchBar" />
-                        <span className='iconInsideSearch'><CiSearch id='SearchIcon' /></span>
-                    </div>
-                    }
-                </div>
-                }
                     History page
                 </main>
             </div>

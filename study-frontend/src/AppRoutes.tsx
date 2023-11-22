@@ -11,6 +11,7 @@ import PrivateRoute  from './PrivateRoute';
 import useJWTStore from './JWTStorage'
 import DefaultRout from './Helper/DefaultRout';
 import { SignInTagsSelector } from './Components/SignInTagsDescriptionSelector';
+import SearchPage from './Pages/SearchPage';
 
 
 
@@ -30,7 +31,7 @@ export const AppRoutes = () => {
           
           
           <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>
-            {/* <Route path={routes.searchPage} element={<SearchPage/>} /> */}
+            <Route path={routes.searchPage} element={<SearchPage/>} />
             <Route path={routes.home} element={<HomePage/>} />
             <Route path={routes.history} element={<HistoryPage/>} />
             <Route path={routes.favorite} element={<FavoriteTeachersPage/>} />

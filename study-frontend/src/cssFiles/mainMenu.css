@@ -219,6 +219,7 @@ li{
     position: absolute;
     right: 0;
     font-size: 30px;
+    margin-top: 10px;
     margin-right: 15px;
     color: rgb(135, 154, 175);
     font-weight: bold;
@@ -228,7 +229,9 @@ li{
     width: 250px;
     height: 50px;
     margin: 10px; 
-   
+    margin-bottom: 0px;
+    margin:none;
+    
     /* margin-bottom: 20px; */
     color: rgb(135, 154, 175);
     border-color: rgb(135, 154, 175);;
@@ -244,27 +247,46 @@ li{
     width: 350px;
 }
 
+.filterField{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    min-height: 100px;
+
+}
 
 .filterButton{
-    height:35px;
-    width: fit-content;
+    height:20px;
+    width: 250px;
+    margin-right: 8px;
     border: 2px solid rgb(135, 154, 175);
     border-radius: 10px;
-    display:flex;
+    /* display:flex;
     align-items: center;
-    justify-content: left;
+    justify-content: left; */
     font-size: 20px;
-    padding: 10px;
+    /* padding: 10px; */
     position: relative;
 }
 
 .filterDropDown{
-    height: 10px;
-
-    width: 100px;
+    font-size: 20px;
+    border: 2px solid rgb(135, 154, 175);
+    border-radius: 10px;
+    height: 100px;
+    width: 250px;
     position: absolute;
-    bottom: 1;
-
+    z-index: 1;
+    top: 0.1rem;
+    right: 4.3rem;
+    background-color: white;
+    overflow-x:hidden;
+    
+    margin-top: 100px;
+    padding: 2px;
 }
 
 

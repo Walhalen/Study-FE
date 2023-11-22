@@ -1,5 +1,5 @@
 import React from 'react'
-import '../cssFiles/searchPage.css'
+import '../cssFiles/homePage.css'
 import TagCard from './TagCard';
 import { AiFillStar } from "react-icons/ai";
 

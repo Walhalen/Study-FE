@@ -4,9 +4,10 @@ import { Menu } from '../Components/Menu';
 import TeacherCard from '../Components/TeacherCard';
 import FetchAllUsers from '../Services/User/FetchAllUsers';
 import React, { useState, useEffect } from "react";
-import '../cssFiles/searchPage.css'
+import '../cssFiles/homePage.css'
 import '../cssFiles/mainMenu.css'
 import { CiSearch } from "react-icons/ci";
+import FilterDropDown from '../Components/FilterDropDown';
 
 
 interface Tag{
@@ -34,13 +35,14 @@ interface User {
 
 
 
-const SearchPage = () => {
+const HomePage = () => {
 
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [clickedFa, setClickedFa] = useState(false);
   const [clickedProfile, setClickedProfile] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
+  const [filterDropDown, setFilterDropDown] = useState(false);
+  const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,8 +70,7 @@ const SearchPage = () => {
 
   const handleFaBar = () => setClickedFa(!clickedFa);
   const handleProfileBar = () => setClickedProfile(!clickedProfile);
-  const handleIsSearching = () => setIsSearching(!isSearching);
-
+ 
   let pages : MenuPage[] = [];
   let pages2 : MenuPage[] = []; 
 
@@ -105,6 +106,7 @@ const SearchPage = () => {
     }
 
       pages  = [
+        
         {
           name: "Your Profile",
           rout: "profile",
@@ -121,7 +123,7 @@ const SearchPage = () => {
     
   } else {
     
-    pages = [
+    pages2 = [
       {
         name: "Home Page",
         rout: "home",
@@ -162,32 +164,38 @@ const SearchPage = () => {
     <div className='overflow-x'>
       
       <header className='header'>
-        <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleIsSearching = {handleIsSearching} searching ={isSearching}/>
+        <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown} filterDropDown = {filterDropDown}/>
       </header>
 
-      <div> 
+      
+
+      <div>
+          {filterDropDown &&           
+            <FilterDropDown/>    
+          }
+
           {viewportWidth < 1250 && 
             <div>
               {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
             </div>
            }
-            <div>
-              {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
-            </div>
+          <div>
+            {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
+          </div>
          
 
         <main className='cardField'>
         
-        {viewportWidth < 780 &&         
+        {/* {viewportWidth < 780 &&         
           <div style= {{display:'flex', justifyContent:'center', width:'100%'}}>
             {isSearching &&          
-            <div className='SearchBarField'>
-                <input type="text" placeholder="Search" className="SearchBar" />
-                <span className='iconInsideSearch'><CiSearch id='SearchIcon' /></span>
+              <div className='SearchBarField'>
+                  <input type="text" placeholder="Search" className="SearchBar" />
+                  <button className='iconInsideSearch'><CiSearch id='SearchIcon' /></button>
               </div>
             }
           </div>
-        }
+        } */}
 
 
 
@@ -213,4 +221,4 @@ const SearchPage = () => {
   )
 }
 
-export default SearchPage
+export default HomePage

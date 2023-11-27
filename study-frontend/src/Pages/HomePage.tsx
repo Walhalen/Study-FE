@@ -8,6 +8,7 @@ import '../cssFiles/homePage.css'
 import '../cssFiles/mainMenu.css'
 import { CiSearch } from "react-icons/ci";
 import FilterDropDown from '../Components/FilterDropDown';
+import HomePageInformation from '../Components/HomePageInformation';
 
 
 interface Tag{
@@ -186,16 +187,11 @@ const HomePage = () => {
 
         <main>
         
-           <h1 className='TitleHome'>Home Page</h1>
-           
-           <div style={{display:"flex", width: "100%"}}>
-              <div className='InfoHome'>
-                някво описание на сайта
-              </div>
-              {/* <div className='MyCard'>
-                My card
-              </div> */}
-           </div>
+          <h1 className='TitleHome'>Home Page</h1>
+          {users && <HomePageInformation user={users[0]}/>  }
+          
+          
+          
           <hr style={{border:"1.2px solid rgb(197, 218, 242)", margin: "35px"}}/>
            <h1 className='SubTitle'>Teachers: </h1>
            <div className='cardField'>

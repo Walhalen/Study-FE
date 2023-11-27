@@ -2,7 +2,7 @@ import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
 
 export const FetchAllTags = async() => {
-    try {
+    // try {
 
         const jwtToken : string = sessionStorage.getItem("jwt") as string;
         
@@ -14,8 +14,8 @@ export const FetchAllTags = async() => {
             return jsonData;
         }
 
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        throw error;  
-    }
+    // } catch (error) {
+    //     console.error("Error fetching data:", error);
+    //     throw error;  
+    // }
 }

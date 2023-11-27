@@ -184,35 +184,36 @@ const HomePage = () => {
           </div>
          
 
-        <main className='cardField'>
+        <main>
         
-        {/* {viewportWidth < 780 &&         
-          <div style= {{display:'flex', justifyContent:'center', width:'100%'}}>
-            {isSearching &&          
-              <div className='SearchBarField'>
-                  <input type="text" placeholder="Search" className="SearchBar" />
-                  <button className='iconInsideSearch'><CiSearch id='SearchIcon' /></button>
+           <h1 className='TitleHome'>Home Page</h1>
+           
+           <div style={{display:"flex", width: "100%"}}>
+              <div className='InfoHome'>
+                някво описание на сайта
               </div>
-            }
-          </div>
-        } */}
-
-
-
-          {error && <div>Error: {error}</div>}
-            {users && (
-                <div className='cardField'>
-                  {users.map((user) => (
-                    
-                    <TeacherCard key={user.id} username={user.username}
-                     email = {user.email} tags = {user.tags} 
-                     description = {user.description} rating = {user.rating}  />
-                    // <div>
-                    //   hello
-                    // </div>
-                  ))}
-                </div>
-            )}
+              {/* <div className='MyCard'>
+                My card
+              </div> */}
+           </div>
+          <hr style={{border:"1.2px solid rgb(197, 218, 242)", margin: "35px"}}/>
+           <h1 className='SubTitle'>Teachers: </h1>
+           <div className='cardField'>
+              {error && <div>Error: {error}</div>}
+                {users && (
+                    <div className='cardField'>
+                      {users.map((user) => (
+                        
+                        <TeacherCard key={user.id} username={user.username}
+                        email = {user.email} tags = {user.tags} 
+                        description = {user.description} rating = {user.rating}  />
+                        // <div>
+                        //   hello
+                        // </div>
+                      ))}
+                    </div>
+                )}
+            </div>
         </main>
       </div>
    </div>

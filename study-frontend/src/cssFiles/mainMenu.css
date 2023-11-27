@@ -283,10 +283,12 @@ li{
     top: 0.1rem;
     right: 4.3rem;
     background-color: white;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
     overflow-x:hidden;
     
     margin-top: 100px;
-    padding: 2px;
+    padding: 5px;
 }
 
 

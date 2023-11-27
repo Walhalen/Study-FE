@@ -32,24 +32,29 @@ axiosInstance.interceptors.request.use(
          
 axiosInstance.interceptors.response.use(
     response => {
-        return response
+        return response;
     },
-    function(error) {
-        
+    error => {
+        console.log("ALoooooo");
         const originalRequest = error.config;
+        console.log(error.response);
+        console.log("Helloooo");
 
-        if(
-            error.response.status === HttpStatusCode.Unauthorized
-        )
-        {
+        if (error.response && error.response.status === HttpStatusCode.Unauthorized) {
             window.location.reload();
         }
 
+        if (error.response && error.response.status === HttpStatusCode.Forbidden) {
+            window.location.reload();
+        }
 
+        // Handle other error cases if needed
+
+        // Returning a Promise.reject to propagate the error
+        return Promise.reject(error);
     }
-
-
 );
+    
 
 
 

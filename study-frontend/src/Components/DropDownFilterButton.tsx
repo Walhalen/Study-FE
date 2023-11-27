@@ -7,10 +7,13 @@ type Props = {
 
 const TagCardFilterDropDown = ({name, color}: Props) => {
     return (
-      <button className='tagCard' style={{width:"100%", padding:"15px"}}>
+      <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <button className='tagCard' style={{width:"100%", padding:"15px"}}>
           <div className='tagColorDot' style={{ backgroundColor: color }}></div>
           {name}
-      </button>
+        </button>
+      </div>
+
   
     )
   }

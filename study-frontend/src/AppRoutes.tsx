@@ -10,7 +10,16 @@ import { MyScreenBuilder } from './Pages/MyScreenBuilder';
 import PrivateRoute  from './PrivateRoute';
 import useJWTStore from './JWTStorage'
 import DefaultRout from './Helper/DefaultRout';
+import { SignInTagsSelector } from './Pages/SignInTagsSelector';
 
+
+
+type Props = {
+  username: string;
+  email : string;
+  password: string;
+
+}
 export const AppRoutes = () => {
   // const { isAuthenticated } = useJWTStore();
   const isAuthenticated = useJWTStore((state) => state.isAuthenticated)
@@ -20,6 +29,7 @@ export const AppRoutes = () => {
   return (
       <Routes>
           <Route path={routes.login} element={<LogInAndSignIn/>} />   
+          
           
           <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>
             <Route path={routes.searchPage} element={<SearchPage/>} />

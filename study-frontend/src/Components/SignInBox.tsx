@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import Registration from '../Services/Authentication/Registration';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
+import { SignInTagsSelector } from '../Pages/SignInTagsSelector';
+import { PassThrough } from 'stream';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -31,23 +33,13 @@ const SignIn = ({handleClikc} : Props) => {
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate(); 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    
+    const [nextStep, setNextStep] = useState(false);
     const [message, setMessage] = useState("")
     
     const handleSubmit = async() => {
         if(formData.username  !== "" && formData.email !== "" && formData.password !== ""){
-            try{
-                
-                const response = await Registration(formData); 
-                console.log(response);
-                sessionStorage.setItem("jwtAccess", response.token); 
-                
-                navigate(routes.home);
-            }catch(error)
-            {
-                console.log("Error: ", error); 
-                
-            }
+          console.log("ALo da")
+          setNextStep(true);
         }
         else{
           setIsError(true)
@@ -55,6 +47,11 @@ const SignIn = ({handleClikc} : Props) => {
     }
 
     return(
+      nextStep ? <SignInTagsSelector 
+        username={formData.username}
+        email = {formData.email}
+        password = {formData.password}
+      /> :
         <div className='centerBox'>
           <header className='headerLogIn'>
               Sign in
@@ -124,7 +121,7 @@ const SignIn = ({handleClikc} : Props) => {
             
            
             <button type= "submit" className='submitButton' onClick={handleSubmit}>
-                Submit
+                Next step
             </button>
 
             <div className='textDiv'>

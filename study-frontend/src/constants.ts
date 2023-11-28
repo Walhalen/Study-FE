@@ -2,6 +2,7 @@ export const routes = {
 
     default: '/',
     login: '/',
+    tagSelect : '/signIn/selectTags',
     registration: '/registration',
     home: '/home' ,
     searchPage: '/search',
@@ -10,7 +11,11 @@ export const routes = {
 }
 
 
-
+export const pbrouts = [
+    routes.default,
+    routes.login,
+    routes.tagSelect
+]
 
 
 export const page="";

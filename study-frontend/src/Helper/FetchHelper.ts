@@ -26,34 +26,43 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     error => {
+        console.log("alo da")
         return Promise.reject(error);
     }
 );
          
-axiosInstance.interceptors.response.use(
-    response => {
-        return response;
+axiosInstance.interceptors.response.use( 
+    async (response) => {
+      console.log(response)
+      return response
     },
-    error => {
-        console.log("ALoooooo");
-        const originalRequest = error.config;
-        console.log(error.response);
-        console.log("Helloooo");
+    
+    (error) => {
 
-        if (error.response && error.response.status === HttpStatusCode.Unauthorized) {
-            window.location.reload();
-        }
+      console.log("alo da ")
+      console.log("An error occurred:", error);
+  
+      // Check if the error is due to CORS
+      if (error.response && error.response.status === HttpStatusCode.Forbidden) {
+        console.log("CORS issue detected. Reloading the page...");
+        window.location.reload();
+      }
+  
+      // Handle unauthorized and forbidden errors
+      if (error.response && (error.response.status === HttpStatusCode.Unauthorized || error.response.status === HttpStatusCode.Forbidden)) {
+        console.log("Unauthorized or Forbidden. Reloading the page...");
+        window.location.reload();
+      }
+  
+      // Handle other error cases if needed
+  
+      // Returning a Pzromise.reject to propagate the error
+      return Promise.reject(error);
+      
 
-        if (error.response && error.response.status === HttpStatusCode.Forbidden) {
-            window.location.reload();
-        }
-
-        // Handle other error cases if needed
-
-        // Returning a Promise.reject to propagate the error
-        return Promise.reject(error);
     }
-);
+  );
+  
     
 
 

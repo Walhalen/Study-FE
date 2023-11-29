@@ -4,6 +4,8 @@ import { MdKeyboardArrowLeft } from "react-icons/md";
 import exampleImage1 from '../assets/continious-learning.png';
 import onlineEdu from '../assets/onlineEdu.png'
 import TeacherCard from './TeacherCard';
+import { FaRegCircle } from "react-icons/fa";
+
 
 interface Tag{
     id : number,
@@ -119,16 +121,16 @@ const HomePageInformation = ({user}: Props) => {
                         <div style={{ fontWeight: 'bold', fontSize: '25px', color: sliderIndex === 1 ? 'black' : 'inherit' }}>
                             .
                         </div>
-                        <div style={{ fontWeight: 'bold', fontSize: '25px', color: sliderIndex === 2 ? 'black' : 'inherit' }}>
-                            .
+                        <div style={{ fontWeight: 'bold', fontSize: '25px', color: sliderIndex === 2 ? 'black' : 'inherit'}}>
+                           .
                         </div>
                         {/* <div style={{ fontWeight: 'bold', fontSize: '25px', color: sliderIndex === 3 ? 'black' : 'inherit' }}>
                             .
                         </div> */}
                     </div>
                     <div style = {{display:"flex", gap:"10px"}}>
-                        <MdKeyboardArrowLeft style={{fontSize: 20}} onClick={handleLeft}/>
-                        <MdChevronRight style={{fontSize: 20}} onClick={handleRight}/>
+                        <MdKeyboardArrowLeft style={{fontSize: 20, color: "black"}} onClick={handleLeft}/>
+                        <MdChevronRight style={{fontSize: 20, color: "black"}} onClick={handleRight}/>
                     
                     </div>
 

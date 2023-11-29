@@ -144,8 +144,10 @@ const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDrop
                       
                       if(e.target.value!== "")
                       {
-                        
-                        navigator(`/search/${e.target.value}` )
+                        const dataForSent = {
+                          "searchInfo" : e.target.value
+                        } 
+                        navigator(`/search`, { state: dataForSent} )
                       }   
                     }}/>
                     <button className='iconInsideSearch' ><CiSearch id='SearchIcon' /></button>

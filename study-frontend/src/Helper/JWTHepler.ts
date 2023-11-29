@@ -44,15 +44,15 @@ const useCheckJWT = () => {
         return false;
       }
 
-      const currentTime = Math.floor(Date.now() / 1000);
+        const currentTime = Math.floor(Date.now() / 1000);
 
-      if (decodedToken.exp < currentTime) {
-        setAuthenticated(false);
-       
-        sessionStorage.removeItem('jwtAccess');
-        navigate(routes.login);
-        return false;
-      }
+        if (decodedToken.exp < currentTime) {
+          setAuthenticated(false);
+        
+          sessionStorage.removeItem('jwtAccess');
+          navigate(routes.login);
+          return false;
+        }
 
 
       setAuthenticated(true);

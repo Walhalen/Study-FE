@@ -5,9 +5,10 @@ import { CiSearch } from "react-icons/ci";
 import FetchAllUsers from '../Services/User/FetchAllUsers';
 import TeacherCard from '../Components/TeacherCard';
 import FetchFilteredUsers from '../Services/User/FetchFilteredUsers';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { routes } from '../constants';
 import { GoHome } from "react-icons/go";
+import FetchFilteredByTagUsers from '../Services/User/FetchFilteredByTagUsers';
 
 interface Tag{
     id : number,
@@ -26,9 +27,11 @@ interface User {
   
 
 const SearchPage = () => {
-    const params  = useParams()
-
+    const value  = useLocation()
+    const params = value.state
+    
     const [searchValue, setSearchValue] = useState(params.searchInfo);
+    const [tagValue, setTagValue] = useState(params.tagName);
     const [users, setUsers] = useState<User[]>([]);
     const [searchedUsers, setSearchedUsers] = useState<User[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -46,7 +49,18 @@ const SearchPage = () => {
                 );
             }
             else{
+              if(params.tagName !== null && params.tagName !== undefined)
+              {
+                console.log("Alo da tag")
+                const filteredData = await FetchFilteredByTagUsers({tagValue});
+                setUsers(filteredData);
+                
+              }
+              else
+              {
                 setUsers(data);
+              }
+                
             }
 
             setSearchedUsers(data)

@@ -7,7 +7,7 @@ export const routes = {
     tagSelect : '/signIn/selectTags',
     registration: '/registration',
     home: '/home' ,
-    searchPage: '/search/:searchInfo?',
+    searchPage: '/search',
     favorite: '/favorites',
     history: '/history'
 }

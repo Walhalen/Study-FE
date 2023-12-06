@@ -26,19 +26,20 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     error => {
-        console.log("alo da")
+        console.log("alo da", error)
         return Promise.reject(error);
     }
 );
          
 axiosInstance.interceptors.response.use( 
     async (response) => {
+      console.log("Aloooooooooooo")
       console.log(response)
       return response
     },
     
-    (error) => {
-
+    async (error) => {
+      
       console.log("alo da ")
       console.log("An error occurred:", error);
   

@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
+import FilterDropDown from './FilterDropDown';
 
 interface Option {
   label: string;
@@ -85,7 +86,7 @@ const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDrop
             Study
           </div>
           <button id='SearchIconBox' onClick={()=>{
-             navigator(`/search/` )
+             navigator(`/search/`, {state :{searchInfo : "", tagName : ""}} )
           }}>
 
             <CiSearch id='SearchIcon' />
@@ -106,14 +107,16 @@ const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDrop
 
               
               
-              <div className='SearchBarField'>
+              <div className='SearchBarField' style={{height: "100%"}}>
                 <input type="text" placeholder="Search" className="SearchBar" value={searchValue} onChange={(e) =>{          
                   setSearchValue(e.target.value);
                   console.log("hi")
                   if(e.target.value!== "")
                   {
-                    console.log("doesn't work")
-                    navigator(`/search/${e.target.value}` )
+                    const dataForSent = {
+                      "searchInfo" : e.target.value
+                    } 
+                    navigator(`/search`, { state: dataForSent} )
                   }   
                 }}/>
                 <button className='iconInsideSearch' ><CiSearch id='SearchIcon' /></button>
@@ -152,11 +155,21 @@ const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDrop
                     }}/>
                     <button className='iconInsideSearch' ><CiSearch id='SearchIcon' /></button>
                   </div>
-                  <button className='filterButton' onClick={handleFilterDropDown}>
-                    {filterDropDown ? <RiArrowDropUpLine /> 
-                    : <RiArrowDropDownLine />}
+                  <div style={{overflow: 'hidden', display: 'flex', justifyContent:'center'}}>
+                      <button className='filterButton' onClick={handleFilterDropDown}>
+                        {filterDropDown ? <RiArrowDropUpLine /> 
+                        : <RiArrowDropDownLine />}
                    
-                  </button>
+                      </button>
+                      {filterDropDown &&   
+                        <div style={{  position: 'absolute', marginTop: "25px", marginRight: "5px", zIndex:1}}>
+                          <FilterDropDown/> 
+                        </div>        
+                      }
+                  </div>
+
+                  
+
               </div>
 
               <button className='ProfileIcon'>

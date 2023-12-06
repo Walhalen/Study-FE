@@ -171,9 +171,12 @@ const HomePage = () => {
       
 
       <div>
-          {filterDropDown &&           
-            <FilterDropDown/>    
-          }
+          {/* {filterDropDown &&   
+            <div style={{  position: 'absolute', top:" 6.5rem", right: "4.3rem", zIndex:1}}>
+              <FilterDropDown/> 
+            </div>        
+               
+          } */}
 
           {viewportWidth < 1250 && 
             <div>

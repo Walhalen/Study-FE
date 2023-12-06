@@ -12,9 +12,21 @@ type Props = {
 const TagCardFilterDropDown = ({name, color}: Props) => {
   const navigator = useNavigate();
   const handleFilter = () => {
-    navigator(`/search`, {state: {
-      "tagName" : name
-    }} )
+    console.log("clicked");
+
+    if(window.location.pathname === "/search"){
+      navigator(`/search`, {state: {
+        "tagName" : name
+      }, replace: true} )
+      console.log(window.location.pathname)
+      window.location.reload()
+    }
+    else
+    {
+      navigator(`/search`, {state: {
+        "tagName" : name
+      }, replace: true} )
+    }
   }
 
   return (

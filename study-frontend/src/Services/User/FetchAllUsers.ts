@@ -16,9 +16,14 @@ const FetchAllUsers = async() => {
             const jsonData = await data.data;
             return jsonData;
         }
+        else
+        {
+            console.log("aloooooo" + data)
+        }
 
     } catch (error) {
         // console.error("Error fetching data:", error);
+        console.log("Alo da2 ")
         throw error;  
     }
 }

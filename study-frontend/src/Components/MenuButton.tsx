@@ -50,6 +50,12 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
             navigate(routes.login);
             break;
         }
+        case "profile":
+        {
+            handleFaBar()
+            navigate(routes.profilePage);
+            break;
+        }
           default: break;
         }
     }

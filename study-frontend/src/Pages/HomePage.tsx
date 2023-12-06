@@ -150,6 +150,12 @@ const HomePage = () => {
 
       },
       {
+        name: "Your Profile",
+        rout: "profile",
+        style: "SideBarButton",
+
+      },
+      {
         name: "Sign out",
         rout: "signOut",
         style: "SignOutButton",

@@ -1,7 +1,7 @@
 import axios, { HttpStatusCode } from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
-import useJWTStore from '../JWTStorage';
+import useJWTStore from '../Storiges/JWTStorage';
 import React, { FC, PropsWithChildren, useEffect } from 'react'
 
 export const axiosInstance = axios.create();

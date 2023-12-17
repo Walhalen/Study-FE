@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
+import useUserStore from '../../Storiges/UserStorage';
 
 
 
@@ -11,7 +12,7 @@ type Props = {
 };
 
 export const Authentication = async ({email, password} : Props) => {
-
+    
 
     try {
         const response = await axiosInstance.post('http://localhost:8080/auth/authentication',{
@@ -20,6 +21,7 @@ export const Authentication = async ({email, password} : Props) => {
         })
         const data = await response.data;
         console.log(data)
+
         return data;
     }catch(error)
     {

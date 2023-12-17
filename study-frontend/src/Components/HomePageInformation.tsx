@@ -5,25 +5,13 @@ import exampleImage1 from '../assets/continious-learning.png';
 import onlineEdu from '../assets/onlineEdu.png'
 import TeacherCard from './TeacherCard';
 import { FaRegCircle } from "react-icons/fa";
+import { UserDto } from '../Types/UserIntrfaces';
+import {Tag} from '../Types/TagInterfaces';
 
 
-interface Tag{
-    id : number,
-    name : string,
-    color : string 
-  }
-
-interface User {
-    id : number,
-    username: string,
-    email : string
-    tags : Array<Tag>
-    description : string, 
-    rating : number
-}
   
 type Props = {
-    user: User
+    user: UserDto
 }
 
 const HomePageInformation = ({user}: Props) => {
@@ -77,8 +65,6 @@ const HomePageInformation = ({user}: Props) => {
                 </div>
             </div>
         </div>
-
-
         : 
         <div style={{display:"flex", width: "100%", justifyContent: 'center'}}>
             <div className='InfoHome'>

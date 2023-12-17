@@ -9,7 +9,7 @@ import { Menu } from './Menu';
 import { CgProfile } from "react-icons/cg";
 import { BsFilterLeft } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
-import { routes } from '../constants';
+import { largeScreenMenu, routes, smallScreenMenu } from '../constants';
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import FilterDropDown from './FilterDropDown';
@@ -44,33 +44,7 @@ const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDrop
 
   }, []);
 
-  const pages : MenuPage[] = [
-    {
-      name: "Home Page",
-      rout: "home",
-      style: "NavBarButtons",
-
-    },
-    {
-      name: "Messeges",
-      rout: "searchPage",
-      style: "NavBarButtons",
-
-    },
-    {
-      name: "Favorites",
-      rout: "favorites",
-      style: "NavBarButtons",
-
-    },
-    {
-      name: "History",
-      rout: "history",
-      style: "NavBarButtons",
-
-    },
-
-  ];
+  const pages : MenuPage[] =  largeScreenMenu
 
 
   

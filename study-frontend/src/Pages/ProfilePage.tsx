@@ -6,6 +6,8 @@ import { AiFillStar } from "react-icons/ai";
 import { useNavigate, useNavigation } from 'react-router-dom';
 import { routes } from '../constants';
 import learning from '../assets/learning2.png'
+import useUserStore from '../Storiges/UserStorage';
+import TagCard from '../Components/TagCard';
 const ProfilePage = () => {
     
     const navigator = useNavigate()
@@ -13,9 +15,9 @@ const ProfilePage = () => {
     const handleHomeIcon = () => {
         navigator(routes.home)
     }
-
+    const {me} = useUserStore();
     const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  
+    console.log(me.tags)
     React.useEffect(() => {
   
       window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
@@ -37,20 +39,32 @@ const ProfilePage = () => {
                 </header>
                 <CgProfile style={{fontSize:`${viewportWidth < 1200 ? "150px" : "200px " }`}}/>
                 <h1 style={{fontSize: "35px", fontWeight: "600"}}>
-                    Ivan Postolov
+                    {me.username}
+                </h1 >
+                <h1 style={{fontSize: "20px"}}>
+                    {me.email}
                 </h1>
                 <div className='profileInfo'>
                     <div className='tagInfo'>
                         <h1 style={{fontSize: "20px"}}>Tags:</h1>
                         <div className='tagField'>
-                            #tuka sa tagowete
+
+                            { me.tags.length !== 0 ? me.tags.map((tag) => (
+                                <TagCard  key={tag.id} name = {tag.name} color = {tag.color}/>
+                            )): 
+                                <h1 style={{color:"red"}}>
+                                    No tags
+                                </h1>
+                            }
                         </div>
                     </div>
 
                     <div className='descriptionInfo'>
                         <h1 style={{fontSize: "20px"}}>Description:</h1>
                         <div className='descriptionField'>
-                            #tuk shte ima opisanieto na choveka
+                            {me.description ? me.description :
+                                <h1 style={{color: "red"}}>No description</h1>
+                            }
                         </div>
                     </div>
                     <div style={{width:"90%", height: "fit-content"}}>
@@ -58,7 +72,7 @@ const ProfilePage = () => {
                         <div className='ratingInfo'>
                             <h1 style={{fontSize:"20px", marginRight:"5px", marginBottom: "3px", fontWeight:"400"}}>Your rating: </h1>
                             <AiFillStar style={{color: '#fad02c', fontSize: '25px'}} />
-                            <h1 style={{fontSize:"20px", marginLeft:"5px", marginBottom: "2px", fontWeight:"400"}}>7</h1>   
+                            <h1 style={{fontSize:"20px", marginLeft:"5px", marginBottom: "2px", fontWeight:"400"}}>{me.rating}</h1>   
                         </div>
 
                     </div>
@@ -79,7 +93,7 @@ const ProfilePage = () => {
                             <GoHome style= {{fontSize: `${viewportWidth < 1200 ? "30px" : "30px " }` }}onClick={handleHomeIcon}/>
                         </button>
                         
-                        <h1 className='profilePageHeaderText'>Your Prfile</h1>  
+                        <h1 className='profilePageHeaderText'>Your Profile</h1>  
                     </header>
                     <img src={learning} alt="ALoooo" style={{opacity:"0.5" }}/>
                 </div>
@@ -87,7 +101,7 @@ const ProfilePage = () => {
             <div className='MainContent2'>
                 <div className='firstBox'>
                    <div className='firstBoxHeader'>
-                        <div style={{width: "20%"}}>
+                        <div style={{width: "50%"}}>
                             <h1 style={{fontSize:"20px"}}>My account</h1>
                         </div>
                         
@@ -103,11 +117,13 @@ const ProfilePage = () => {
                         <div style={{padding: "20px"}}>
                             <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Tags:</h1>
                             <div className='UserInfo'>
-                                Tagowe tagowe tagowe tagowe 
+                            { me.tags.map((tag) => (
+                                <TagCard  key={tag.id} name = {tag.name} color = {tag.color}/>
+                            ))}
                             </div>
                             <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Description:</h1>
                             <div className='UserInfo'>
-                                description
+                                {me.description}
                             </div>
                         </div>
                    </div>
@@ -117,9 +133,10 @@ const ProfilePage = () => {
                     <div className='profileIcon'>
                         <CgProfile/>
                     </div>
-                    <div>
-                        <h1 style={{fontSize: "35px", fontWeight: "500", color:"#5a6685", textAlign:"center"}}>Ivan</h1>
-                        <h1 style={{fontSize: "20px", color:"#5a6685", textAlign:"center", marginBottom: "40px"}}>ispostolov@gmail.com</h1>
+                    <div style={{display:'flex', alignItems:"center", justifyContent:'center', flexDirection:"column", width: "100%", marginTop: "150px",marginBottom:"50px"}}>
+                        <h1 style={{fontSize: "35px", fontWeight: "500", color:"#5a6685", wordBreak: "break-all", overflowWrap:"break-word", maxWidth: "70%", textAlign: "center"}}>
+                        {me.username}</h1>
+                        <h1 style={{fontSize: "20px", color:"#5a6685", textAlign:"center", marginBottom: "40px"}}>{me.email}</h1>
                         <h1 style={{fontSize: "20px", color:"black", textAlign:"center", marginBottom: "20px"}}>
                             As a registered user, you have the unique opportunity to become a teacher in the subjects you excel at.
                         </h1>
@@ -133,7 +150,7 @@ const ProfilePage = () => {
 
             </div>    
             <div className='PageInfo'>
-                <h1 style={{fontSize:"55px", color:"white"}}>Hello Ivan</h1>
+                <h1 style={{fontSize:"55px", color:"white"}}>Hello {me.username}</h1>
                 <h1 style={{fontSize:"18px", color:"white"}}>
                     This is your profile page! You can see your tags, description and everything for your profile! If you want you can edit your profile
                 </h1>

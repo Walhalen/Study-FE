@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Menu } from '../Components/Menu'
 import ClosedMenu from '../Components/Header';
 import { CiSearch } from "react-icons/ci";
 import FilterDropDown from '../Components/FilterDropDown';
+import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
+import { ThemeContext } from '../Context/ThemeContext';
 
 
 interface MenuPage{
@@ -16,107 +18,36 @@ const FavoriteTeachersPage = () => {
     const [clickedFa, setClickedFa] = useState(false);
     
     const handleFaBar = () => setClickedFa(!clickedFa) 
-   
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  
+    
     const [clickedProfile, setClickedProfile] = useState(false);
     const handleProfileBar = () => setClickedProfile(!clickedProfile);
     const [filterDropDown, setFilterDropDown] = useState(false);
     const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
 
-    React.useEffect(() => {
-  
-      window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-  
-  
-    }, []);
+
+    
+    const {viewportWidth} = useContext(ThemeContext);
+
+    
+    let pages : MenuPage[] = [];
+    let pages2 : MenuPage[] = []; 
     
 
-   
-  let pages : MenuPage[] = [];
-  let pages2 : MenuPage[] = []; 
+    if (viewportWidth > 780) {
+      if(viewportWidth < 1250)
+      {
+        pages2 = mediumScreenMenu
+      }
 
-  if (viewportWidth > 780) {
-    if(viewportWidth < 1250)
-    {
-      pages2 = [
-        {
-          name: "Home Page",
-          rout: "home",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Messages",
-          rout: "searchPage",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Favorites",
-          rout: "favorites",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "History",
-          rout: "history",
-          style: "SideBarButton",
-
-        },
-      ];
+        pages  = largeScreenProfileMenu
+      
+    } else {
+      
+      pages2 = smallScreenMenu
+      
     }
-
-      pages  = [
-        {
-          name: "Your Profile",
-          rout: "profile",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Sign out",
-          rout: "signOut",
-          style: "SignOutButton",
-
-        },
-      ];
-    
-  } else {
-    
-    pages2 = [
-      {
-        name: "Home Page",
-        rout: "home",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Messages",
-        rout: "searchPage",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Favorites",
-        rout: "favorites",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "History",
-        rout: "history",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Sign out",
-        rout: "signOut",
-        style: "SignOutButton",
-
-      },
-    ];
-    
-  }
+  
 
     return (
         <div>
@@ -125,17 +56,23 @@ const FavoriteTeachersPage = () => {
             </header>
             <div >
                   {filterDropDown &&           
-                  <FilterDropDown/>    
+                  <FilterDropDown/>      
                 }
-                {viewportWidth < 1250 && 
+                {viewportWidth < 1250  && 
                   <div>
                     {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
                   </div>
                 }
+                {/* {viewportWidth < 780 && 
+                  <div>
+                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages} style = "sideBar"/> }
+                  </div>
+                } */}
                 <div>
                   {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
                 </div>
                 <main>
+
                     History page
                 </main>
             </div>

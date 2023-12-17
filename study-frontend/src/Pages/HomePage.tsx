@@ -3,36 +3,19 @@ import ClosedMenu from '../Components/Header';
 import { Menu } from '../Components/Menu';
 import TeacherCard from '../Components/TeacherCard';
 import FetchAllUsers from '../Services/User/FetchAllUsers';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import '../cssFiles/homePage.css'
 import '../cssFiles/mainMenu.css'
 import { CiSearch } from "react-icons/ci";
 import FilterDropDown from '../Components/FilterDropDown';
 import HomePageInformation from '../Components/HomePageInformation';
-
-
-interface Tag{
-  id : number,
-  name : string,
-  color : string 
-}
-
-interface MenuPage{
-  name: string,
-  rout: string, 
-  style: string,
-}
-
-
-interface User {
-  id : number,
-  username: string,
-  email : string
-  tags : Array<Tag>
-  description : string, 
-  rating : number
-}
-
+import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
+import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
+import { User } from '../Types/UserIntrfaces';
+import { MenuPage } from '../Types/MenuPageInterfaces';
+import useUserStore from '../Storiges/UserStorage';
+import { FetchAllUsersPageable } from '../Services/User/FetchAllUsersPageable';
+import { PageSwitcher } from '../Components/PageSwitcher';
 
 
 
@@ -44,11 +27,15 @@ const HomePage = () => {
   const [clickedProfile, setClickedProfile] = useState(false);
   const [filterDropDown, setFilterDropDown] = useState(false);
   const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
+  const {me} = useUserStore(); 
+  const [page, setPage] = useState(0);
+  console.log(me)
 
   useEffect(() => {
+    console.log(page)
     const fetchData = async () => {
-      try {
-        const data = await FetchAllUsers();
+      try { 
+        const data = await FetchAllUsersPageable({page});
         setUsers(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -58,117 +45,41 @@ const HomePage = () => {
     };
 
     fetchData();
-  }, []);
+  }, [page]);
   
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const {viewportWidth} = useContext(ThemeContext);
   
-  React.useEffect(() => {
 
-    window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-    console.log("resize")
 
-  }, []);
 
   const handleFaBar = () => setClickedFa(!clickedFa);
   const handleProfileBar = () => setClickedProfile(!clickedProfile);
  
-  let pages : MenuPage[] = [];
-  let pages2 : MenuPage[] = []; 
+
+
+  let ProfileMenuPages : MenuPage[] = [];
+  let MenuPages : MenuPage[] = []; 
 
   if (viewportWidth > 780) {
     if(viewportWidth < 1250)
     {
-      pages2 = [
-        {
-          name: "Home Page",
-          rout: "home",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Messages",
-          rout: "searchPage",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Favorites",
-          rout: "favorites",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "History",
-          rout: "history",
-          style: "SideBarButton",
-
-        },
-      ];
+      MenuPages = mediumScreenMenu
     }
 
-      pages  = [
-        
-        {
-          name: "Your Profile",
-          rout: "profile",
-          style: "SideBarButton",
-
-        },
-        {
-          name: "Sign out",
-          rout: "signOut",
-          style: "SignOutButton",
-
-        },
-      ];
+      ProfileMenuPages  = largeScreenProfileMenu
     
   } else {
     
-    pages2 = [
-      {
-        name: "Home Page",
-        rout: "home",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Messages",
-        rout: "searchPage",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Favorites",
-        rout: "favorites",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "History",
-        rout: "history",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Your Profile",
-        rout: "profile",
-        style: "SideBarButton",
-
-      },
-      {
-        name: "Sign out",
-        rout: "signOut",
-        style: "SignOutButton",
-
-      },
-    ];
+    MenuPages = smallScreenMenu
     
   }
+
+
   
   return (
     
 
-    <div className='overflow-x'>
+    <div className='overflow-x' style={{height: "100vh", display: "flex", flexDirection: "column"}}>
       
       <header className='header'>
         <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown} filterDropDown = {filterDropDown}/>
@@ -186,18 +97,18 @@ const HomePage = () => {
 
           {viewportWidth < 1250 && 
             <div>
-              {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
+              {clickedFa && <Menu handleFaBar={handleFaBar} pages = {MenuPages} style = "sideBar"/> }
             </div>
            }
           <div>
-            {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
+            {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {ProfileMenuPages} style = "profileSideBar"/> }
           </div>
          
 
         <main>
         
           <h1 className='TitleHome'>Home Page</h1>
-          {users && <HomePageInformation user={users[0]}/>  }
+          {users && <HomePageInformation user={me}/>  }
           
           
           
@@ -219,8 +130,11 @@ const HomePage = () => {
                     </div>
                 )}
             </div>
+            
         </main>
+        
       </div>
+      <PageSwitcher page= {page} setPage={setPage}/>
    </div>
 
      

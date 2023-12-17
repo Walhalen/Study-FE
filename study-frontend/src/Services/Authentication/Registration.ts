@@ -12,19 +12,20 @@ interface Tag{
   }
 
 type Props = {
-    formData: { username: string; email: string; password: string; }
+    formData: { username: string; email: string; password: string; description: string}
     myTags : Array<Tag>
 };
 
 const Registration = async ({formData, myTags} : Props )  => {
     
-    console.log("hui" + formData)    
+    
     try{
         const response = await axiosInstance.post('http://localhost:8080/auth/register', {
             username: formData.username,
             email : formData.email,
             password : formData.password,
-            tags: myTags
+            tags: myTags,
+            description: formData.description,
         })
         const data = await response.data
         return data

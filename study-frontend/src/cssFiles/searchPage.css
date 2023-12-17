@@ -1,58 +1,40 @@
-.cardField {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    /* align-items: center;  */
-    height: 100%;
-    width: 100%;
-    margin: 10px;
-    /* justify-content: center; */
-  }
-  
-  .Card {
-    margin: 30px; 
-    width: 100%; 
-    max-width: 250px; 
-    
-    height: 300px;
-    box-sizing: border-box;
-    box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
-    border: 2px solid black;
-    border-radius: 20px;
-  }
-  
-  .cardHeader{
-    /* border: 2px solid, rgb(135, 154, 175); */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20%;
-    font-weight: bold;
-    font-size: 30px;
-    border: 3px solid rgb(192, 215, 241); 
-    border-bottom: 2px solid  rgb(135, 154, 175);
-    border-radius: 20px 20px 0px 0px;
-    background-color: rgb(192, 215, 241);
-    
-  }
 
-  
-  
-  /* @media (max-width: 1200px) {
-    .cardField .Card {
-      width: calc(50% );
-    }
-  }
-  
-  @media (max-width: 992px) {
-    .cardField .Card {
-      width: calc(33.33% - 20px); 
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .cardField .Card {
-      width: calc(50% - 20px); 
-    }
-  } */
-  
+.searchPage{
+    background-color: rgb(224, 228, 232);
+    height: 100%;
+    min-height: 100vh;
+}
+
+.homeIconField{
+    display: flex;
+    
+    font-size: 25px;
+    padding: none;
+    margin-top: 10px;
+    /* padding: 10px; */
+}
+
+.homeIcon{
+    margin:10px;
+    height: fit-content;
+}
+
+.homeIcon:hover{
+    
+    background-color: rgb(195, 195, 195);
+    border-radius: 20px;
+}
+
+.FilterIcon{
+    /* margin-left: 10px; */
+    margin-top: 2px;
+    
+    height: fit-content;
+    /* padding: 10px; */
+    background-color: white;
+    border: 2px solid rgb(135, 154, 175);;
+    border-radius: 10px;
+    font-size: 20px;
+
+
+}

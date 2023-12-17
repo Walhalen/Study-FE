@@ -7,7 +7,7 @@ type Props = {
 };
 
 function PrivateRoute ({isAuthenticated }: Props){
-  console.log("Person is: " + isAuthenticated)
+
   useEffect(() => {
 
   }, [isAuthenticated])

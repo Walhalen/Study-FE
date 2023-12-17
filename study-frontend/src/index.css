@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@tailwind daisyui;
 *{
     padding: 0%;
     margin: 0%;
@@ -51,7 +51,7 @@ li{
 }
 
 .SpacerHeight{
-    height: 150px;
+    height: 70px;
 }
 
 

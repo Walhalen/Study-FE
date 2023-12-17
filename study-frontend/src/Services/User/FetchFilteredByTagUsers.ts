@@ -3,30 +3,27 @@ import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
 
 
+type Props = {
+    tagValue : string
+}
 
-
-const FetchAllUsers = async() => {
+const FetchFilteredByTagUsers = async({tagValue} : Props) => {
     try {
-
         
-        const data = await axiosInstance.get("http://localhost:8080/user/findAll")
+        const path = "http://localhost:8080/user/findUsersByTag/" + tagValue;
+        const data = await axiosInstance.get(path);
         console.log("fething...")
         if(data.status === 200)
         {       
             const jsonData = await data.data;
             return jsonData;
         }
-        else
-        {
-            console.log("aloooooo" + data)
-        }
 
     } catch (error) {
-        // console.error("Error fetching data:", error);
-        console.log("Alo da2 ")
+        console.error("Error fetching data:", error);
         throw error;  
     }
 }
 
-export default FetchAllUsers
+export default FetchFilteredByTagUsers
     

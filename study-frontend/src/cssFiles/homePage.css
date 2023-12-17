@@ -1,0 +1,295 @@
+
+.TitleHome{
+
+  margin-top: 15px;
+  margin-left: 20px ;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-weight: bold;
+}
+
+.SubTitle {
+  margin-top: 10px;
+  margin-left: 40px ;
+  font-size: 25px;
+  font-family: Arial, Helvetica, sans-serif ;
+  font-weight: bold;
+}
+
+.InfoHome{
+  /* padding: 10px;  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width:fit-content;
+  min-width: 1000px;
+  
+  height: 350px;
+  border:2px solid black;
+  border-radius: 30px  30px 30px 30px;
+  
+  background: linear-gradient(to right,rgb(176, 191, 208) , white);;
+  background-size: cover; 
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white; 
+  position: relative;
+}
+
+.InfoHomeSlider{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.InfoHomeSliderIndex{
+  color: white;
+}
+.Info{
+  color: black;
+  margin: 20px;
+  width: 500px ;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.ImgInfo{
+
+  object-fit: cover; /* Resize the image to cover the entire container */
+  object-position: center;
+  border-radius: 30px;
+  height: 300px;
+  width: 450px;
+}
+
+.ImgHome{
+  border:2px solid rgb(135, 154, 175) ;
+  border-radius: 30px;
+  width: 100%;
+  background-image: url(../assets/onlineEdu.png);
+  background-size: cover; 
+  height: 350px;
+  margin: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ProfileButton{
+  height: 60px;
+  width: 150px;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  margin: 20px
+}
+
+.MobileInfoHome{
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  width: 100%;
+}
+
+.ProfileButton:hover
+{
+  background-color: white;
+  color: black;
+}
+.MyCard{
+  border: 2px solid;
+  border-color: rgb(61, 70, 81);
+  border-radius: 30px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-left: 45px;
+  /* border-top: rgb(135, 154, 175);
+  border-left: rgb(135, 154, 175);
+  border-bottom: rgb(61, 70, 81);
+  border-right: rgb(61, 70, 81); */
+  height: 350px;
+  width: 400px;
+  
+}
+
+.cardField {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    /* align-items: center;  */
+    height: 100%;
+    width: 100%;
+    
+    
+    /* margin: 10px; */
+    /* justify-content: center; */
+  }
+  
+  .Card {
+    margin: 30px; 
+    width: 100%; 
+    max-width: 250px; 
+    position: relative;
+    height: 300px;
+    box-sizing: border-box;
+    box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+  }
+  
+  .cardHeader{
+    /* border: 2px solid, rgb(135, 154, 175); */
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 20%;
+    font-weight: bold;
+    font-size: 30px;
+    border: 3px solid rgb(192, 215, 241); 
+    border-bottom: 2px solid  rgb(135, 154, 175);
+    border-radius: 20px 20px 0px 0px;
+    background-color: rgb(192, 215, 241);
+    
+  }
+
+  .CardTagsField{
+    display: flex; 
+    flex-wrap: wrap;
+   
+    width: 100%;
+    height: fit-content;
+    margin: 5px;
+    margin-top: 10px;
+    
+  }
+
+  .CardDescription{
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid rgb(135, 154, 175);
+    border-radius: 5px;
+    color : black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    
+  }
+
+  .CardBottom{
+
+    display: flex;
+    height: fit-content;
+    width: 100%;
+    /* margin: 5px; */
+    position: absolute;
+    bottom: 0;
+    
+  }
+
+  .CardViewButton{
+    height: 50px;
+    width: 120px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(135, 154, 175);
+    color: white;  
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0.4em 0.7em rgba(0.2, 0.2, 0.2, 0.2);
+    margin : 8px;
+    margin-left: 70px;
+  }
+
+  .CardViewButton:hover{
+    background: white;  
+    color: black;
+    border-color: rgb(135, 154, 175);
+  }
+
+  .CardRating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    width: 60px;
+  }
+
+  .CardRatingGrade{
+    font-family: 'Times New Roman', Times, serif;
+    /* font-weight: bold; */
+    font-size: 20px;
+    margin : 2px
+  }
+
+  
+
+  
+/*   
+  @media (max-width: 1200px) {
+    .cardField .Card {
+      width: calc(50% );
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .cardField .Card {
+      width: calc(33.33% - 20px); 
+    }
+  }
+   */
+
+   @media (max-width: 1000px) {
+      .Info{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+      }
+   }
+  @media (max-width: 768px) {
+    .Card {
+      margin: 30px; 
+      width:  350px; 
+      position: relative;
+      height: 300px;
+      box-sizing: border-box;
+      box-shadow: 0 0.4em 0.7em rgba(0, 0, 0, 0.3);
+      border: 2px solid black;
+      border-radius: 20px;
+    }
+    .InfoHome{
+      width: 100%;
+      margin: 10px;
+      height: 350px;
+      min-height: 200px;
+    }
+  }
+  

@@ -1,14 +1,27 @@
 import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
 
-export const FetchPagesCount = async() => {
-    try {
 
-        
-        const data = await axiosInstance.get("http://localhost:8080/user/findPagesCount")
+type Props = {
+    searchValue: string;
+    subjectId: string;
+}
+
+export const FetchPagesCount = async({searchValue, subjectId} : Props) => {
+    try {
+       
+        if(searchValue === undefined)
+            searchValue = "";
+        if(subjectId === undefined)
+        {
+            subjectId = ""; 
+        }
+        const data = await axiosInstance.get(`http://localhost:8080/user/findPagesCount?searchValue=${searchValue}&subjectId=${subjectId}`)
         console.log("fething...")
+     
         if(data.status === 200)
         {       
+           
             const jsonData = await data.data;
             return jsonData;
         }

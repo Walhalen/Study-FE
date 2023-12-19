@@ -1,7 +1,7 @@
 import axios, { HttpStatusCode } from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
-import useJWTStore from '../Storiges/JWTStorage';
+import useJWTStore from '../Storages/JWTStorage';
 import React, { FC, PropsWithChildren, useEffect } from 'react'
 
 export const axiosInstance = axios.create();
@@ -26,15 +26,15 @@ axiosInstance.interceptors.request.use(
         return config;
     },
     error => {
-        console.log("alo da", error)
+       
         return Promise.reject(error);
     }
 );
          
 axiosInstance.interceptors.response.use( 
     async (response) => {
-      console.log("Aloooooooooooo")
-      console.log(response)
+      
+     
       return response
     },
     

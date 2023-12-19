@@ -8,7 +8,7 @@ import HistoryPage from './Pages/HistoryPage';
 import LogInAndSignIn from './Pages/LogInAndSignIn';
 
 import PrivateRoute  from './PrivateRoute';
-import useJWTStore from './Storiges/JWTStorage'
+import useJWTStore from './Storages/JWTStorage'
 import DefaultRout from './Helper/DefaultRout';
 import { SignInTagsSelector } from './Components/SignInTagsDescriptionSelector';
 import SearchPage from './Pages/SearchPage';

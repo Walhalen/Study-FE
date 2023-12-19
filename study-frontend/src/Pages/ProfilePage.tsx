@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import '../cssFiles/profilePage.css'   
 import { CgProfile } from "react-icons/cg";
 import { GoHome } from "react-icons/go";
@@ -6,8 +6,9 @@ import { AiFillStar } from "react-icons/ai";
 import { useNavigate, useNavigation } from 'react-router-dom';
 import { routes } from '../constants';
 import learning from '../assets/learning2.png'
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 import TagCard from '../Components/TagCard';
+import { ThemeContext } from '../Context/ThemeContext';
 const ProfilePage = () => {
     
     const navigator = useNavigate()
@@ -16,14 +17,7 @@ const ProfilePage = () => {
         navigator(routes.home)
     }
     const {me} = useUserStore();
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-    console.log(me.tags)
-    React.useEffect(() => {
-  
-      window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-      console.log("resize")
-  
-    }, []);
+    const {viewportWidth} = useContext(ThemeContext);
 
     return (
         viewportWidth < 1200 ? 

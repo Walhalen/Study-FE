@@ -17,7 +17,6 @@ const useUserStore = create<Store>((set) => ({
         description: "" 
     },
     setMe: (myUser : UserDto) => set((state) => { 
-        console.log("Hellooo it's mee: ha ha ha : " + myUser)
         return { ...state,me: myUser }
     }
     ),

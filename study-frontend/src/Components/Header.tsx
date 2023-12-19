@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaBars } from 'react-icons/fa'
 import { HiMenuAlt3 } from "react-icons/hi";
 import { HiMenuAlt2 } from "react-icons/hi";
@@ -13,6 +13,7 @@ import { largeScreenMenu, routes, smallScreenMenu } from '../constants';
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { RiArrowDropUpLine } from "react-icons/ri";
 import FilterDropDown from './FilterDropDown';
+import { ThemeContext } from '../Context/ThemeContext';
 
 interface Option {
   label: string;
@@ -34,15 +35,10 @@ type Props = {
 }
 
 const Header = ({handleFaBar, handleProfileBar, handleFilterDropDown, filterDropDown}: Props) => {
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const {viewportWidth} = useContext(ThemeContext);
   const [searchValue, setSearchValue] = useState("");
   const navigator = useNavigate();
-  React.useEffect(() => {
 
-    window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-
-
-  }, []);
 
   const pages : MenuPage[] =  largeScreenMenu
 

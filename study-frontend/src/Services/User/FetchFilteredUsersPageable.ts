@@ -7,8 +7,9 @@ type Props = {
 } 
 
 export const FetchFilteredUsersPageable =  async({searchValue, page} : Props) => {
+    console.log("Search value " + page)
     try {
-        const data = await axiosInstance.get(`http://localhost:8080/user/findAllPageable?searchInfo=${searchValue}&page=${page}`);
+        const data = await axiosInstance.get(`http://localhost:8080/user/findFilteredUsersPageable?searchInfo=${searchValue}&page=${page}`);
         console.log("fething...")
         if(data.status === 200)
         {       

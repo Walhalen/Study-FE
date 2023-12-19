@@ -4,7 +4,7 @@ import { Authentication } from '../Services/Authentication/Authentication';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);

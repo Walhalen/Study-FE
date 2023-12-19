@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import jwtDecode from 'jwt-decode';
-import useJWTStore from '../Storiges/JWTStorage';
+import useJWTStore from '../Storages/JWTStorage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { pbrouts, routes } from '../constants';
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 import { FetchMe } from '../Services/User/FetchMe';
 
 interface DecodedToken {

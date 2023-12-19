@@ -18,7 +18,7 @@ export const ThemeContextProvider : FC<PropsWithChildren> = ({children}) => {
     React.useEffect(() => {
   
       window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-      console.log("resize")
+     
   
     }, []);
 

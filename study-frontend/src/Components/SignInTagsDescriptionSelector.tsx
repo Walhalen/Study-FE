@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FetchAllTags } from '../Services/Tags/FetchAllTags';
 import {TagCardSignIn } from './TagCardSignIn';
 import '../cssFiles/loginSignInPage.css'
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 
 
 type Props = {

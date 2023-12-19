@@ -2,9 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import {  routes } from '../constants';
 import HomePage from '../Pages/HomePage';
-import useJWTStore from '../Storiges/JWTStorage';
+import useJWTStore from '../Storages/JWTStorage';
 import { GoHome } from "react-icons/go";
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 type Props = {
   text : string, 
   page : string,

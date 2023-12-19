@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { axiosInstance } from '../../Helper/FetchHelper';
-import useUserStore from '../../Storiges/UserStorage';
+import useUserStore from '../../Storages/UserStorage';
 
 
 

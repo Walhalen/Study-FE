@@ -13,7 +13,7 @@ import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
 import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
 import { User } from '../Types/UserIntrfaces';
 import { MenuPage } from '../Types/MenuPageInterfaces';
-import useUserStore from '../Storiges/UserStorage';
+import useUserStore from '../Storages/UserStorage';
 import { FetchAllUsersPageable } from '../Services/User/FetchAllUsersPageable';
 import { PageSwitcher } from '../Components/PageSwitcher';
 
@@ -29,10 +29,10 @@ const HomePage = () => {
   const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
   const {me} = useUserStore(); 
   const [page, setPage] = useState(0);
-  console.log(me)
+
 
   useEffect(() => {
-    console.log(page)
+
     const fetchData = async () => {
       try { 
         const data = await FetchAllUsersPageable({page});
@@ -118,7 +118,7 @@ const HomePage = () => {
               {error && <div>Error: {error}</div>}
                 {users && (
                     <div className='cardField'>
-                      {users.map((user) => (
+                      {users.filter((user) => user.email !== me.email).map((user) => (
                         
                         <TeacherCard key={user.id} username={user.username}
                         email = {user.email} tags = {user.tags} 
@@ -134,7 +134,7 @@ const HomePage = () => {
         </main>
         
       </div>
-      <PageSwitcher page= {page} setPage={setPage}/>
+      <PageSwitcher page= {page} setPage={setPage} searchValue='' tag=""/>
    </div>
 
      

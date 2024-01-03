@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import MenuButton from './MenuButton';
+import { ThemeContext } from '../Context/ThemeContext';
 
 interface MenuPage{
   name: string,
@@ -18,14 +19,7 @@ type Props = {
 
 export const Menu = ({handleFaBar, pages, style} : Props) => {
 
-  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  
-  React.useEffect(() => {
-
-    window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-
-
-  }, []);
+  const {viewportWidth} = useContext(ThemeContext);
 
 
   return (

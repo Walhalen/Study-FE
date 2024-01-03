@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { FetchAllTags } from '../Services/Tags/FetchAllTags';
 import {TagCardSignIn } from './TagCardSignIn';
 import '../cssFiles/loginSignInPage.css'
+import useUserStore from '../Storages/UserStorage';
 
 
 type Props = {
@@ -33,10 +34,12 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
     const [error, setError] = useState<string | null>(null);
     const [tags, setTags] = useState<Tag[]>([]);
     const [nextStep, setNextStep] = useState(false)
+    const { setMe, me} = useUserStore();
     
 
 
     useEffect(() => {
+      
         const fetchData = async () => {
           try {
             const data = await FetchAllTags();
@@ -57,7 +60,8 @@ export const SignInTagsSelector = ({username, email, password} : Props) => {
 
             const response = await Registration({formData, myTags}); 
             sessionStorage.setItem("jwtAccess", response.token); 
-            
+            setMe(response.user)
+            console.log(me)
             navigate(routes.home);
         }catch(error)
         {

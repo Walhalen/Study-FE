@@ -1,43 +1,30 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { MdChevronRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import exampleImage1 from '../assets/continious-learning.png';
 import onlineEdu from '../assets/onlineEdu.png'
 import TeacherCard from './TeacherCard';
 import { FaRegCircle } from "react-icons/fa";
+import { UserDto } from '../Types/UserIntrfaces';
+import {Tag} from '../Types/TagInterfaces';
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../constants';
+import { ThemeContext } from '../Context/ThemeContext';
 
 
-interface Tag{
-    id : number,
-    name : string,
-    color : string 
-  }
-
-interface User {
-    id : number,
-    username: string,
-    email : string
-    tags : Array<Tag>
-    description : string, 
-    rating : number
-}
   
 type Props = {
-    user: User
+    user: UserDto
 }
 
 const HomePageInformation = ({user}: Props) => {
 
     const [sliderIndex, setIndex] = useState(1);
 
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  
-    React.useEffect(() => {
-  
-      window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-      console.log("resize")
-  
-    }, []);
+    const {viewportWidth} = useContext(ThemeContext);
+    
+    const navigator = useNavigate(); 
+
 
     const handleLeft = () => {
         if(sliderIndex === 1)
@@ -61,7 +48,12 @@ const HomePageInformation = ({user}: Props) => {
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
       }, [sliderIndex]);
-        
+    
+      const handleProfileButton = () => {
+        console.log("helo")
+        navigator(routes.profilePage)
+    }
+
     return (
         viewportWidth < 1000 ? 
         <div style={{padding: "10px"}}>
@@ -71,14 +63,12 @@ const HomePageInformation = ({user}: Props) => {
                     <h1  className='Info'>
                         As a registered user, you have the unique opportunity to become a teacher in the subjects you excel at.
                     </h1>
-                    <button className="ProfileButton">
+                    <button className="ProfileButton" onClick={handleProfileButton}>
                         Your Profile
                     </button>
                 </div>
             </div>
         </div>
-
-
         : 
         <div style={{display:"flex", width: "100%", justifyContent: 'center'}}>
             <div className='InfoHome'>
@@ -107,7 +97,7 @@ const HomePageInformation = ({user}: Props) => {
                             <h1  className='Info'>
                                 As a registered user, you have the unique opportunity to become a teacher in the subjects you excel at.
                             </h1>
-                            <button className="ProfileButton">
+                            <button className="ProfileButton"  onClick={handleProfileButton}>
                                 Your Profile
                             </button>
                         </div>

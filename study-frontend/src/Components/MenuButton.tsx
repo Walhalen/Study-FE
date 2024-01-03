@@ -54,6 +54,7 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
               email: "",
               rating: 0,
               tags: [],
+              favorites: [],
               description: "" 
             })
             navigate(routes.login);

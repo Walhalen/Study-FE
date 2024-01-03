@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../cssFiles/homePage.css'
 import TagCard from './TagCard';
 import { AiFillStar } from "react-icons/ai";
-
-
+import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart } from "react-icons/io";
+import useUserStore from '../Storages/UserStorage';
+import { PostNewFavorite } from '../Services/User/PostNewFavorite';
+import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite';
 
 interface Tag{
   id : number,
@@ -21,10 +24,59 @@ type Props = {
 
 const TeacherCard = ({username, email, tags, description, rating}: Props) => {
 
+  const [liked, setLiked] = useState(false);
+  const {me} = useUserStore();
+  const handleLiked = async() => {
+    console.log("in liked");
+    if(liked === false)
+    {
+      const data = await PostNewFavorite({email});
+    }
+    else
+    {
+      const data = await PostRemoveFavorite({email});
+    }
+    setLiked(!liked)
+  }
+
+  useEffect(()=>{
+  const ifLiked = () => {
+    me.favorites.map((fav_user) => {
+      if(fav_user.email === email)
+      {
+        setLiked(true);
+      }
+    })
+  } 
+
+  ifLiked();
+
+  }, [])
+
   return (
     <div className='Card'>
       <div className='cardHeader'>
         {`${username.length >= 14 ? username.substring(0, 12) + "..."  : username}`}
+        
+        {
+          me.email !== email && 
+            <div className='cardFavoriteIconBox'>
+              {
+              
+                liked ?
+                  <button onClick = {handleLiked}>
+                    <IoMdHeart style = {{color:"rgb(242, 146, 162)"}}/>
+                  </button>
+                  : 
+                  <button onClick = {handleLiked}>
+                    <IoMdHeartEmpty style = {{color:"rgb(242, 146, 162)"}} / >
+                  </button>
+                
+              }
+
+            </div>
+        }
+
       </div>
       
       <div className='CardTagsField'>
@@ -52,11 +104,14 @@ const TeacherCard = ({username, email, tags, description, rating}: Props) => {
             </div>
           </div>
           <button className='CardViewButton'>
-             View Teacher
+            View Teacher
           </button>
       </div>
     </div>
-  )
-}
+  );
 
-export default TeacherCard
+}; 
+
+  
+
+export default TeacherCard;

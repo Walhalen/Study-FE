@@ -14,6 +14,7 @@ const useUserStore = create<Store>((set) => ({
         email: "",
         rating: 0,
         tags: [],
+        favorites: [],
         description: "" 
     },
     setMe: (myUser : UserDto) => set((state) => { 

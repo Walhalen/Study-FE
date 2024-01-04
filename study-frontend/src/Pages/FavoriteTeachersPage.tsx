@@ -5,7 +5,9 @@ import { CiSearch } from "react-icons/ci";
 import FilterDropDown from '../Components/FilterDropDown';
 import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
 import { ThemeContext } from '../Context/ThemeContext';
-
+import useUserStore from '../Storages/UserStorage';
+import  FavoriteTeacherCard  from '../Components/FavoriteTeacherCard';
+import '../cssFiles/favoritesPage.css'
 
 interface MenuPage{
     name: string,
@@ -24,7 +26,7 @@ const FavoriteTeachersPage = () => {
     const handleProfileBar = () => setClickedProfile(!clickedProfile);
     const [filterDropDown, setFilterDropDown] = useState(false);
     const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
-
+    const {me} = useUserStore();
 
     
     const {viewportWidth} = useContext(ThemeContext);
@@ -71,9 +73,12 @@ const FavoriteTeachersPage = () => {
                 <div>
                   {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
                 </div>
-                <main>
-
-                    Favorites page
+                <main className='FavoritePage'>
+                  {
+                    me.favorites.map((user) => (
+                      <FavoriteTeacherCard key={user.email} user={user}/>
+                    ))
+                  }
                 </main>
             </div>
         </div>

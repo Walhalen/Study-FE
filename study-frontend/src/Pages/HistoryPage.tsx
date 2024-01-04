@@ -30,21 +30,20 @@ const FavoriteTeachersPage = () => {
     const {viewportWidth} = useContext(ThemeContext);
 
     
-    let pages : MenuPage[] = [];
-    let pages2 : MenuPage[] = []; 
-    
-
+    let ProfileMenuPages : MenuPage[] = [];
+    let MenuPages : MenuPage[] = []; 
+  
     if (viewportWidth > 780) {
       if(viewportWidth < 1250)
       {
-        pages2 = mediumScreenMenu
+        MenuPages = mediumScreenMenu
       }
-
-        pages  = largeScreenProfileMenu
+  
+        ProfileMenuPages  = largeScreenProfileMenu
       
     } else {
       
-      pages2 = smallScreenMenu
+      MenuPages = smallScreenMenu
       
     }
   
@@ -55,22 +54,15 @@ const FavoriteTeachersPage = () => {
               <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown}  filterDropDown = {filterDropDown}/>
             </header>
             <div >
-                  {filterDropDown &&           
-                  <FilterDropDown/>      
-                }
-                {viewportWidth < 1250  && 
+
+                {viewportWidth < 1250 && 
                   <div>
-                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
+                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {MenuPages} style = "sideBar"/> }
                   </div>
                 }
-                {/* {viewportWidth < 780 && 
-                  <div>
-                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages} style = "sideBar"/> }
-                  </div>
-                } */}
                 <div>
-                  {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
-                </div>
+                  {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {ProfileMenuPages} style = "profileSideBar"/> }
+                </div>  
                 <main>
 
                     History page

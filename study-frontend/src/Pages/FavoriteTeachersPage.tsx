@@ -8,6 +8,8 @@ import { ThemeContext } from '../Context/ThemeContext';
 import useUserStore from '../Storages/UserStorage';
 import  FavoriteTeacherCard  from '../Components/FavoriteTeacherCard';
 import '../cssFiles/favoritesPage.css'
+import FavoritesPageInfo from '../Components/FavoritesPageInfo';
+import TeacherCard from '../Components/TeacherCard';
 
 interface MenuPage{
     name: string,
@@ -32,56 +34,69 @@ const FavoriteTeachersPage = () => {
     const {viewportWidth} = useContext(ThemeContext);
 
     
-    let pages : MenuPage[] = [];
-    let pages2 : MenuPage[] = []; 
-    
-
+    let ProfileMenuPages : MenuPage[] = [];
+    let MenuPages : MenuPage[] = []; 
+  
     if (viewportWidth > 780) {
       if(viewportWidth < 1250)
       {
-        pages2 = mediumScreenMenu
+        MenuPages = mediumScreenMenu
       }
-
-        pages  = largeScreenProfileMenu
+  
+        ProfileMenuPages  = largeScreenProfileMenu
       
     } else {
       
-      pages2 = smallScreenMenu
+      MenuPages = smallScreenMenu
       
     }
   
 
     return (
-        <div>
-            <header className='header'>
-              <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown}  filterDropDown = {filterDropDown}/>
-            </header>
-            <div >
-                  {filterDropDown &&           
-                  <FilterDropDown/>      
-                }
-                {viewportWidth < 1250  && 
-                  <div>
-                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages2} style = "sideBar"/> }
-                  </div>
-                }
-                {/* {viewportWidth < 780 && 
-                  <div>
-                    {clickedFa && <Menu handleFaBar={handleFaBar} pages = {pages} style = "sideBar"/> }
-                  </div>
-                } */}
+      <div className='overflow-x' style={{height: "100vh", display: "flex", flexDirection: "column"}}>
+          <header className='header'>
+            <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown}  filterDropDown = {filterDropDown}/>
+          </header>
+          <div className='MainColor'>
+              {viewportWidth < 1250 && 
                 <div>
-                  {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {pages} style = "profileSideBar"/> }
+                  {clickedFa && <Menu handleFaBar={handleFaBar} pages = {MenuPages} style = "sideBar"/> }
                 </div>
-                <main className='FavoritePage'>
-                  {
-                    me.favorites.map((user) => (
-                      <FavoriteTeacherCard key={user.email} user={user}/>
-                    ))
-                  }
-                </main>
-            </div>
-        </div>
+              }
+              <div>
+                {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {ProfileMenuPages} style = "profileSideBar"/> }
+              </div>  
+              
+
+              <main >
+                <h1 className='TitleHome'>Favorites Page</h1>
+                <div>
+                  <FavoritesPageInfo/>
+                </div> 
+                <hr style={{border:"1.2px solid rgb(197, 218, 242)", margin: "35px"}}/>
+                <h1 className='SubTitle'>Favorite Teachers: </h1>
+                {
+                  viewportWidth > 850 ? 
+                  <div className='FavoriteField'>           
+                    {
+                      me.favorites.map((user) => (
+                        <FavoriteTeacherCard key={user.email} user={user}/>
+                      ))
+                    }
+                  </div>
+                  :
+                  <div className='cardField'>
+                    {me.favorites.map((user) => (
+                        <TeacherCard key={user.id} username={user.username}
+                        email = {user.email} tags = {user.tags} 
+                        description = {user.description} rating = {user.rating}  />
+                    ))}
+                  </div>
+                }
+
+              </main>
+          </div>
+      </div>
     )
 }
 

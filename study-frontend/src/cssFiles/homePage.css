@@ -281,10 +281,10 @@
         text-align: center;
       }
    }
-  @media (max-width: 768px) {
+  @media (max-width: 780px) {
     .Card {
       margin: 30px; 
-      width:  350px; 
+       
       position: relative;
       height: 300px;
       box-sizing: border-box;

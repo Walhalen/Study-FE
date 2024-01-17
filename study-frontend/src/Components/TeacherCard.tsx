@@ -7,6 +7,8 @@ import { IoMdHeart } from "react-icons/io";
 import useUserStore from '../Storages/UserStorage';
 import { PostNewFavorite } from '../Services/User/PostNewFavorite';
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite';
+import { routes } from '../constants';
+import { useNavigate } from 'react-router-dom';
 
 interface Tag{
   id : number,
@@ -26,6 +28,9 @@ const TeacherCard = ({username, email, tags, description, rating}: Props) => {
 
   const [liked, setLiked] = useState(false);
   const {me} = useUserStore();
+
+  const navigator = useNavigate();
+
   const handleLiked = async() => {
     console.log("in liked");
     if(liked === false)
@@ -103,7 +108,9 @@ const TeacherCard = ({username, email, tags, description, rating}: Props) => {
               {rating}
             </div>
           </div>
-          <button className='CardViewButton'>
+          <button className='CardViewButton' onClick = {() => {
+            navigator(routes.teacherOverviewPage, {state :{user : ""}} );
+          }}>
             View Teacher
           </button>
       </div>

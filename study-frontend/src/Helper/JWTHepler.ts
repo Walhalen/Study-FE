@@ -1,8 +1,10 @@
 import React, { FC } from 'react';
 import jwtDecode from 'jwt-decode';
-import useJWTStore from '../JWTStorage';
+import useJWTStore from '../Storages/JWTStorage';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { pbrouts, routes } from '../constants';
+import useUserStore from '../Storages/UserStorage';
+import { FetchMe } from '../Services/User/FetchMe';
 
 interface DecodedToken {
   exp: number;
@@ -13,8 +15,8 @@ const useCheckJWT = () => {
   const { setAuthenticated} = useJWTStore();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const checkJWT = () => {
+  const {setMe} = useUserStore();
+  const checkJWT = async () => {
     if(!pbrouts.some(element => {
       if (location.pathname === element)
         return true;
@@ -54,7 +56,8 @@ const useCheckJWT = () => {
           return false;
         }
 
-
+      const data = await FetchMe();
+      setMe(data); 
       setAuthenticated(true);
       return true;
     }

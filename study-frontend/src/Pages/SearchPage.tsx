@@ -1,4 +1,4 @@
-import React, {useEffect, useState}from 'react'
+import React, {useContext, useEffect, useState}from 'react'
 import '../cssFiles/searchPage.css'
 import '../cssFiles/mainMenu.css'
 import { CiSearch } from "react-icons/ci";
@@ -14,21 +14,15 @@ import { RiArrowDropUpLine } from "react-icons/ri";
 import FilterDropDown from '../Components/FilterDropDown';
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
+import { FetchFilteredUsersPageable } from '../Services/User/FetchFilteredUsersPageable';
+import { PageSwitcher } from '../Components/PageSwitcher';
+import { User } from '../Types/UserIntrfaces';
+import useUserStore from '../Storages/UserStorage';
+import { ThemeContext } from '../Context/ThemeContext';
 
-interface Tag{
-    id : number,
-    name : string,
-    color : string 
-  }
 
-interface User {
-    id : number,
-    username: string,
-    email : string
-    tags : Array<Tag>
-    description : string, 
-    rating : number
-  }
+
+
 
   type Props = {
     searchInfo: string, 
@@ -51,95 +45,58 @@ const SearchPage = () => {
     const [tagValue, setTagValue] = useState(params.tagName);
 
     const [users, setUsers] = useState<User[]>([]);
-    const [searchedUsers, setSearchedUsers] = useState<User[]>([]);
+
     const [error, setError] = useState<string | null>(null);
     const navigator = useNavigate();
     const [filterIcon, setFilterIcon] = useState(false); 
     const [ratingButton, setRatingButton] = useState(false);
+    const {me} = useUserStore();
+
+    const [page, setPage] = useState(0);
 
     useEffect(() => {
-        console.log("alo da 1 ")
+        
         const fetchData = async () => {
           try {
-            const data = await FetchAllUsers();
-            if(searchValue !== null && searchValue !== undefined && searchValue !=="")
+            
+            if(searchValue !== null && searchValue !== undefined)
             {
-                setUsers(
-                    data.filter((user : User)=>user.username.startsWith(searchValue as string))
-                );
+              
+              const data = await FetchFilteredUsersPageable({searchValue, page});
+             
+              setUsers(data);
             }
             else{
               if(tagValue !== null && tagValue !== undefined && tagValue !== "")
               {
-                console.log("Alo da tag")
-                console.log(tagValue)
+                
+              
                 const filteredData = await FetchFilteredByTagUsers({tagValue});
                 setUsers(filteredData);
                 
               }
-              else
-              {
-                setUsers(data);
-              }
+
                 
             }
 
-            setSearchedUsers(data)
+           
           } catch (error) {
             console.error("Error fetching data:", error);
             setError("Failed to fetch data");
           }
-    
+          
         };
     
         fetchData();
-      }, [tagValue]);
+      }, [tagValue, searchValue, page]);
 
-    const handleSearch = async () => {
-        try {
-            if(searchValue !== "" && searchValue!== undefined)
-            {
-                const data = await FetchFilteredUsers({searchValue});
-                setUsers(data);
-                setSearchedUsers(data);
-            }
-            else{
-                const data = await FetchAllUsers();
-                setUsers(data);
-                setSearchedUsers(data);
-            }
 
-          } catch (error) {
-            console.error("Error fetching data:", error);
-            setError("Failed to fetch data");
-          }
-    }
     const onChange = (e : any) =>{
         setSearchValue(e.target.value);
-        const searchInfovalue = e.target.value;
-        if(e.target.value  !== "")
-        { 
-            console.log("filtering...")
-            setUsers(
-                searchedUsers.filter((user)=>user.username.startsWith(searchInfovalue as string))
-            )
-        }
-        else
-        {
-            setUsers(searchedUsers)
-        }
-
+        setPage(0);
     }
 
-    const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
-  
-    React.useEffect(() => {
-  
-      window.addEventListener("resize", () => setViewportWidth(window.innerWidth));
-      console.log("resize")
-  
-    }, []);
-
+    const {viewportWidth} = useContext(ThemeContext);
 
     const handleFilter = () => {
       setFilterIcon(!filterIcon);
@@ -151,74 +108,75 @@ const SearchPage = () => {
     }
 
     return (
-      <div >
-            <div className= 'searchPage'>
-              <div style= {{display:'flex', justifyContent:'center', width:'100%' }}>
-                  <button className='homeIconField'>
-                      <GoHome className='homeIcon' onClick={()=>{
-                          navigator(routes.home)
-                      }}/>
-                  </button>
-                  <div>
-                      <div className='SearchBarField' >
-                          <input
-                              type="text"
-                              placeholder="Search"
-                              className="SearchBar"
-                              style = {{width : `${viewportWidth   < 780 ? '250px' : '350px'}`}}
-                              value={searchValue}
-                              onChange={(e)=>onChange(e)}
-                              autoFocus  
-                          />
-                          <button className='iconInsideSearch' onClick={handleSearch}><CiSearch id='SearchIcon' /></button>
-                      </div>
-                      <div style={{paddingLeft: "10px"}}>
-                        <div style = {{ overflow: 'hidden'}}>
-                          <div className='FilterIcon' style={{width : `${viewportWidth   < 780 ? '250px' : '350px'}`, display: 'flex'}}>
-                              
-                              <button onClick={handleFilter} style={{width: "100%"}}>
-                                {filterIcon ? <RiArrowDropUpLine /> 
-                                : <RiArrowDropDownLine />}
-                              </button>
+     
+          <div className= 'searchPage'>
+            <div style= {{display:'flex', justifyContent:'center', width:'100%' }}>
+                <button className='homeIconField'>
+                    <GoHome className='homeIcon' onClick={()=>{
+                        navigator(routes.home)
+                    }}/>
+                </button>
+                <div>
+                    <div className='SearchBarField' >
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            className="SearchBar"
+                            style = {{width : `${viewportWidth   < 780 ? '250px' : '350px'}`}}
+                            value={searchValue}
+                            onChange={(e)=>onChange(e)}
+                            autoFocus  
+                        />
+                        <button className='iconInsideSearch'><CiSearch id='SearchIcon' /></button>
+                    </div>
+                    <div style={{paddingLeft: "10px"}}>
+                      <div style = {{ overflow: 'hidden'}}>
+                        <div className='FilterIcon' style={{width : `${viewportWidth   < 780 ? '250px' : '350px'}`, display: 'flex'}}>
+                            
+                            <button onClick={handleFilter} style={{width: "100%"}}>
+                              {filterIcon ? <RiArrowDropUpLine /> 
+                              : <RiArrowDropDownLine />}
+                            </button>
 
-                              <button onClick={handleRatingButton}>
-                                {ratingButton ? <FaStar style={{color : '#fad02c', fontSize: "17px", marginRight: "2px"}}/> 
-                                  : <CiStar />
-                                }
-                                  
-                              </button>
+                            <button onClick={handleRatingButton}>
+                              {ratingButton ? <FaStar style={{color : '#fad02c', fontSize: "17px", marginRight: "2px"}}/> 
+                                : <CiStar />
+                              }
                                 
-                          </div>
-                          {filterIcon &&   
-                              <div style={{  position: 'absolute',marginLeft: `${viewportWidth   < 780 ? '0' : '40px'}`, zIndex:1}}>
-                                <FilterDropDown/>    
-                              </div>                             
-                          }
-                          
+                            </button>
+                              
                         </div>
+                        {filterIcon &&   
+                            <div style={{  position: 'absolute',marginLeft: `${viewportWidth   < 780 ? '0' : '40px'}`, zIndex:1}}>
+                              <FilterDropDown/>    
+                            </div>                             
+                        }
+                        
                       </div>
+                    </div>
 
-                  </div>
-   
-              </div>
+                </div>
+  
+            </div>
 
-              {error && <div>Error: {error}</div>}
-              {users && (
-                <main className='cardField'>
+            {error && <div>Error: {error}</div>}
+            {users && (
+              <main className='cardField'>
 
-                  {users.map((user) => (
-                    
-                    <TeacherCard key={user.id} username={user.username}
-                      email = {user.email} tags = {user.tags} 
-                      description = {user.description} rating = {user.rating}  />
-                    // <div>
-                    //   hello
-                    // </div>
-                  ))}
-                </main>
-              )}
-        </div>   
-      </div>
+                {users.filter((user) => user.email !== me.email).map((user) => (
+                  
+                  <TeacherCard key={user.id} username={user.username}
+                    email = {user.email} tags = {user.tags} 
+                    description = {user.description} rating = {user.rating}  />
+                  // <div>
+                  //   hello
+                  // </div>
+                ))}
+              </main>
+            )}
+            <PageSwitcher page= {page} setPage={setPage} searchValue={searchValue} tag={tagValue}/>
+      </div>   
+     
     )
 }
 

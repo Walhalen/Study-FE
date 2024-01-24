@@ -2,8 +2,9 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import {  routes } from '../constants';
 import HomePage from '../Pages/HomePage';
-import useJWTStore from '../JWTStorage';
+import useJWTStore from '../Storages/JWTStorage';
 import { GoHome } from "react-icons/go";
+import useUserStore from '../Storages/UserStorage';
 type Props = {
   text : string, 
   page : string,
@@ -15,6 +16,7 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
 
     const navigate = useNavigate();
     const { setAuthenticated} = useJWTStore();
+    const { setMe } = useUserStore(); 
     function handleClick(page : string) {
         
         switch (page) {
@@ -47,7 +49,21 @@ const MenuButton = ({text, page, handleFaBar, style} : Props) => {
             setAuthenticated(false)
             handleFaBar()
             sessionStorage.clear();
+            setMe({ 
+              username: "",
+              email: "",
+              rating: 0,
+              tags: [],
+              favorites: [],
+              description: "" 
+            })
             navigate(routes.login);
+            break;
+        }
+        case "profile":
+        {
+            handleFaBar()
+            navigate(routes.profilePage);
             break;
         }
           default: break;

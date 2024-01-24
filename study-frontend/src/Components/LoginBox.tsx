@@ -4,6 +4,7 @@ import { Authentication } from '../Services/Authentication/Authentication';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
 import '../cssFiles/loginSignInPage.css'
+import useUserStore from '../Storages/UserStorage';
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
@@ -28,7 +29,7 @@ const Login = ({handleClick} : Props ) =>
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate(); 
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-
+  const { setMe, me} = useUserStore(); 
   
   const handleSubmit = async () => {
     if(formData.email !== "" && formData.password !== "")
@@ -36,6 +37,7 @@ const Login = ({handleClick} : Props ) =>
       try {
         const response = await Authentication(formData);
         
+        setMe(response.user);
         
         sessionStorage.setItem("jwtAccess", response.token);
         navigate(routes.home);

@@ -87,9 +87,7 @@ const FavoriteTeachersPage = () => {
                   :
                   <div className='cardField'>
                     {me.favorites.map((user) => (
-                        <TeacherCard key={user.id} username={user.username}
-                        email = {user.email} tags = {user.tags} 
-                        description = {user.description} rating = {user.rating}  />
+                        <TeacherCard key={user.id} user = {user} />
                     ))}
                   </div>
                 }

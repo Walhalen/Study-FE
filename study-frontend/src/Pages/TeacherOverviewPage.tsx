@@ -11,20 +11,21 @@ import { ThemeContext } from '../Context/ThemeContext';
 import { GoHome } from "react-icons/go";
 import { routes } from '../constants';
 import learning from '../assets/elearning-portals-cover-picture.svg'
+import { UserDto } from '../Types/UserIntrfaces';
 
 const TeacherOverviewPage = () => {
   const props = useLocation();
   let params = props.state 
   const {viewportWidth} = useContext(ThemeContext);
-  const [user, setUser] = useState(params.user)
+  const [user, setUser] = useState<UserDto>(params.user.user)
   const navigator = useNavigate()
-
+  
   const handleHomeIcon = () => {
       navigator(routes.home)
   }
 
   return (
-    <div style={{position: "relative", height: "100vh", minHeight: "fit-content"}}> 
+    <div style={{position: "relative", minHeight: "fit-content"}}> 
       <div className='BackgroundTeacherOverview'>
           <header className='profileHeader'>
               <button>
@@ -36,7 +37,7 @@ const TeacherOverviewPage = () => {
           <img src={learning} alt="ALoooo" className='IMGBackgound'/>
       </div>
       <div className='TeacherOverviewFieldAbsolute'>
-        <TeacherOverview/>
+          <TeacherOverview user = {user}/>
       </div>
     </div>  
   )

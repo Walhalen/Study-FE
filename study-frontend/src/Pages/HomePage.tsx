@@ -120,9 +120,14 @@ const HomePage = () => {
                     <div className='cardField'>
                       {users.filter((user) => user.email !== me.email).map((user) => (
                         
-                        <TeacherCard key={user.id} username={user.username}
-                        email = {user.email} tags = {user.tags} 
-                        description = {user.description} rating = {user.rating}  />
+                        <TeacherCard key={user.id} user={{
+                          username: user.username,
+                          email: user.email,
+                          tags: user.tags, 
+                          favorites: user.favorites,
+                          description: user.description,
+                          rating: user.rating
+                        }} />
                         // <div>
                         //   hello
                         // </div>

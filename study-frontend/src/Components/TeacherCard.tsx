@@ -9,7 +9,7 @@ import { PostNewFavorite } from '../Services/User/PostNewFavorite';
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite';
 import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
-import { User, UserDto } from '../Types/UserIntrfaces';
+import { FavoriteUserDto, User, UserDto } from '../Types/UserIntrfaces';
 
 interface Tag{
   id : number,
@@ -18,7 +18,7 @@ interface Tag{
 }
 
 type Props = {
-  user: UserDto
+  user: FavoriteUserDto
 };
 
 const TeacherCard = ({user}: Props) => {
@@ -46,7 +46,7 @@ const TeacherCard = ({user}: Props) => {
   useEffect(()=>{
   const ifLiked = () => {
     me.favorites.map((fav_user) => {
-      if(fav_user.email === user.email)
+      if(fav_user.username === user.username)
       {
         setLiked(true);
       }

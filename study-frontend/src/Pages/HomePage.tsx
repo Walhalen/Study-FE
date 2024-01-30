@@ -11,7 +11,7 @@ import FilterDropDown from '../Components/FilterDropDown';
 import HomePageInformation from '../Components/HomePageInformation';
 import { ThemeContext, ThemeContextProvider } from '../Context/ThemeContext';
 import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
-import { User } from '../Types/UserIntrfaces';
+import { User, UserDto } from '../Types/UserIntrfaces';
 import { MenuPage } from '../Types/MenuPageInterfaces';
 import useUserStore from '../Storages/UserStorage';
 import { FetchAllUsersPageable } from '../Services/User/FetchAllUsersPageable';
@@ -21,7 +21,7 @@ import { PageSwitcher } from '../Components/PageSwitcher';
 
 const HomePage = () => {
 
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserDto[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [clickedFa, setClickedFa] = useState(false);
   const [clickedProfile, setClickedProfile] = useState(false);
@@ -120,11 +120,10 @@ const HomePage = () => {
                     <div className='cardField'>
                       {users.filter((user) => user.email !== me.email).map((user) => (
                         
-                        <TeacherCard key={user.id} user={{
+                        <TeacherCard key={user.email} user={{
                           username: user.username,
                           email: user.email,
                           tags: user.tags, 
-                          favorites: user.favorites,
                           description: user.description,
                           rating: user.rating
                         }} />

@@ -10,11 +10,29 @@ export  interface User {
     rating : number
 }
 
+
+export interface FavoriteUserDto{
+    username: string,
+    email: string, 
+    tags: Array<Tag>,
+    description: string,
+    rating: number
+}
+
 export  interface UserDto {
     username: string,
     email : string,
     tags : Array<Tag>,
-    favorites: Array<User>,
+    favorites: Array<FavoriteUserDto>,
     description : string, 
     rating : number
+}
+
+export interface MeDto {
+    username: string,
+    email: string,
+    rating: number,
+    tags: Array<Tag>,
+    favorites: Array<FavoriteUserDto>,
+    description: string 
 }

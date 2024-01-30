@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { User } from '../Types/UserIntrfaces'
+import { FavoriteUserDto, User, UserDto } from '../Types/UserIntrfaces'
 import '../cssFiles/favoritesPage.css'
 import { CgProfile } from "react-icons/cg"
 import TagCard from './TagCard'
@@ -12,7 +12,7 @@ import { PostNewFavorite } from '../Services/User/PostNewFavorite'
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite'
 
 type Props = {
-    user: User
+    user: FavoriteUserDto
 }
 
 export const FavoriteTeacherCard = ({user}: Props) => {

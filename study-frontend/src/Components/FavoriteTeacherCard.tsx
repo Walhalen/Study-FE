@@ -10,6 +10,8 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { IoMdHeart } from "react-icons/io";
 import { PostNewFavorite } from '../Services/User/PostNewFavorite'
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite'
+import { useNavigate } from 'react-router-dom'
+import { routes } from '../constants'
 
 type Props = {
     user: FavoriteUserDto
@@ -17,7 +19,8 @@ type Props = {
 
 export const FavoriteTeacherCard = ({user}: Props) => {
 
-     const [liked, setLiked] = useState(true)
+    const [liked, setLiked] = useState(true)
+    const navigator = useNavigate(); 
 
     const handleLiked = async() => {
         console.log("in liked");
@@ -33,7 +36,9 @@ export const FavoriteTeacherCard = ({user}: Props) => {
         }
         setLiked(!liked)
     }
-
+    const handleViewPerson = () => {
+        navigator(routes.teacherOverviewPage, {state :{user : {user}}})
+    }
     return (
         <div className='FavoriteTeacherCard'>
             <div className='IconField'>
@@ -60,7 +65,10 @@ export const FavoriteTeacherCard = ({user}: Props) => {
             </div>
             <div className='NavigationField'>
                 <PiPaperPlaneTiltLight style={{fontSize:"30px"}}/>
-                <CiViewList style={{fontSize:"30px"}}/>
+                <button>
+                    <CiViewList style={{fontSize:"30px"}} onClick={handleViewPerson}/>
+                </button>
+                
                 {
                     liked ?
                         <button onClick = {handleLiked}>

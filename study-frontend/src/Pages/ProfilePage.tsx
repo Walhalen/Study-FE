@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import '../cssFiles/profilePage.css'   
 import { CgProfile } from "react-icons/cg";
 import { GoHome } from "react-icons/go";
@@ -19,6 +19,17 @@ const ProfilePage = () => {
     }
     const {me} = useUserStore();
     const {viewportWidth} = useContext(ThemeContext);
+    const [drop, setDrop] = useState(false);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setDrop(true);
+        }, 0);
+    
+        
+        return () => clearInterval(intervalId);
+    }, []);
+
 
     return (
         viewportWidth < 1200 ? 
@@ -94,7 +105,7 @@ const ProfilePage = () => {
                 </div>
             </div>
             
-            <div className='MainContent2'>
+            <div className='MainContent2' style={{marginTop: `${drop ? "65vh" : "10vh" }`}}>
                 <div className='FirstContent'>
                     <div className='firstBox'>
                     <div className='firstBoxHeader'>
@@ -143,9 +154,10 @@ const ProfilePage = () => {
                         </button>
                     </div>            
                 </div>
+                <hr style={{border: "1.2px solid rgb(197, 218, 242)", width: "97%", marginBottom: "35px"}}/>
                 <HistoryAndFavoriteComponent/>        
             </div>    
-            <div className='PageInfo'>
+            <div className='PageInfo' style={{marginTop: `${drop ? "18vh" : "0vh"}`}}>
                 <h1 style={{fontSize:"55px", color:"white"}}>Hello {me.username}</h1>
                 <h1 style={{fontSize:"18px", color:"white"}}>
                     This is your profile page! You can see your tags, description and everything for your profile! If you want you can edit your profile

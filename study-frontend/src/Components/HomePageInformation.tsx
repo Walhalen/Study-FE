@@ -47,9 +47,9 @@ const HomePageInformation = ({user}: Props) => {
     
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
-      }, [sliderIndex]);
+    }, [sliderIndex]);
     
-      const handleProfileButton = () => {
+    const handleProfileButton = () => {
         console.log("helo")
         navigator(routes.profilePage)
     }

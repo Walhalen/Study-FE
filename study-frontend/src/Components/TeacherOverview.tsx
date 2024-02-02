@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../cssFiles/teacherOverview.css'
 import { CgProfile } from "react-icons/cg";
 import { AiFillStar } from "react-icons/ai";
@@ -11,6 +11,10 @@ import { TiStarOutline } from "react-icons/ti";
 import { TiStarFullOutline } from "react-icons/ti";
 import { User, UserDto } from '../Types/UserIntrfaces';
 import TagCard from './TagCard';
+import { PostNewFavorite } from '../Services/User/PostNewFavorite';
+import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite';
+import useUserStore from '../Storages/UserStorage';
+import { MdHeartBroken } from "react-icons/md";
 
 
 type Props = {
@@ -21,24 +25,38 @@ const TeacherOverview = ({user} : Props) => {
 
   
     const [moreInfo, setMoreInfo] = useState(true);
-    const [liked, setLiked] = useState(true)
-    console.log(user.username)
+    const [liked, setLiked] = useState(false)
+    const {me} = useUserStore();
+    const [likeInfo, setLikeInfo] = useState(false);
     const handleLiked = async() => {
-        // console.log("in liked");
-        // if(liked === false)
-        // {
-        //     const email = user.email; 
-        //     const data = await PostNewFavorite({email});
-        // }
-        // else
-        // {
-        //     const email = user.email;
-        //     const data = await PostRemoveFavorite({email});
-        // }
       
-        setLiked(!liked)
+      if(liked === false)
+      {
+          const email = user.email; 
+          const data = await PostNewFavorite({email});
+      }
+      else
+      {
+          const email = user.email;
+          const data = await PostRemoveFavorite({email});
+      }
+      
+       setLiked(!liked)
     }
-
+    
+    useEffect(()=>{
+      const ifLiked = () => {
+        me.favorites.map((fav_user) => {
+          if(fav_user.username === user.username)
+          {
+            setLiked(true);
+          }
+        })
+      } 
+    
+      ifLiked();
+    
+    }, [])
     
 
     return (
@@ -50,7 +68,7 @@ const TeacherOverview = ({user} : Props) => {
             </div>
             <section className='SecondSection'>
               <h1 style={{fontSize: "45px", fontWeight: "bold"}}>
-                {user.username}
+                {`${user.username.length >= 10 ? user.username.substring(0, 7) + "..."  : user.username}`}
               </h1>
               <div className='RatingButton'>
                 <AiFillStar style={{color: '#fad02c', fontSize: '25px'}} />
@@ -105,28 +123,7 @@ const TeacherOverview = ({user} : Props) => {
           </section>       
   
         </div>
-        {/* <button className='MoreInfoButton' onClick={() => setMoreInfo(!moreInfo)}>
-          {
-            moreInfo ? 
-            <IoIosArrowBack />
-            : 
-            <IoIosArrowForward />
-          }
-        </button>
-        {
-          moreInfo && 
-          <div style={{height: "700px", display: "flex", flexDirection: "column"}}>
-            <section className='MoreInfoSection'>
-              <h1 className='MoreInfoTitle'>
-                More Information
-              </h1>
-            </section>
-            <section className='TeacherPageInfo'>
-              alo da
-            </section>
-          </div>
-  
-        } */}
+        
         <section>
           <div className='MoreInformationSection'>
               
@@ -175,22 +172,37 @@ const TeacherOverview = ({user} : Props) => {
                   Rate the Teacher
                 </h1>
               </div>
-              <div className='LikeButton'>
-                <h1>
-                  Like Teacher
-                </h1>
+              <button className='LikeButton' onClick = {handleLiked} onMouseEnter={()=>setLikeInfo(true)} onMouseLeave={()=>setLikeInfo(false)}>              
                 {
-                    liked ?
-                        <button onClick = {handleLiked}>
-                            <IoMdHeart style = {{color:"rgb(242, 146, 162)", fontSize:"30px", marginTop: "5px"}}/>
-                        </button>
-                        : 
-                        <button onClick = {handleLiked}>
-                            <IoMdHeartEmpty style = {{color:"rgb(242, 146, 162)", fontSize:"30px", marginTop: "5px"}} / >
-                        </button>
-                }   
+                  likeInfo ? <>
+                    {
+                      liked ? 
+                      <>
+                        <h1>
+                          UnLike
+                        </h1>
+                        <MdHeartBroken style = {{color:"rgb(242, 146, 162)", fontSize:"30px", marginTop: "5px"}}/>
+                      </>
 
-              </div>
+                      : 
+                      <h1>
+                        Like
+                      </h1>
+                    }
+                  </>:
+                  <>
+                    <h1>
+                      {liked ? 'Liked Teacher' : 'Like Teacher'}
+                    </h1>
+                    {
+                        liked ?        
+                          <IoMdHeart style = {{color:"rgb(242, 146, 162)", fontSize:"30px", marginTop: "5px"}}/>    
+                            : 
+                          <IoMdHeartEmpty style = {{color:"rgb(242, 146, 162)", fontSize:"30px", marginTop: "5px"}}/>                       
+                    } 
+                  </>
+                }
+              </button>
           </div>
         </section>
 

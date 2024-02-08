@@ -10,7 +10,8 @@ export const routes = {
     searchPage: '/search',
     favorite: '/favorites',
     history: '/history',
-    profilePage: '/profilePage'
+    profilePage: '/profilePage',
+    teacherOverviewPage: "/teacherOverview" 
 }
 
 

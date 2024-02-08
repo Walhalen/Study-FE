@@ -1,0 +1,141 @@
+.MainColor{
+    background: linear-gradient(to right top, white, white, white, rgb(232, 197, 210));
+    margin: 0px;
+}
+
+
+.FavoriteField{
+    width: 100%;
+    height: fit fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+    
+;}
+
+.FavoritesPageInfo{
+    display: flex;
+    height: 500px;
+    width: 100%;
+    padding: 20px;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.FavTeacherIMG{
+    height: 400px;
+    width: 400px;
+}
+
+.FavoritePageText {
+    /* margin: 20px; */
+    width: 100%;
+    max-width: 450px;
+    font-size: 18px;
+    background: linear-gradient(to right, rgb(137, 150, 165), rgb(181, 194, 210), rgb(170, 186, 203));
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block; 
+    text-align: center;
+}
+
+.FavoriteHeartEmote{
+    position: relative;
+    height: 400px;
+    width: 400px;
+}
+
+.FavoriteHeartTextEmpty{
+    position: absolute;
+    top:10rem;
+    right: 9rem;
+    color: black; 
+    font-size: 30px;
+}
+
+.FavoriteHeartTextFill{
+    position: absolute;
+    top:10rem;
+    right: 4rem;
+    color: black; 
+    font-size: 30px;
+}
+
+
+.FavoriteTeacherCard{
+    padding-left: 20px; 
+    margin-top: 20px;
+    width: fit-content;
+    min-width: 70%;
+    height: 80px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.IconField{
+    display: flex;
+    height: 100%;
+    width: fit-content;
+    align-items: center;
+}
+
+.InfoField{
+    padding-top: 5px;
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    width: fit-content  ;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+}
+
+.RatingField{
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    gap:10px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.NavigationField{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 25px;
+    margin-right: 3%;
+    
+    
+}
+
+@media (max-width: 1280px) {
+    .FavoritesPageInfo{
+        flex-direction: row-reverse;
+        
+    }
+    .FavoriteTeacherCard{
+        min-width: 98%;
+    }
+}
+
+@media  (max-width:780px) {
+    .FavoritesPageInfo{
+        height: 250px;
+    }
+    
+}

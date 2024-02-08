@@ -13,7 +13,6 @@ function PrivateRoute ({isAuthenticated }: Props){
   }, [isAuthenticated])
   return isAuthenticated ? (
     <>
-    
       {
         <Outlet/>
       }

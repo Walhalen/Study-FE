@@ -5,7 +5,7 @@ import exampleImage1 from '../assets/continious-learning.png';
 import onlineEdu from '../assets/onlineEdu.png'
 import TeacherCard from './TeacherCard';
 import { FaRegCircle } from "react-icons/fa";
-import { UserDto } from '../Types/UserIntrfaces';
+import { User, UserDto } from '../Types/UserIntrfaces';
 import {Tag} from '../Types/TagInterfaces';
 import { useNavigate } from 'react-router-dom';
 import { routes } from '../constants';
@@ -14,7 +14,7 @@ import { ThemeContext } from '../Context/ThemeContext';
 
   
 type Props = {
-    user: UserDto
+    user: UserDto;
 }
 
 const HomePageInformation = ({user}: Props) => {
@@ -47,9 +47,9 @@ const HomePageInformation = ({user}: Props) => {
     
         // Cleanup function to clear the interval when the component unmounts
         return () => clearInterval(intervalId);
-      }, [sliderIndex]);
+    }, [sliderIndex]);
     
-      const handleProfileButton = () => {
+    const handleProfileButton = () => {
         console.log("helo")
         navigator(routes.profilePage)
     }
@@ -89,9 +89,7 @@ const HomePageInformation = ({user}: Props) => {
                     sliderIndex === 2 && 
                     <div style={{display:'flex'}}>
                         <div >
-                            <TeacherCard username={user.username}
-                            email = {user.email} tags = {user.tags} 
-                            description = {user.description} rating = {user.rating}  />
+                            <TeacherCard user={user}/>
                         </div>
                         <div style ={{display:'flex', justifyContent:'center', alignItems:'center', flexDirection:"column"}}>
                             <h1  className='Info'>

@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import { UserDto } from '../Types/UserIntrfaces';
+import { MeDto, UserDto } from '../Types/UserIntrfaces';
 import { Tag } from '../Types/TagInterfaces';
 
 type Store = {
-    me: UserDto,
-    setMe: (myUser: UserDto) => void;
+    me: MeDto,
+    setMe: (myUser: MeDto) => void;
 } 
 
 
@@ -17,7 +17,7 @@ const useUserStore = create<Store>((set) => ({
         favorites: [],
         description: "" 
     },
-    setMe: (myUser : UserDto) => set((state) => { 
+    setMe: (myUser : MeDto) => set((state) => { 
         return { ...state,me: myUser }
     }
     ),

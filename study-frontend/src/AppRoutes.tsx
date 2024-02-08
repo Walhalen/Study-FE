@@ -13,6 +13,7 @@ import DefaultRout from './Helper/DefaultRout';
 import { SignInTagsSelector } from './Components/SignInTagsDescriptionSelector';
 import SearchPage from './Pages/SearchPage';
 import ProfilePage from './Pages/ProfilePage';
+import TeacherOverviewPage from './Pages/TeacherOverviewPage';
 
 
 
@@ -32,6 +33,7 @@ export const AppRoutes = () => {
           
           
           <Route element={<PrivateRoute isAuthenticated = {isAuthenticated}/>}>
+            <Route path={routes.teacherOverviewPage} element={<TeacherOverviewPage/>}/>
             <Route path={routes.profilePage} element={<ProfilePage/>}/>
             <Route path={routes.searchPage} element={<SearchPage/>} />
             <Route path={routes.home} element={<HomePage/>} />

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import '../cssFiles/profilePage.css'   
 import { CgProfile } from "react-icons/cg";
 import { GoHome } from "react-icons/go";
@@ -9,6 +9,7 @@ import learning from '../assets/learning2.png'
 import useUserStore from '../Storages/UserStorage';
 import TagCard from '../Components/TagCard';
 import { ThemeContext } from '../Context/ThemeContext';
+import { HistoryAndFavoriteComponent } from '../Components/HistoryAndFavoriteComponent';
 const ProfilePage = () => {
     
     const navigator = useNavigate()
@@ -18,6 +19,17 @@ const ProfilePage = () => {
     }
     const {me} = useUserStore();
     const {viewportWidth} = useContext(ThemeContext);
+    const [drop, setDrop] = useState(false);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setDrop(true);
+        }, 0);
+    
+        
+        return () => clearInterval(intervalId);
+    }, []);
+
 
     return (
         viewportWidth < 1200 ? 
@@ -92,58 +104,60 @@ const ProfilePage = () => {
                     <img src={learning} alt="ALoooo" style={{opacity:"0.5" }}/>
                 </div>
             </div>
-            <div className='MainContent2'>
-                <div className='firstBox'>
-                   <div className='firstBoxHeader'>
-                        <div style={{width: "50%"}}>
-                            <h1 style={{fontSize:"20px"}}>My account</h1>
-                        </div>
-                        
-                        <div style={{width:"100%", display:"flex", justifyContent:"end"}}>
-                            <button className='SignoutButton'>Sign out</button>
-                        </div>
-                        
-                   </div>
-                   <div className='firstBoxBody'>
-                        <div>
-                            <h1 style ={{fontSize: "18px", color: "gray"}}>User Information</h1>
-                        </div>
-                        <div style={{padding: "20px"}}>
-                            <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Tags:</h1>
-                            <div className='UserInfo'>
-                            { me.tags.map((tag) => (
-                                <TagCard  key={tag.id} name = {tag.name} color = {tag.color}/>
-                            ))}
+            
+            <div className='MainContent2' style={{marginTop: `${drop ? "65vh" : "10vh" }`}}>
+                <div className='FirstContent'>
+                    <div className='firstBox'>
+                    <div className='firstBoxHeader'>
+                            <div style={{width: "50%"}}>
+                                <h1 style={{fontSize:"20px"}}>My account</h1>
                             </div>
-                            <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Description:</h1>
-                            <div className='UserInfo'>
-                                {me.description}
+                            
+                            <div style={{width:"100%", display:"flex", justifyContent:"end"}}>
+                                <button className='SignoutButton'>Sign out</button>
                             </div>
+                            
+                    </div>
+                    <div className='firstBoxBody'>
+                            <div>
+                                <h1 style ={{fontSize: "18px", color: "gray"}}>User Information</h1>
+                            </div>
+                            <div style={{padding: "20px"}}>
+                                <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Tags:</h1>
+                                <div className='UserInfo'>
+                                { me.tags.map((tag) => (
+                                    <TagCard  key={tag.id} name = {tag.name} color = {tag.color}/>
+                                ))}
+                                </div>
+                                <h1 style ={{fontSize: "17px", fontWeight: "bold", color:"#5a6685"}}>Your Description:</h1>
+                                <div className='UserInfo'>
+                                    {me.description}
+                                </div>
+                            </div>
+                    </div>
+
+                    </div>
+                    <div className='secondBox'>
+                        <div className='profileIcon'>
+                            <CgProfile/>
                         </div>
-                   </div>
-
+                        <div style={{display:'flex', alignItems:"center", justifyContent:'center', flexDirection:"column", width: "100%", marginTop: "150px",marginBottom:"50px"}}>
+                            <h1 style={{fontSize: "35px", fontWeight: "500", color:"#5a6685", wordBreak: "break-all", overflowWrap:"break-word", maxWidth: "70%", textAlign: "center"}}>
+                            {me.username}</h1>
+                            <h1 style={{fontSize: "20px", color:"#5a6685", textAlign:"center", marginBottom: "40px"}}>{me.email}</h1>
+                            <h1 style={{fontSize: "20px", color:"black", textAlign:"center", marginBottom: "20px"}}>
+                                As a registered user, you have the unique opportunity to become a teacher in the subjects you excel at.
+                            </h1>
+                        </div>
+                        <button className='HomePageLink'>
+                            <h1>Explore the Study platform and find the right teachers for you !!!</h1>
+                        </button>
+                    </div>            
                 </div>
-                <div className='secondBox'>
-                    <div className='profileIcon'>
-                        <CgProfile/>
-                    </div>
-                    <div style={{display:'flex', alignItems:"center", justifyContent:'center', flexDirection:"column", width: "100%", marginTop: "150px",marginBottom:"50px"}}>
-                        <h1 style={{fontSize: "35px", fontWeight: "500", color:"#5a6685", wordBreak: "break-all", overflowWrap:"break-word", maxWidth: "70%", textAlign: "center"}}>
-                        {me.username}</h1>
-                        <h1 style={{fontSize: "20px", color:"#5a6685", textAlign:"center", marginBottom: "40px"}}>{me.email}</h1>
-                        <h1 style={{fontSize: "20px", color:"black", textAlign:"center", marginBottom: "20px"}}>
-                            As a registered user, you have the unique opportunity to become a teacher in the subjects you excel at.
-                        </h1>
-                    </div>
-                    <button className='HomePageLink'>
-                        <h1>Explore the Study platform and find the right teachers for you !!!</h1>
-                    </button>
-                </div>
-
-
-
+                <hr style={{border: "1.2px solid rgb(197, 218, 242)", width: "97%", marginBottom: "35px"}}/>
+                <HistoryAndFavoriteComponent/>        
             </div>    
-            <div className='PageInfo'>
+            <div className='PageInfo' style={{marginTop: `${drop ? "18vh" : "0vh"}`}}>
                 <h1 style={{fontSize:"55px", color:"white"}}>Hello {me.username}</h1>
                 <h1 style={{fontSize:"18px", color:"white"}}>
                     This is your profile page! You can see your tags, description and everything for your profile! If you want you can edit your profile

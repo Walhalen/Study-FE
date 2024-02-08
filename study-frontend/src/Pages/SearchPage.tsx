@@ -165,9 +165,7 @@ const SearchPage = () => {
 
                 {users.filter((user) => user.email !== me.email).map((user) => (
                   
-                  <TeacherCard key={user.id} username={user.username}
-                    email = {user.email} tags = {user.tags} 
-                    description = {user.description} rating = {user.rating}  />
+                  <TeacherCard key={user.id} user={user}/>
                   // <div>
                   //   hello
                   // </div>

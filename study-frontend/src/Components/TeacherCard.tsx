@@ -11,6 +11,7 @@ import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
 import { FavoriteOrHistoryUserDto, User, UserDto } from '../Types/UserIntrfaces';
 import { PostNewHistory } from '../Services/User/PostNewHistory';
+import { DeleteRemoveHistory } from '../Services/User/DeleteRemoveHistory';
 
 interface Tag{
   id : number,

@@ -8,7 +8,7 @@ import { ThemeContext } from '../Context/ThemeContext';
 import FavoritesPageInfo from '../Components/FavoritesPageInfo';
 import HistoryPageInfo from '../Components/HistoryPageInfo';
 import TeacherCard from '../Components/TeacherCard';
-import FavoriteTeacherCard from '../Components/FavoriteTeacherCard';
+import FavoriteTeacherCard, { FavoriteOrHistoryTeacherCard } from '../Components/FavoriteOrHistoryTeacherCard';
 import useUserStore from '../Storages/UserStorage';
 
 
@@ -77,14 +77,14 @@ const FavoriteTeachersPage = () => {
                   <h1 className='SubTitle'>Your History: </h1>
                   {
                     viewportWidth > 850 ? 
-                    <div className='FavoriteField'>           
+                    <div className='FavoriteField' style = {{display:"flex", flexDirection: 'column-reverse'}}>           
                       {me.history.length == 0  && 
                         <h1 style={{marginTop: "20px"}}>There is no history yet</h1>
                       }
                       {
                         
                         me.history.map((user) => (
-                          <FavoriteTeacherCard key={user.username} user={user}/>
+                          <FavoriteOrHistoryTeacherCard key={user.username} user={user} historyOrFavorite={true}/>
                         ))
                       }
                     </div>

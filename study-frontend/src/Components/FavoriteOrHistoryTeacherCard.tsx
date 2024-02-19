@@ -12,16 +12,18 @@ import { PostNewFavorite } from '../Services/User/PostNewFavorite'
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../constants'
+import useUserStore from '../Storages/UserStorage'
 
 type Props = {
-    user: FavoriteOrHistoryUserDto
+    user: FavoriteOrHistoryUserDto,
+    historyOrFavorite: boolean
 }
 
-export const FavoriteTeacherCard = ({user}: Props) => {
+export const FavoriteOrHistoryTeacherCard = ({user, historyOrFavorite}: Props) => {
 
-    const [liked, setLiked] = useState(true)
+    const [liked, setLiked] = useState(false)
     const navigator = useNavigate(); 
-
+    const {me} = useUserStore();
     const handleLiked = async() => {
         console.log("in liked");
         if(liked === false)
@@ -39,6 +41,22 @@ export const FavoriteTeacherCard = ({user}: Props) => {
     const handleViewPerson = () => {
         navigator(routes.teacherOverviewPage, {state :{user : {user}}})
     }
+
+
+    useEffect(()=>{
+        const ifLiked = () => {
+          me.favorites.map((fav_user) => {
+            if(fav_user.username === user.username)
+            {
+              setLiked(true);
+            }
+          })
+        } 
+      
+        ifLiked();
+      
+        }, [])
+
     return (
         <div className='FavoriteTeacherCard'>
             <div className='IconField'>
@@ -85,4 +103,4 @@ export const FavoriteTeacherCard = ({user}: Props) => {
     )
 }
 
-export default FavoriteTeacherCard; 
+export default FavoriteOrHistoryTeacherCard; 

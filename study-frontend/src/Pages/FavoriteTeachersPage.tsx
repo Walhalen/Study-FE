@@ -6,7 +6,7 @@ import FilterDropDown from '../Components/FilterDropDown';
 import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
 import { ThemeContext } from '../Context/ThemeContext';
 import useUserStore from '../Storages/UserStorage';
-import  FavoriteTeacherCard  from '../Components/FavoriteTeacherCard';
+import  FavoriteTeacherCard, { FavoriteOrHistoryTeacherCard }  from '../Components/FavoriteOrHistoryTeacherCard';
 import '../cssFiles/favoritesPage.css'
 import FavoritesPageInfo from '../Components/FavoritesPageInfo';
 import TeacherCard from '../Components/TeacherCard';
@@ -80,7 +80,7 @@ const FavoriteTeachersPage = () => {
                   <div className='FavoriteField'>           
                     {
                       me.favorites.map((user) => (
-                        <FavoriteTeacherCard key={user.username} user={user}/>
+                        <FavoriteOrHistoryTeacherCard key={user.username} user={user} historyOrFavorite={false}/>
                       ))
                     }
                   </div>

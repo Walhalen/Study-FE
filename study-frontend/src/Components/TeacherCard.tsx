@@ -9,7 +9,9 @@ import { PostNewFavorite } from '../Services/User/PostNewFavorite';
 import { PostRemoveFavorite } from '../Services/User/PostRemoveFavorite';
 import { routes } from '../constants';
 import { useNavigate } from 'react-router-dom';
-import { FavoriteUserDto, User, UserDto } from '../Types/UserIntrfaces';
+import { FavoriteOrHistoryUserDto, User, UserDto } from '../Types/UserIntrfaces';
+import { PostNewHistory } from '../Services/User/PostNewHistory';
+import { DeleteRemoveHistory } from '../Services/User/DeleteRemoveHistory';
 
 interface Tag{
   id : number,
@@ -18,7 +20,7 @@ interface Tag{
 }
 
 type Props = {
-  user: FavoriteUserDto
+  user: FavoriteOrHistoryUserDto
 };
 
 const TeacherCard = ({user}: Props) => {
@@ -56,6 +58,12 @@ const TeacherCard = ({user}: Props) => {
   ifLiked();
 
   }, [])
+
+  const handleViewTeacher = async() => {
+    const email  = user.email; 
+    const data = await PostNewHistory({email});
+    navigator(routes.teacherOverviewPage, {state :{user : {user}}} );
+  }
 
   return (
     <div className='Card'>
@@ -107,9 +115,7 @@ const TeacherCard = ({user}: Props) => {
               {user.rating}
             </div>
           </div>
-          <button className='CardViewButton' onClick = {() => {
-            navigator(routes.teacherOverviewPage, {state :{user : {user}}} );
-          }}>
+          <button className='CardViewButton' onClick = {handleViewTeacher}>
             View Teacher
           </button>
       </div>

@@ -3,8 +3,9 @@ import { MdHistory } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import useUserStore from '../Storages/UserStorage';
 import { ThemeContext } from '../Context/ThemeContext';
-import FavoriteTeacherCard from './FavoriteTeacherCard';
+import { FavoriteOrHistoryTeacherCard } from './FavoriteOrHistoryTeacherCard';
 import TeacherCard from './TeacherCard';
+import { reverse } from 'dns';
 
 export const HistoryAndFavoriteComponent = () => {
     const [favoriteOrHistory, setFavoriteOrHistory] = useState(true);
@@ -36,7 +37,7 @@ export const HistoryAndFavoriteComponent = () => {
                         <div className='FavoriteField'>           
                             {
                             me.favorites.map((user) => (
-                                <FavoriteTeacherCard key={user.username} user={user}/>
+                                <FavoriteOrHistoryTeacherCard key={user.username} user={user} historyOrFavorite={false}/>
                             ))
                             }
                         </div>
@@ -49,9 +50,24 @@ export const HistoryAndFavoriteComponent = () => {
                     }
                 </>
                 : 
-                <section>
-
-                </section>
+                <>
+                    {
+                        viewportWidth > 850 ? 
+                        <div className='FavoriteField'>       
+                                {
+                                    me.history.map((user) => (
+                                        <FavoriteOrHistoryTeacherCard key={user.username} user={user} historyOrFavorite={true}/>
+                                    ))
+                                }
+                        </div>
+                        :
+                        <div className='cardField' style = {{display:"flex", flexDirection: 'column-reverse'}}>
+                            {me.history.map((user) => (
+                                <TeacherCard key={user.username} user = {user} />
+                            ))}
+                        </div>
+                    }
+                </>
             }
 
         </section>

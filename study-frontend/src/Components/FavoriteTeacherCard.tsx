@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FavoriteUserDto, User, UserDto } from '../Types/UserIntrfaces'
+import { FavoriteOrHistoryUserDto, User, UserDto } from '../Types/UserIntrfaces'
 import '../cssFiles/favoritesPage.css'
 import { CgProfile } from "react-icons/cg"
 import TagCard from './TagCard'
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom'
 import { routes } from '../constants'
 
 type Props = {
-    user: FavoriteUserDto
+    user: FavoriteOrHistoryUserDto
 }
 
 export const FavoriteTeacherCard = ({user}: Props) => {

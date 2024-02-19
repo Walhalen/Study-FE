@@ -11,7 +11,7 @@ export  interface User {
 }
 
 
-export interface FavoriteUserDto{
+export interface FavoriteOrHistoryUserDto{
     username: string,
     email: string, 
     tags: Array<Tag>,
@@ -23,7 +23,7 @@ export  interface UserDto {
     username: string,
     email : string,
     tags : Array<Tag>,
-    favorites: Array<FavoriteUserDto>,
+    favorites: Array<FavoriteOrHistoryUserDto>,
     description : string, 
     rating : number
 }
@@ -33,6 +33,7 @@ export interface MeDto {
     email: string,
     rating: number,
     tags: Array<Tag>,
-    favorites: Array<FavoriteUserDto>,
+    favorites: Array<FavoriteOrHistoryUserDto>,
+    history: Array<FavoriteOrHistoryUserDto>,
     description: string 
 }

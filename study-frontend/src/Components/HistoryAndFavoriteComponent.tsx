@@ -49,9 +49,24 @@ export const HistoryAndFavoriteComponent = () => {
                     }
                 </>
                 : 
-                <section>
-
-                </section>
+                <>
+                    {
+                        viewportWidth > 850 ? 
+                        <div className='FavoriteField'>           
+                            {
+                            me.history.map((user) => (
+                                <FavoriteTeacherCard key={user.username} user={user}/>
+                            ))
+                            }
+                        </div>
+                        :
+                        <div className='cardField'>
+                            {me.history.map((user) => (
+                                <TeacherCard key={user.username} user = {user} />
+                            ))}
+                        </div>
+                    }
+                </>
             }
 
         </section>

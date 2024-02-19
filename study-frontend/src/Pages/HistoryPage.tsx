@@ -5,6 +5,11 @@ import { CiSearch } from "react-icons/ci";
 import FilterDropDown from '../Components/FilterDropDown';
 import { largeScreenProfileMenu, mediumScreenMenu, smallScreenMenu } from '../constants';
 import { ThemeContext } from '../Context/ThemeContext';
+import FavoritesPageInfo from '../Components/FavoritesPageInfo';
+import HistoryPageInfo from '../Components/HistoryPageInfo';
+import TeacherCard from '../Components/TeacherCard';
+import FavoriteTeacherCard from '../Components/FavoriteTeacherCard';
+import useUserStore from '../Storages/UserStorage';
 
 
 interface MenuPage{
@@ -24,7 +29,7 @@ const FavoriteTeachersPage = () => {
     const handleProfileBar = () => setClickedProfile(!clickedProfile);
     const [filterDropDown, setFilterDropDown] = useState(false);
     const hanleFilterDropDown = () => setFilterDropDown(!filterDropDown);
-
+    const {me} = useUserStore();
 
     
     const {viewportWidth} = useContext(ThemeContext);
@@ -49,11 +54,11 @@ const FavoriteTeachersPage = () => {
   
 
     return (
-        <div>
+        <div className='overflow-x' style={{height: "100vh", display: "flex", flexDirection: "column"}}>
             <header className='header'>
               <ClosedMenu handleFaBar={handleFaBar} handleProfileBar = {handleProfileBar} handleFilterDropDown = {hanleFilterDropDown}  filterDropDown = {filterDropDown}/>
             </header>
-            <div >
+            <div className='HistoryMainColor'>
 
                 {viewportWidth < 1250 && 
                   <div>
@@ -64,8 +69,35 @@ const FavoriteTeachersPage = () => {
                   {clickedProfile && <Menu handleFaBar={handleProfileBar} pages = {ProfileMenuPages} style = "profileSideBar"/> }
                 </div>  
                 <main>
-
-                    History page
+                  <h1 className='TitleHome'>History Page</h1>
+                  <div>
+                    <HistoryPageInfo/>
+                  </div> 
+                  <hr style={{border:"1.2px solid rgb(197, 218, 242)", margin: "35px"}}/>
+                  <h1 className='SubTitle'>Your History: </h1>
+                  {
+                    viewportWidth > 850 ? 
+                    <div className='FavoriteField'>           
+                      {me.history.length == 0  && 
+                        <h1 style={{marginTop: "20px"}}>There is no history yet</h1>
+                      }
+                      {
+                        
+                        me.history.map((user) => (
+                          <FavoriteTeacherCard key={user.username} user={user}/>
+                        ))
+                      }
+                    </div>
+                    :
+                    <div className='cardField'>
+                      {me.history.length == 0  && 
+                        <h1 style={{marginTop: "20px"}}>There is no history yet</h1>
+                      }
+                      {me.history.map((user) => (
+                          <TeacherCard key={user.username} user = {user} />
+                      ))}
+                    </div>
+                  }
                 </main>
             </div>
         </div>

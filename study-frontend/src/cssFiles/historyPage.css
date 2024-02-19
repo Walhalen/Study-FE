@@ -1,0 +1,15 @@
+.HistoryPageInfo{
+    height: 500px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    
+}
+
+.HistoryMainColor{
+    background: linear-gradient(to right top, white, white, white, rgb(247, 234, 182));
+    margin: 0px;
+}

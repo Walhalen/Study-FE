@@ -135,13 +135,8 @@
     display: flex;
     flex-wrap: wrap; 
     justify-content: center; 
-    /* align-items: center;  */
     height: fit-content;
     width: 100%;
-    
-    
-    /* margin: 10px; */
-    /* justify-content: center; */
   }
   
   .Card {

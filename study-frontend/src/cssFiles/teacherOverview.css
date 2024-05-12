@@ -279,13 +279,93 @@
 
 .ChatField{
     height: 700px;
-    border: 2px solid #879aaf;
+    border-bottom: 2px solid #c5daf2  ;
     background-color: #eff4f8;
     border-radius: 20px;
-    margin-left: 100px;
+    width: 100%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.MessageBox{
+    width: 100%;
+    position: absolute;
+    bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    gap: 10px;
 }
 
+.SentMessage{
+    height: 50px;
+    transition: width 0.3s ease;
+    background-color: #d0e1f5;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.TextAreaComment{
+    height: 50px;
+    transition: height 0.5s ease;
+    width: 500px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: white;
+}
 
+.ChatHeader{
+    width: 100%;
+    padding-bottom: 7px; 
+    font-size: 50px;
+    border-bottom: 2px solid #c5daf2 ;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    transition: justify-content 5s ease;
+}
+
+.CommentsBox{
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    scrollbar-width: none;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.Comment{
+    padding: 10px;
+    margin: 10px;
+    margin-right: 40px;
+    border-radius: 20px;
+    height: fit-content;
+    
+    width: fit-content;
+    max-width: 300px;
+    background: linear-gradient(to right top, #85cbd4, rgb(255, 210, 218));
+    /* background-color: #85cbd4; */
+    word-wrap: break-word;
+}
+
+.OtherComment{
+    padding: 10px;
+    margin: 10px;
+    margin-left: 40px;
+    border-radius: 20px;
+    height: fit-content;
+    width: fit-content;
+    max-width: 300px;
+    /* background-color: #dfb985; */
+    background: linear-gradient(to left top, #f6cf99, rgb(253, 182, 195));
+}
 /* @media (max-width: 1550px) {
     .TeacherOverviewField{
         gap: 100px;
